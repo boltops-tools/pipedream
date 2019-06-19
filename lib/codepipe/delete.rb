@@ -4,8 +4,8 @@ module Codepipe
 
     def initialize(options)
       @options = options
-      @project_name = options[:project_name] || inferred_project_name
-      @stack_name = options[:stack_name] || inferred_stack_name(@project_name)
+      @pipeline_name = options[:pipeline_name] || inferred_pipeline_name
+      @stack_name = options[:stack_name] || inferred_stack_name(@pipeline_name)
     end
 
     def run

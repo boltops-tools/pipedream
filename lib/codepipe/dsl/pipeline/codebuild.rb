@@ -33,11 +33,11 @@ module Codepipe::Dsl::Pipeline
 
     def codebuild(*args)
       props = args.last.is_a?(Hash) ? args.pop : {}
-      project_names = args
-      pp project_names
+      pipeline_names = args
+      pp pipeline_names
 
-      actions = project_names.map do |project_name|
-        name = project_name.underscore.camelize
+      actions = pipeline_names.map do |pipeline_name|
+        name = pipeline_name.underscore.camelize
         default = {
           name: name,
           action_type_id: {
@@ -47,8 +47,8 @@ module Codepipe::Dsl::Pipeline
             version: "1",
           },
           run_order: @run_order,
-          # configuration: { project_name: project_name },
-          configuration: { project_name: "demo" }, # TODO: hard code for testing
+          # configuration: { pipeline_name: pipeline_name },
+          configuration: { pipeline_name: "demo" }, # TODO: hard code for testing
           output_artifacts: [name: "BuildArtifact#{name}"],
           input_artifacts: props[:input_artifacts] || [name: "SourceArtifact"], # TODO: auto-generate
           # SourceArtifact88 ? Parse last stage and look for output artifact?

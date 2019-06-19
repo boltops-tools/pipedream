@@ -25,13 +25,13 @@ module Codepipe::AwsServices
       exist
     end
 
-    def project_name_convention(name_base)
-      items = [@project_name, @options[:type], Codepipe.env_extra]
+    def pipeline_name_convention(name_base)
+      items = [@pipeline_name, @options[:type], Codepipe.env_extra]
       items.insert(2, Codepipe.env) if Codepipe.settings.dig(:stack_naming, :append_env)
       items.reject(&:blank?).compact.join("-")
     end
 
-    def inferred_project_name
+    def inferred_pipeline_name
       # Essentially the project's parent folder
       File.basename(Dir.pwd).gsub('_','-').gsub(/\.+/,'-').gsub(/[^0-9a-zA-Z,-]/, '')
     end
@@ -42,8 +42,8 @@ module Codepipe::AwsServices
     #     myapp-ci-deploy-development
     #     myapp-ci-deploy-development-2
     #
-    def inferred_stack_name(project_name)
-      items = [project_name, "cp", @options[:type], Codepipe.env_extra]
+    def inferred_stack_name(pipeline_name)
+      items = [pipeline_name, "cp", @options[:type], Codepipe.env_extra]
       items.insert(3, Codepipe.env) if Codepipe.settings.dig(:stack_naming, :append_env)
       items.reject(&:blank?).compact.join("-")
     end

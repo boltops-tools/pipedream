@@ -15,13 +15,22 @@ module Codepipe
       Deploy.new(options.merge(pipeline_name: pipeline_name)).run
     end
 
+    desc "start", "Start codebuild project."
+    long_desc Help.text(:start)
+    option :sure, desc: "Bypass are you sure prompt"
+    common_options.call
+    def start(pipeline_name=nil)
+      Start.new(options.merge(pipeline_name: pipeline_name)).run
+    end
+
     desc "delete", "Delete codebuild project."
     long_desc Help.text(:delete)
     option :sure, desc: "Bypass are you sure prompt"
     common_options.call
-    def delete(project_name=nil)
-      Delete.new(options.merge(project_name: project_name)).run
+    def delete(pipeline_name=nil)
+      Delete.new(options.merge(pipeline_name: pipeline_name)).run
     end
+
     desc "completion *PARAMS", "Prints words for auto-completion."
     long_desc Help.text("completion")
     def completion(*params)

@@ -6,20 +6,20 @@ module Codepipe
 
     def initialize(options)
       @options = options
-      @project_name = @options[:project_name] || inferred_project_name
-      @stack_name = options[:stack_name] || inferred_stack_name(@project_name)
+      @pipeline_name = @options[:pipeline_name] || inferred_pipeline_name
+      @stack_name = options[:stack_name] || inferred_stack_name(@pipeline_name)
 
-      @full_project_name = project_name_convention(@project_name)
+      @full_pipeline_name = pipeline_name_convention(@pipeline_name)
       @template = {
-        "Description" => "CodePipeline Project: #{@full_project_name}",
+        "Description" => "CodePipeline Project: #{@full_pipeline_name}",
         "Resources" => {}
       }
     end
 
     def run
       options = @options.merge(
-        project_name: @project_name,
-        full_project_name: @full_project_name,
+        pipeline_name: @pipeline_name,
+        full_pipeline_name: @full_pipeline_name,
       )
 
       pipeline_builder = Pipeline.new(options)
@@ -44,7 +44,7 @@ module Codepipe
       IO.write(template_path, YAML.dump(@template))
       puts "Generated CloudFormation template at #{template_path.color(:green)}"
       return if @options[:noop]
-      puts "Deploying stack #{@stack_name.color(:green)} with CodePipeline project #{@full_project_name.color(:green)}"
+      puts "Deploying stack #{@stack_name.color(:green)} with CodePipeline project #{@full_pipeline_name.color(:green)}"
 
       begin
         perform
