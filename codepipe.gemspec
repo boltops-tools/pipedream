@@ -4,13 +4,12 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require "codepipe/version"
 
 Gem::Specification.new do |spec|
-  spec.name          = "codepipe"
+  spec.name          = "codepipeline"
   spec.version       = Codepipe::VERSION
   spec.authors       = ["Tung Nguyen"]
   spec.email         = ["tongueroo@gmail.com"]
-  spec.summary       = "Generated with cli-template tool. Please write a gem summary"
-  spec.description   = "Generated with cli-template tool. Write a longer description or delete this line."
-  spec.homepage      = ""
+  spec.summary       = "Tool"
+  spec.homepage      = "https://github.com/tongueroo/codepipeline"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)

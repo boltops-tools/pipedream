@@ -1,20 +1,23 @@
-# Codepipe
+# Codepipeline
 
-[![Gem Version](https://badge.fury.io/rb/GEMNAME.png)](http://badge.fury.io/rb/GEMNAME)
-[![CircleCI](https://circleci.com/gh/USER/REPO.svg?style=svg)](https://circleci.com/gh/USER/REPO)
-[![Dependency Status](https://gemnasium.com/USER/REPO.png)](https://gemnasium.com/USER/REPO)
-[![Coverage Status](https://coveralls.io/repos/USER/REPO/badge.png)](https://coveralls.io/r/USER/REPO)
-[![Join the chat at https://gitter.im/USER/REPO](https://badges.gitter.im/USER/REPO.svg)](https://gitter.im/USER/REPO?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-[![Support](https://img.shields.io/badge/get-support-blue.svg)](https://boltops.com?utm_source=badge&utm_medium=badge&utm_campaign=cli-template)
+[![Gem Version](https://badge.fury.io/rb/codepipeline.png)](http://badge.fury.io/rb/codepipeline)
 
-TODO: Write a gem description
+The codepipeline tool provides a DSL to create a CodePipeline project with some reasonable defaults.
 
-## Usage
+The codebuild tool installs `codepipline` and `pipe` executables. Both of them do the same thing, `pipe` is just shorter to type.
 
-    codepipe hello yourname
-    codepipe sub:goodbye yourname
+## Quick Start
+
+    pipe init
+    pipe deploy
+    pipe start
 
 The CLI tool also detects and tasks in the current folder's Rakefile and delegate to those tasks.
+
+## Init and Structure
+
+## DSL
+
 
 ## Installation
 
