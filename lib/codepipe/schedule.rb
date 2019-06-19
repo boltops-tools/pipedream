@@ -82,7 +82,7 @@ module Codepipe
               statement: [{
                 action: "codepipeline:StartPipelineExecution",
                 effect: "Allow",
-                resource: "arn:aws:codepipeline:#{aws.region}:#{aws.account}:pipeline/#{@options[:full_pipeline_name]}"
+                resource: "arn:aws:codepipeline:#{aws.region}:#{aws.account}:#{@options[:full_pipeline_name]}"
               }]
             }
           }]
