@@ -3,10 +3,10 @@ module Codepipe
     class_option :verbose, type: :boolean
     class_option :noop, type: :boolean
 
-    desc "build NAME", "Build pipeline NAME."
-    long_desc Help.text(:build)
-    def build(name=nil)
-      Build.new(options.merge(name: name)).run
+    desc "deploy PIPELINE_NAME", "Deploy pipeline."
+    long_desc Help.text(:deploy)
+    def deploy(pipeline_name=nil)
+      Deploy.new(options.merge(pipeline_name: pipeline_name)).run
     end
 
     desc "completion *PARAMS", "Prints words for auto-completion."

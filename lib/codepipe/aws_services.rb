@@ -1,0 +1,16 @@
+require "aws-sdk-codepipeline"
+require "aws-sdk-cloudformation"
+
+module Codepipe
+  module AwsServices
+    include Helpers
+
+    def codepipeline
+      @codepipeline ||= Aws::CodePipeline::Client.new
+    end
+
+    def cfn
+      @cfn ||= Aws::CloudFormation::Client.new
+    end
+  end
+end
