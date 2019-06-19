@@ -26,6 +26,7 @@ module Codepipe
 
     def default_properties
       {
+        name: @options[:full_pipeline_name],
         role_arn: { "Fn::GetAtt": "IamRole.Arn" },
         artifact_store: {
           type: "S3",
