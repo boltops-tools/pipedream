@@ -25,12 +25,16 @@ module Codepipe
       @properties[:managed_policy_arns] = @managed_policy_arns if @managed_policy_arns && !@managed_policy_arns.empty?
 
       resource = {
-        IamRole: {
+        logical_id => {
           type: "AWS::IAM::Role",
           properties: @properties
         }
       }
       CfnCamelizer.transform(resource)
+    end
+
+    def logical_id
+      "IamRole"
     end
 
   private
@@ -45,7 +49,7 @@ module Codepipe
             action: ["sts:AssumeRole"],
             effect: "Allow",
             principal: {
-              service: ["codepipeline.amazonaws.com"]
+              service: principal_services
             }
           }],
           version: "2012-10-17"
@@ -54,23 +58,48 @@ module Codepipe
       }
     end
 
+    def principal_services
+      ["codepipeline.amazonaws.com"]
+    end
+
     def derived_iam_statements
       @iam_statements || default_iam_statements
     end
 
     def default_iam_statements
       [{
-        action: [
-          "logs:CreateLogGroup",
-          "logs:CreateLogStream",
-          "logs:PutLogEvents",
-          "ssm:DescribeDocumentParameters",
-          "ssm:DescribeParameters",
-          "ssm:GetParameter*",
-        ],
         effect: "Allow",
+        action: "*",
         resource: "*"
       }]
+
+      # [{
+      #   action: ["iam:PassRole"],
+      #   resource: "*",
+      #   effect: "Allow",
+      #   condition: {
+      #     string_equals_if_exists: {
+      #       "iam:PassedToService": [
+      #         "codebuild.amazonaws.com",
+      #         "cloudformation.amazonaws.com",
+      #         "elasticbeanstalk.amazonaws.com",
+      #         "ec2.amazonaws.com",
+      #         "ecs-tasks.amazonaws.com"
+      #       ]
+      #     }
+      #   }
+      # },{
+      #   action: [
+      #     "logs:CreateLogGroup",
+      #     "logs:CreateLogStream",
+      #     "logs:PutLogEvents",
+      #     "ssm:DescribeDocumentParameters",
+      #     "ssm:DescribeParameters",
+      #     "ssm:GetParameter*",
+      #   ],
+      #   effect: "Allow",
+      #   resource: "*"
+      # }]
     end
   end
 end

@@ -3,9 +3,14 @@ require "active_support/core_ext/hash"
 module Codepipe::Dsl::Pipeline
   module Codebuild
     def github(props)
-      owner,repo = props[:source].split("/")
+      # nice shorthands
+      source = props.delete(:source)
+      owner,repo = source.split("/")
+      branch = props.delete(:branch) || master
+      o_auth_token = props.delete(:auth_token)
+      poll_for_source_changes = props.delete(:poll_for_source_changes) || "false"
 
-      action(
+      default = {
         name: "Source", # TODO: auto-generate
         action_type_id: {
           category: "Source",
@@ -15,14 +20,16 @@ module Codepipe::Dsl::Pipeline
         },
         run_order: 1, # TODO: auto-generate
         configuration: {
-          branch: props[:branch] || "master",
-          o_auth_token: props[:auth_token],
+          branch: branch,
+          o_auth_token: o_auth_token,
           owner: owner,
-          poll_for_source_changes: props[:poll_for_source_changes] || "false",
+          poll_for_source_changes: poll_for_source_changes,
           repo: repo,
         },
+        # role_arn: {"Fn::GetAtt": "CodeBuildRole.Arn"}, # TODO: make optional?
         output_artifacts: [name: "SourceArtifact1"] # TODO: auto-generate
-      )
+      }
+      action(props.reverse_merge(default))
     end
 
     def codebuild(*args)
