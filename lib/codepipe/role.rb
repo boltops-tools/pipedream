@@ -67,39 +67,116 @@ module Codepipe
     end
 
     def default_iam_statements
+      # Based on the one created by CodePipeline Console
       [{
-        effect: "Allow",
-        action: "*",
-        resource: "*"
+        "action"=>["iam:PassRole"],
+        "resource"=>"*",
+        "effect"=>"Allow",
+        "condition"=>
+          {"string_equals_if_exists"=>
+            {"iam:passed_to_service"=>
+              ["cloudformation.amazonaws.com",
+               "elasticbeanstalk.amazonaws.com",
+               "ec2.amazonaws.com",
+               "ecs-tasks.amazonaws.com"]
+            }
+          }
+      },{
+        "action"=>
+          ["codecommit:CancelUploadArchive",
+           "codecommit:GetBranch",
+           "codecommit:GetCommit",
+           "codecommit:GetUploadArchiveStatus",
+           "codecommit:UploadArchive"],
+          "resource"=>"*",
+          "effect"=>"Allow"
+      },{
+        "action"=>
+         ["codedeploy:CreateDeployment",
+          "codedeploy:GetApplication",
+          "codedeploy:GetApplicationRevision",
+          "codedeploy:GetDeployment",
+          "codedeploy:GetDeploymentConfig",
+          "codedeploy:RegisterApplicationRevision"],
+          "resource"=>"*",
+          "effect"=>"Allow"
+      },{
+        "action"=>
+          ["elasticbeanstalk:*",
+           "ec2:*",
+           "elasticloadbalancing:*",
+           "autoscaling:*",
+           "cloudwatch:*",
+           "s3:*",
+           "sns:*",
+           "cloudformation:*",
+           "rds:*",
+           "sqs:*",
+           "ecs:*"],
+        "resource"=>"*",
+        "effect"=>"Allow"
+      },{
+        "action"=>["lambda:InvokeFunction", "lambda:ListFunctions"],
+        "resource"=>"*",
+        "effect"=>"Allow"
+      },{
+        "action"=>
+           ["opsworks:CreateDeployment",
+            "opsworks:DescribeApps",
+            "opsworks:DescribeCommands",
+            "opsworks:DescribeDeployments",
+            "opsworks:DescribeInstances",
+            "opsworks:DescribeStacks",
+            "opsworks:UpdateApp",
+            "opsworks:UpdateStack"],
+          "resource"=>"*",
+          "effect"=>"Allow"
+      },{
+        "action"=>
+         ["cloudformation:CreateStack",
+          "cloudformation:DeleteStack",
+          "cloudformation:DescribeStacks",
+          "cloudformation:UpdateStack",
+          "cloudformation:CreateChangeSet",
+          "cloudformation:DeleteChangeSet",
+          "cloudformation:DescribeChangeSet",
+          "cloudformation:ExecuteChangeSet",
+          "cloudformation:SetStackPolicy",
+          "cloudformation:ValidateTemplate"],
+        "resource"=>"*",
+        "effect"=>"Allow"
+      },{
+        "action"=>["codebuild:BatchGetBuilds", "codebuild:StartBuild"],
+        "resource"=>"*",
+        "effect"=>"Allow"
+      },{
+        "action"=>
+          ["devicefarm:ListProjects",
+           "devicefarm:ListDevicePools",
+           "devicefarm:GetRun",
+           "devicefarm:GetUpload",
+           "devicefarm:CreateUpload",
+           "devicefarm:ScheduleRun"],
+          "resource"=>"*",
+          "effect"=>"Allow",
+      },{
+        "action"=>
+          ["servicecatalog:ListProvisioningArtifacts",
+           "servicecatalog:CreateProvisioningArtifact",
+           "servicecatalog:DescribeProvisioningArtifact",
+           "servicecatalog:DeleteProvisioningArtifact",
+           "servicecatalog:UpdateProduct"],
+        "resource"=>"*",
+        "effect"=>"Allow",
+      },{
+        "action"=>["cloudformation:ValidateTemplate"],
+        "resource"=>"*",
+        "effect"=>"Allow",
+      },{
+        "action"=>["ecr:DescribeImages"],
+        "resource"=>"*",
+        "effect"=>"Allow",
       }]
-
-      # [{
-      #   action: ["iam:PassRole"],
-      #   resource: "*",
-      #   effect: "Allow",
-      #   condition: {
-      #     string_equals_if_exists: {
-      #       "iam:PassedToService": [
-      #         "codebuild.amazonaws.com",
-      #         "cloudformation.amazonaws.com",
-      #         "elasticbeanstalk.amazonaws.com",
-      #         "ec2.amazonaws.com",
-      #         "ecs-tasks.amazonaws.com"
-      #       ]
-      #     }
-      #   }
-      # },{
-      #   action: [
-      #     "logs:CreateLogGroup",
-      #     "logs:CreateLogStream",
-      #     "logs:PutLogEvents",
-      #     "ssm:DescribeDocumentParameters",
-      #     "ssm:DescribeParameters",
-      #     "ssm:GetParameter*",
-      #   ],
-      #   effect: "Allow",
-      #   resource: "*"
-      # }]
     end
   end
 end
