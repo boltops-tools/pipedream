@@ -11,7 +11,7 @@ module Codepipe
 
       @full_project_name = project_name_convention(@project_name)
       @template = {
-        "Description" => "CodeBuild Project: #{@full_project_name}",
+        "Description" => "CodePipeline Project: #{@full_project_name}",
         "Resources" => {}
       }
     end
@@ -31,10 +31,10 @@ module Codepipe
       pipeline = pipeline_builder.run
       @template["Resources"].merge!(pipeline)
 
-      # if project["CodeBuild"]["Properties"]["ServiceRole"] == {"Ref"=>"IamRole"}
-      #   role = Role.new(options).run
-      #   @template["Resources"].merge!(role)
-      # end
+      if pipeline["CodePipeline"]["Properties"]["RoleArn"] == {"Fn::GetAtt"=>"IamRole.Arn"}
+        role = Role.new(options).run
+        @template["Resources"].merge!(role)
+      end
 
       # schedule = Schedule.new(options).run
       # @template["Resources"].merge!(schedule) if schedule
@@ -44,7 +44,7 @@ module Codepipe
       IO.write(template_path, YAML.dump(@template))
       puts "Generated CloudFormation template at #{template_path.color(:green)}"
       return if @options[:noop]
-      puts "Deploying stack #{@stack_name.color(:green)} with CodeBuild project #{@full_project_name.color(:green)}"
+      puts "Deploying stack #{@stack_name.color(:green)} with CodePipeline project #{@full_project_name.color(:green)}"
 
       begin
         perform

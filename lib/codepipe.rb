@@ -2,7 +2,6 @@ $:.unshift(File.expand_path("../", __FILE__))
 require "codepipe/version"
 require "rainbow/ext/string"
 require "memoist"
-require "cfn_camelizer"
 
 require "codepipe/autoloader"
 Codepipe::Autoloader.setup

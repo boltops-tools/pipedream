@@ -16,7 +16,7 @@ module Codepipe
       pp @stages
 
       resource = {
-        code_build: {
+        code_pipeline: {
           type: "AWS::CodePipeline::Pipeline",
           properties: @properties
         }
