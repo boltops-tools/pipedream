@@ -43,7 +43,7 @@ module Codepipe::AwsServices
     #     myapp-ci-deploy-development-2
     #
     def inferred_stack_name(project_name)
-      items = [project_name, "cb", @options[:type], Codepipe.env_extra]
+      items = [project_name, "cp", @options[:type], Codepipe.env_extra]
       items.insert(3, Codepipe.env) if Codepipe.settings.dig(:stack_naming, :append_env)
       items.reject(&:blank?).compact.join("-")
     end
