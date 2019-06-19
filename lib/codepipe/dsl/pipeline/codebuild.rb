@@ -11,14 +11,14 @@ module Codepipe::Dsl::Pipeline
       poll_for_source_changes = props.delete(:poll_for_source_changes) || "false"
 
       default = {
-        name: "Source", # TODO: auto-generate
+        name: "Source",
         action_type_id: {
           category: "Source",
           owner: "ThirdParty",
           provider: "GitHub",
           version: "1",
         },
-        run_order: 1, # TODO: auto-generate
+        run_order: @run_order,
         configuration: {
           branch: branch,
           o_auth_token: o_auth_token,
@@ -26,8 +26,7 @@ module Codepipe::Dsl::Pipeline
           poll_for_source_changes: poll_for_source_changes,
           repo: repo,
         },
-        # role_arn: {"Fn::GetAtt": "CodeBuildRole.Arn"}, # TODO: make optional?
-        output_artifacts: [name: "SourceArtifact1"] # TODO: auto-generate
+        output_artifacts: [name: "SourceArtifact"] # TODO: auto-generate
       }
       action(props.reverse_merge(default))
     end
@@ -48,9 +47,10 @@ module Codepipe::Dsl::Pipeline
             version: "1",
           },
           run_order: @run_order,
-          configuration: { project_name: project_name },
+          # configuration: { project_name: project_name },
+          configuration: { project_name: "demo" }, # TODO: hard code for testing
           output_artifacts: [name: "BuildArtifact#{name}"],
-          input_artifacts: props[:input_artifacts] || [name: "SourceArtifact88"], # TODO: auto-generate
+          input_artifacts: props[:input_artifacts] || [name: "SourceArtifact"], # TODO: auto-generate
           # SourceArtifact88 ? Parse last stage and look for output artifact?
         }
         props.reverse_merge(default)

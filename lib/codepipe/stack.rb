@@ -36,10 +36,6 @@ module Codepipe
         @template["Resources"].merge!(role)
       end
 
-      # TODO: conditionally build CodeBuild IAM Role
-      # role = CodebuildRole.new(options).run
-      # @template["Resources"].merge!(role)
-
       # schedule = Schedule.new(options).run
       # @template["Resources"].merge!(schedule) if schedule
 
