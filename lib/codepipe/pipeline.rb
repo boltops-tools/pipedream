@@ -1,7 +1,8 @@
 module Codepipe
   class Pipeline
-    include Evaluate
+    extend Memoist
     include Dsl::Pipeline
+    include Evaluate
 
     def initialize(options={})
       @options = options
@@ -26,7 +27,15 @@ module Codepipe
     def default_properties
       {
         role_arn: { "Fn::GetAtt": "IamRole.Arn" },
+        artifact_store: {
+          type: "S3",
+          location: s3_bucket, # auto creates s3 bucket
+        }
       }
+    end
+
+    def s3_bucket
+      S3Bucket.name
     end
 
     def get_pipeline_path

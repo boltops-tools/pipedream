@@ -12,5 +12,9 @@ module Codepipe
     def cfn
       @cfn ||= Aws::CloudFormation::Client.new
     end
+
+    def s3
+      @s3 ||= Aws::S3::Client.new
+    end
   end
 end
