@@ -1,6 +1,7 @@
 module Codepipe::Dsl
   module Pipeline
     include Codebuild
+    include Ssm
 
     def stage(name, &block)
       # Reset values for each stage declaraion
