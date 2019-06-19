@@ -26,7 +26,7 @@ module Codepipe::Dsl::Pipeline
           poll_for_source_changes: poll_for_source_changes,
           repo: repo,
         },
-        output_artifacts: [name: "SourceArtifact"] # TODO: auto-generate
+        output_artifacts: [name: "SourceArtifact"]
       }
       action(props.reverse_merge(default))
     end
@@ -48,8 +48,7 @@ module Codepipe::Dsl::Pipeline
           run_order: @run_order,
           configuration: { project_name: project_name },
           # output_artifacts: [name: "BuildArtifact#{name}"], # TODO: maybe make this configurable with a setting
-          input_artifacts: props[:input_artifacts] || [name: "SourceArtifact"], # TODO: auto-generate
-          # SourceArtifact88 ? Parse last stage and look for output artifact?
+          input_artifacts: props[:input_artifacts] || [name: "SourceArtifact"],
         }
         props.reverse_merge(default)
       end
@@ -66,8 +65,8 @@ module Codepipe::Dsl::Pipeline
     end
 
   private
-    def get_project_name(name, delimiter='-')
-      [@codebuild_prefix, name, @codebuild_suffix].compact.join(delimiter)
+    def get_project_name(name)
+      [@codebuild_prefix, name, @codebuild_suffix].compact.join
     end
   end
 end

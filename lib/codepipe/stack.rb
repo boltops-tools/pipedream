@@ -36,8 +36,8 @@ module Codepipe
         @template["Resources"].merge!(role)
       end
 
-      # schedule = Schedule.new(options).run
-      # @template["Resources"].merge!(schedule) if schedule
+      schedule = Schedule.new(options).run
+      @template["Resources"].merge!(schedule) if schedule
 
       template_path = "/tmp/codepipeline.yml"
       FileUtils.mkdir_p(File.dirname(template_path))
