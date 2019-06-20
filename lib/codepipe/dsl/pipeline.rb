@@ -4,14 +4,13 @@ module Codepipe::Dsl
     include Ssm
 
     PROPERTIES = %w[
-      action_type_id
-      configuration
-      input_artifacts
+      artifact_store
+      artifact_stores
+      disable_inboundstage_transitions
       name
-      output_artifacts
-      region
+      restart_execution_on_update
       role_arn
-      run_order
+      stages
     ]
     PROPERTIES.each do |prop|
       define_method(prop) do |v|
