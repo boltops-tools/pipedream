@@ -13,7 +13,7 @@ module Codepipe
 
     def run
       evaluate(@pipeline_path)
-      @properties[:stages] = @stages
+      @properties[:stages] ||= @stages
 
       resource = {
         code_pipeline: {
