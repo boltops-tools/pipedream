@@ -6,6 +6,8 @@ The codepipeline tool provides a DSL to create a CodePipeline project with some 
 
 The codebuild tool installs `codepipline` and `pipe` executables. Both of them do the same thing, `pipe` is just shorter to type.
 
+Note: This DSL does not cover all the methods exhaustively. Am building them as they are needed.
+
 ## Quick Start
 
     pipe init
@@ -18,12 +20,30 @@ The CLI tool also detects and tasks in the current folder's Rakefile and delegat
 
 ## DSL
 
+.codepipeline/pipeline.rb:
+
+```ruby
+stage "Source" do
+  github(
+    source: "tongueroo/demo-cb",
+    branch: "master",
+    auth_token: ssm("/codebuild/github/tongueroo/oauth_token")
+  )
+end
+stage "DeployStacks" do
+  codebuild "demo1"           # action declaration
+  codebuild "demo2", "demo3"  # will run in parallel
+  codebuild "demo4"           # action declaration
+end
+```
+
+More [DSL docs](docs/dsl.md)
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
-    gem "codepipe"
+    gem "codepipeline"
 
 And then execute:
 
@@ -31,7 +51,7 @@ And then execute:
 
 Or install it yourself as:
 
-    gem install codepipe
+    gem install codepipeline
 
 ## Contributing
 
