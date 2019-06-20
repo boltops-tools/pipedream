@@ -56,6 +56,15 @@ module Codepipe::Dsl::Pipeline
           )
         else # Hash
           # With the hash, the user needs to set: name and configuration.project_name
+
+          # Handy shorthands
+          # The project name will allow this syntax
+          #   codebuild(name: "action-name", project_name: "codebuild-project-names")
+          project_name = item.delete(:project_name)
+          if project_name
+            item[:configuration] = { project_name: project_name }
+          end
+
           item.reverse_merge(default)
         end
       end
