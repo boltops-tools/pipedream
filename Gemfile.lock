@@ -5,6 +5,7 @@ PATH
       activesupport
       aws-sdk-cloudformation
       aws-sdk-codepipeline
+      aws-sdk-s3
       aws-sdk-ssm
       cfn_camelizer
       memoist
@@ -34,6 +35,13 @@ GEM
       aws-partitions (~> 1.0)
       aws-sigv4 (~> 1.1)
       jmespath (~> 1.0)
+    aws-sdk-kms (1.22.0)
+      aws-sdk-core (~> 3, >= 3.56.0)
+      aws-sigv4 (~> 1.1)
+    aws-sdk-s3 (1.43.0)
+      aws-sdk-core (~> 3, >= 3.56.0)
+      aws-sdk-kms (~> 1)
+      aws-sigv4 (~> 1.1)
     aws-sdk-ssm (1.50.0)
       aws-sdk-core (~> 3, >= 3.56.0)
       aws-sigv4 (~> 1.1)
