@@ -21,7 +21,7 @@ module Codepipe::Dsl
 
     def stage(name, &block)
       # Reset values for each stage declaraion
-      @run_order, @codebuild_prefix, @codebuild_suffix = 1, nil, nil
+      @run_order = 1
 
       @current_stage = {name: name, actions: []}
       @stages << @current_stage
