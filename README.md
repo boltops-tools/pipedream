@@ -37,7 +37,7 @@ stage "DeployStacks" do
 end
 ```
 
-More [DSL docs](docs/dsl.md)
+More [DSL docs](docs/dsl)
 
 ## Installation
 
