@@ -3,6 +3,13 @@ module Codepipe
     class_option :verbose, type: :boolean
     class_option :noop, type: :boolean
 
+    desc "init", "Initialize project with .codepipline files"
+    long_desc Help.text(:init)
+    Init.cli_options.each do |args|
+      option(*args)
+    end
+    register(Init, "init", "init", "Set up initial .codepipline files.")
+
     common_options = Proc.new do
       option :stack_name, desc: "Override the generated stack name. If you use this you must always specify it"
       option :wait, type: :boolean, default: true, desc: "Wait for operation to complete"
