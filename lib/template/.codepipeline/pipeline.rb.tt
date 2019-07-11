@@ -1,8 +1,8 @@
 stage "Source" do
   github(
-    source: "...",
+    source: "<%= project_github_repo %>",
     branch: "master",
-    auth_token: ssm("/codebuild/oauth_token") # example ssm name
+    auth_token: ssm("/codebuild/github/oauth_token") # example ssm name
   )
 end
 

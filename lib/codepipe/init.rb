@@ -45,13 +45,13 @@ module Codepipe
       @options[:name] || inferred_name
     end
 
-    def project_github_url
-      default = "https://github.com/user/repo"
+    def project_github_repo
+      default = "user/repo"
       return default unless File.exist?(".git/config") && git_installed?
 
       url = `git config --get remote.origin.url`.strip
-      url = url.sub('git@github.com:','https://github.com/')
-      url == '' ? default : url
+      repo = url.sub('git@github.com:','')
+      repo == '' ? default : repo
     end
   end
 end
