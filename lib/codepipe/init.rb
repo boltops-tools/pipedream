@@ -50,7 +50,7 @@ module Codepipe
       return default unless File.exist?(".git/config") && git_installed?
 
       url = `git config --get remote.origin.url`.strip
-      repo = url.sub('git@github.com:','')
+      repo = url.sub('git@github.com:','').sub(/\.git$/,'')
       repo == '' ? default : repo
     end
   end

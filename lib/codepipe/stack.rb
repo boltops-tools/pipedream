@@ -56,7 +56,7 @@ module Codepipe
         if e.message.include?("No updates") # No updates are to be performed.
           puts "WARN: #{e.message}".color(:yellow)
         else
-          puts "ERROR: #{e.message}".color(:red)
+          puts "ERROR ValidationError: #{e.message}".color(:red)
           exit 1
         end
       end
