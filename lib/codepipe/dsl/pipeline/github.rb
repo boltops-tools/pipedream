@@ -28,5 +28,9 @@ module Codepipe::Dsl::Pipeline
       }
       action(props.reverse_merge(default))
     end
+
+    def branch
+      @options[:branch] || 'master' # cli option
+    end
   end
 end

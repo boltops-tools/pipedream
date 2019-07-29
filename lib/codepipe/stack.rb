@@ -24,7 +24,7 @@ module Codepipe
 
       pipeline_builder = Pipeline.new(options)
       unless pipeline_builder.exist?
-        puts "ERROR: Codepipe pipeline does not exist: #{pipeline_builder.pipeline_path}".color(:red)
+        puts "ERROR: pipeline does not exist: #{pipeline_builder.pipeline_path}".color(:red)
         exit 1
         return
       end

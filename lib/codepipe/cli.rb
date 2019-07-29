@@ -17,6 +17,7 @@ module Codepipe
 
     desc "deploy PIPELINE_NAME", "Deploy pipeline."
     long_desc Help.text(:deploy)
+    option :branch, aliases: "b", default: "master", desc: "git branch"
     common_options.call
     def deploy(pipeline_name=nil)
       Deploy.new(options.merge(pipeline_name: pipeline_name)).run
