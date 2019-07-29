@@ -1,5 +1,6 @@
 module Codepipe::Dsl
   module Pipeline
+    include Approve
     include Codebuild
     include Github
     include Ssm

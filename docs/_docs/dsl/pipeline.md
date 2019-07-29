@@ -1,0 +1,49 @@
+---
+title: Pipeline DSL
+nav_text: Pipeline
+categories: dsl
+nav_order: 9
+---
+
+The pipeline DSL allows you to define the stages and actions within that stage with only a few lines of code. In the Quick Start, we define a very short pipeline for as a simple example.  Here we'll show more of the DSL power.
+
+```
+stage "Source" do
+  github(
+    source: "tongueroo/demo-test",
+    branch: branch, # branch method defaults to "master" or the `pipe deploy --branch` option
+    auth_token: ssm("/codebuild/github/tongueroo/oauth_token")
+  )
+end
+
+stage "Build" do
+  codebuild "demo1", "demo2"
+  codebuild "demo3"
+end
+
+stage "Approve" do
+  approve
+end
+
+stage "Deploy" do
+  codebuild "deploy"
+end
+```
+
+This pipeline has 3 stages:
+
+1. downloads the source code from Gitub and uploads it to S3 as an output artifact
+2. starts some codebuild project with output artifact from the previous step
+3. waits for a manual approval stage
+4. uses another codebuild to kick off a deploy.
+
+## Build Stage
+
+Within the build stage, there are multiple actions. Some of them run in parallel and some in serial.
+
+* The demo1 and demo2 codebuild projects run on the same `RunOrder=1`.  They run in parallel.
+* The demo3 codebuild project run with `RunOrder=2`.  It starts after both demo1 and demo2 finishes.
+
+The Pipeline DSL allows to you connect the stages together how you want them with very little code.
+
+{% include prev_next.md %}

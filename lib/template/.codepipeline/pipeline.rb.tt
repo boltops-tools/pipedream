@@ -1,7 +1,7 @@
 stage "Source" do
   github(
     source: "<%= project_github_repo %>",
-    branch: "master",
+    branch: branch, # branch method defaults to "master" or the `pipe deploy --branch` option
     auth_token: ssm("/codebuild/github/oauth_token") # example ssm name
   )
 end
@@ -11,10 +11,23 @@ end
 # Example below:
 
 # stage "Build" do
-#   codebuild "action1"
-#   codebuild "action2", "action3"
+#   codebuild "project1"
+#   codebuild "project2", "project3" # runs in parallel
+#   codebuild "project4"
+# end
+
+# stage "Approve" do
+#   # Existing SNS Topic
+#   # approve(
+#   #   notification_arn: "arn:aws:sns:us-west-2:536766270177:hello-topic",
+#   #   custom_data: "Approve deployment",
+#   # )
+#
+#   # OR
+#   # CodePipeline will create and managed the SNS Topoic
+#   approve("Approve deployment")
 # end
 
 # stage "Deploy" do
-#   codebuild "action4"
+#   codebuild "project5"
 # end

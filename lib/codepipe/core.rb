@@ -7,7 +7,7 @@ module Codepipe
     extend Memoist
 
     def root
-      path = ENV['CB_ROOT'] || '.'
+      path = ENV['PIPE_ROOT'] || '.'
       Pathname.new(path)
     end
 

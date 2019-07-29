@@ -36,6 +36,11 @@ module Codepipe
         @template["Resources"].merge!(role)
       end
 
+      if sns_topic?(pipeline)
+        role = Sns.new(options).run
+        @template["Resources"].merge!(role)
+      end
+
       webhook = Webhook.new(options).run
       @template["Resources"].merge!(webhook) if webhook
 
@@ -66,6 +71,15 @@ module Codepipe
     end
 
   private
+    def sns_topic?(template)
+      stages = template['Pipeline']['Properties']['Stages']
+      stages.detect do |stage|
+        stage['Actions'].detect do |action|
+          action['Configuration']['NotificationArn'] == {'Ref'=>'SnsTopic'}
+        end
+      end
+    end
+
     def url_info
       stack = cfn.describe_stacks(stack_name: @stack_name).stacks.first
       region = `aws configure get region`.strip rescue "us-east-1"

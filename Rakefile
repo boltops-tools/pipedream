@@ -10,5 +10,5 @@ require "cli_markdown"
 desc "Generates cli reference docs as markdown"
 task :docs do
   mkdir_p "docs/_includes"
-  CliMarkdown::Creator.create_all(cli_class: Codepipe::CLI, cli_name: "codepipe")
+  CliMarkdown::Creator.create_all(cli_class: Codepipe::CLI, cli_name: "pipe")
 end

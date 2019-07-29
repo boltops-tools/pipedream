@@ -4,7 +4,11 @@ module Codepipe::Dsl::Pipeline
       # nice shorthands
       source = props.delete(:source)
       owner,repo = source.split("/")
-      branch = props.delete(:branch) || "master"
+
+      # the props will take higher precendence than the cli option if the user has explicitly set it
+      prop_branch = props.delete(:branch) # always delete this prop
+      branch = prop_branch || @options[:branch] || "master"
+
       o_auth_token = props.delete(:auth_token)
       poll_for_source_changes = props.delete(:poll_for_source_changes) || "false"
 
@@ -27,10 +31,6 @@ module Codepipe::Dsl::Pipeline
         output_artifacts: [name: "SourceArtifact"]
       }
       action(props.reverse_merge(default))
-    end
-
-    def branch
-      @options[:branch] || 'master' # cli option
     end
   end
 end
