@@ -9,7 +9,6 @@ module Codepipe
       @options = options
       @role_path = options[:role_path] || get_role_path
       @properties = default_properties
-      @iam_policy = {}
     end
 
     def run

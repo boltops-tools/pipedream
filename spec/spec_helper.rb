@@ -1,5 +1,8 @@
 ENV["TEST"] = "1"
 
+# Ensures aws api never called. Fixture home folder does not contain ~/.aws/credentails
+ENV['HOME'] = File.join(Dir.pwd,'spec/fixtures/home')
+
 # CodeClimate test coverage: https://docs.codeclimate.com/docs/configuring-test-coverage
 # require 'simplecov'
 # SimpleCov.start

@@ -7,7 +7,6 @@ module Codepipe
       @options = options
       @schedule_path = options[:schedule_path] || get_schedule_path
       @properties = default_properties
-      @iam_policy = {}
     end
 
     def run

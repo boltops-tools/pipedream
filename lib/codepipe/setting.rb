@@ -25,24 +25,24 @@ module Codepipe
 
       all_envs = default.deep_merge(user.deep_merge(project))
       all_envs = merge_base(all_envs)
-      data = all_envs[cb_env] || all_envs["base"] || {}
+      data = all_envs[pipe_env] || all_envs["base"] || {}
       data.deep_symbolize_keys
     end
     memoize :data
 
-    # Resolves infinite problem since Codepipe.env can be determined from CB_ENV or settings.yml files.
+    # Resolves infinite problem since Codepipe.env can be determined from PIPE_ENV or settings.yml files.
     # When ufo is determined from settings it should not called Codepipe.env since that in turn calls
     # Settings.new.data which can then cause an infinite loop.
-    def cb_env
+    def pipe_env
       settings = YAML.load_file("#{cb_root}/.codepipeline/settings.yml")
       env = settings.find do |_env, section|
         section ||= {}
         ENV['AWS_PROFILE'] && ENV['AWS_PROFILE'] == section['aws_profile']
       end
 
-      cb_env = env.first if env
-      cb_env = ENV['CB_ENV'] if ENV['CB_ENV'] # highest precedence
-      cb_env || 'development'
+      pipe_env = env.first if env
+      pipe_env = ENV['PIPE_ENV'] if ENV['PIPE_ENV'] # highest precedence
+      pipe_env || 'development'
     end
 
   private

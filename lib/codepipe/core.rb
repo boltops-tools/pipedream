@@ -13,14 +13,14 @@ module Codepipe
 
     def env
       # 2-way binding
-      cb_env = env_from_profile || 'development'
-      cb_env = ENV['CB_ENV'] if ENV['CB_ENV'] # highest precedence
-      ActiveSupport::StringInquirer.new(cb_env)
+      pipe_env = env_from_profile || 'development'
+      pipe_env = ENV['PIPE_ENV'] if ENV['PIPE_ENV'] # highest precedence
+      ActiveSupport::StringInquirer.new(pipe_env)
     end
     memoize :env
 
     def env_extra
-      env_extra = ENV['CB_ENV_EXTRA'] if ENV['CB_ENV_EXTRA'] # highest precedence
+      env_extra = ENV['PIPE_ENV_EXTRA'] if ENV['PIPE_ENV_EXTRA'] # highest precedence
       return if env_extra&.empty?
       env_extra
     end
@@ -34,7 +34,7 @@ module Codepipe
       return unless settings # Only load if within Codepipe project and there's a settings.yml
       data = settings[Codepipe.env] || {}
       if data["aws_profile"]
-        puts "Using AWS_PROFILE=#{data["aws_profile"]} from CB_ENV=#{Codepipe.env} in config/settings.yml"
+        puts "Using AWS_PROFILE=#{data["aws_profile"]} from PIPE_ENV=#{Codepipe.env} in config/settings.yml"
         ENV['AWS_PROFILE'] = data["aws_profile"]
       end
     end
@@ -56,7 +56,7 @@ module Codepipe
 
   private
     def env_from_profile
-      Codepipe::Setting.new.cb_env
+      Codepipe::Setting.new.pipe_env
     end
   end
 end

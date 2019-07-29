@@ -24,7 +24,7 @@ class Codepipe::Pipeline
     end
 
     def ensure_exists(name)
-      return if exists?(name)
+      return if exists?(name) || ENV['TEST']
       s3.create_bucket(bucket: name)
       policy = {
         "Version": "2012-10-17",

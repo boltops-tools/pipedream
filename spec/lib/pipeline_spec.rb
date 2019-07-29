@@ -5,8 +5,8 @@ describe Codepipe::Pipeline do
   context "general" do
     it "builds up the template in memory" do
       template = pipeline.run
-      expect(template.keys).to eq ["CodePipeline"]
-      expect(template["CodePipeline"]).to be_a(Hash)
+      expect(template.keys).to eq ["Pipeline"]
+      expect(template["Pipeline"]).to be_a(Hash)
     end
   end
 end

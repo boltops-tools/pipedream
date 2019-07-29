@@ -1,6 +1,6 @@
 require "aws-sdk-ssm"
 
-module Codepipe::Dsl::Pipeline
+module Codepipe::Dsl
   module Ssm
     # This method grabs the ssm parameter store value at "compile" time vs
     # CloudFormation run time. In case we need it as part of the DSL compile phase.

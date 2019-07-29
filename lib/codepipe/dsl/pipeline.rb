@@ -1,6 +1,7 @@
 module Codepipe::Dsl
   module Pipeline
     include Codebuild
+    include Github
     include Ssm
 
     PROPERTIES = %w[

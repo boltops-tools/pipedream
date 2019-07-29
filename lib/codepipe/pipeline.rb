@@ -16,7 +16,7 @@ module Codepipe
       @properties[:stages] ||= @stages
 
       resource = {
-        code_pipeline: {
+        pipeline: {
           type: "AWS::CodePipeline::Pipeline",
           properties: @properties
         }

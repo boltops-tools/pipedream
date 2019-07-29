@@ -31,10 +31,13 @@ module Codepipe
       pipeline = pipeline_builder.run
       @template["Resources"].merge!(pipeline)
 
-      if pipeline["CodePipeline"]["Properties"]["RoleArn"] == {"Fn::GetAtt"=>"IamRole.Arn"}
+      if pipeline["Pipeline"]["Properties"]["RoleArn"] == {"Fn::GetAtt"=>"IamRole.Arn"}
         role = Role.new(options).run
         @template["Resources"].merge!(role)
       end
+
+      webhook = Webhook.new(options).run
+      @template["Resources"].merge!(webhook) if webhook
 
       schedule = Schedule.new(options).run
       @template["Resources"].merge!(schedule) if schedule
