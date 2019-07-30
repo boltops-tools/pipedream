@@ -29,6 +29,7 @@ module Codepipe
     end
 
     def different_branch?
+      return false unless @options[:branch]
       current_pipeline_branch != @options[:branch]
     end
 
