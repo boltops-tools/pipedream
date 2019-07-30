@@ -4,10 +4,12 @@ All notable changes to this project will be documented in this file.
 This project *tries* to adhere to [Semantic Versioning](http://semver.org/), even before v1.0.
 
 ## [0.2.0]
-- DSL: pipeline, role and schedule
+- DSL: pipeline, role, schedule, webhook, sns
+- pipe deploy -b branch
+- pipe start -b branch
+- pipe cli commands: init deploy, start, delete
 - ssm support
-- codebuild_prefix and codebuild_suffix support
-- cli commands: deploy, start, delete
+- codebuild\_prefix and codebuild\_suffix support
 - auto-create s3 bucket for artifacts
 
 ## [0.1.0]

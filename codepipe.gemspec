@@ -8,7 +8,7 @@ Gem::Specification.new do |spec|
   spec.version       = Codepipe::VERSION
   spec.authors       = ["Tung Nguyen"]
   spec.email         = ["tongueroo@gmail.com"]
-  spec.summary       = "Tool"
+  spec.summary       = "CodePipeline DSL Tool to Quickly Create CodePipeline Pipeline"
   spec.homepage      = "https://github.com/tongueroo/codepipeline"
   spec.license       = "MIT"
 
