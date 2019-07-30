@@ -11,8 +11,7 @@ The pipeline DSL allows you to define the stages and actions within that stage w
 stage "Source" do
   github(
     source: "tongueroo/demo-test",
-    branch: branch, # branch method defaults to "master" or the `pipe deploy --branch` option
-    auth_token: ssm("/codebuild/github/tongueroo/oauth_token")
+    auth_token: ssm("/github/user/token")
   )
 end
 

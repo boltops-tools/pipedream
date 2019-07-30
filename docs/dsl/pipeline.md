@@ -6,7 +6,6 @@
 stage "Source" do
   github(
     source: "tongueroo/demo-cb",
-    branch: "master",
     auth_token: ssm("/codebuild/github/tongueroo/oauth_token")
   )
 end

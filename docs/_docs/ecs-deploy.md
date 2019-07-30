@@ -1,6 +1,6 @@
 ---
 title: 'ECS Deploy: Codebuild ufo ship vs CodePipeline ECS Deploy'
-nav_order: 19
+nav_order: 20
 ---
 
 CodePipeline comes with many [Action Type Integrations](https://docs.aws.amazon.com/codepipeline/latest/userguide/integrations-action-type.html).  One of the Integrations is [Amazon Elastic Container Service](https://docs.aws.amazon.com/codepipeline/latest/userguide/integrations-action-type.html#integrations-deploy) deployment.

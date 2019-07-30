@@ -29,7 +29,6 @@ You might normally set the branch option in your pipeline.rb. Example:
 stage "Source" do
   github(
     source: "tongueroo/demo-cb",
-    branch: "master", # optional, defaults to master
     auth_token: ssm("/github/user/token")
   )
 end

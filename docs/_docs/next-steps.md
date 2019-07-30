@@ -1,6 +1,6 @@
 ---
 title: Next Steps
-nav_order: 21
+nav_order: 22
 ---
 
 Hopefully, you have a good feel for how codepipeline works now. From here, there are a few resources that can help you continue along:
