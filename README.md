@@ -25,7 +25,7 @@ The CLI tool also detects and tasks in the current folder's Rakefile and delegat
 ```ruby
 stage "Source" do
   github(
-    source: "tongueroo/demo-cb",
+    source: "tongueroo/demo-ufo",
     auth_token: ssm("/github/user/token")
   )
 end
