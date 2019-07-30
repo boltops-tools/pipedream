@@ -53,7 +53,7 @@ pipe start demo-project # explicitly specify pipeline name
 stage "Source" do
   github(
     source: "tongueroo/demo-cb",
-    auth_token: ssm("/codebuild/github/tongueroo/oauth_token")
+    auth_token: ssm("/github/user/token")
   )
 end
 stage "DeployStacks" do

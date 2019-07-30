@@ -7,8 +7,6 @@ The codepipeline tool provides a DSL to create a CodePipeline project with some 
 
 The codebuild tool installs `codepipline` and `pipe` executables. Both of them do the same thing, `pipe` is just shorter to type.
 
-The documentation site is at: [codepipeline.org](https://codepipeline.org/)
-
 ## Quick Start
 
     pipe init
@@ -28,8 +26,7 @@ The CLI tool also detects and tasks in the current folder's Rakefile and delegat
 stage "Source" do
   github(
     source: "tongueroo/demo-cb",
-    branch: "master",
-    auth_token: ssm("/codebuild/github/tongueroo/oauth_token")
+    auth_token: ssm("/github/user/token")
   )
 end
 stage "DeployStacks" do

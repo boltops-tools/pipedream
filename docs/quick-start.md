@@ -39,7 +39,7 @@ An important generated file `.codepipeline/pipeline.rb`. The starter file looks 
 stage "Source" do
   github(
     source: "tongueroo/demo-test",
-    auth_token: ssm("/codebuild/github/tongueroo/oauth_token")
+    auth_token: ssm("/github/user/token")
   )
 end
 

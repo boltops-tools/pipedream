@@ -6,7 +6,7 @@
 stage "Source" do
   github(
     source: "tongueroo/demo-cb",
-    auth_token: ssm("/codebuild/github/tongueroo/oauth_token")
+    auth_token: ssm("/github/user/token")
   )
 end
 stage "DeployStacks" do
@@ -35,7 +35,7 @@ stage "Source" do
     run_order: 1,
     configuration: {
       branch: "master",
-      o_auth_token: ssm("/codebuild/github/tongueroo/oauth_token"),
+      o_auth_token: ssm("/github/user/token"),
       owner: "tongueroo",
       poll_for_source_changes: "false",
       repo: "demo-cb"
