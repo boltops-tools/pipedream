@@ -5,9 +5,9 @@ module Codepipe::Dsl::Pipeline
       source = props.delete(:source)
       owner,repo = source.split("/")
 
-      # the props will take higher precendence than the cli option if the user has explicitly set it
-      prop_branch = props.delete(:branch) # always delete this prop
-      branch = prop_branch || @options[:branch] || "master"
+      # cli option can override this in codepipe/pipeline.rb set_source!
+      # so cli option always gets the highest precendence
+      branch = props.delete(:branch) || "master" # always delete branch prop
 
       o_auth_token = props.delete(:auth_token)
       poll_for_source_changes = props.delete(:poll_for_source_changes) || "false"

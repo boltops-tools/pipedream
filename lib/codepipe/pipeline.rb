@@ -14,6 +14,7 @@ module Codepipe
     def run
       evaluate(@pipeline_path)
       @properties[:stages] ||= @stages
+      set_source_branch!
 
       resource = {
         pipeline: {
@@ -35,16 +36,26 @@ module Codepipe
       }
     end
 
-    def s3_bucket
-      S3Bucket.name
-    end
+    # cli branch option always takes highest precedence
+    def set_source_branch!
+      return unless @options[:branch]
 
-    def get_pipeline_path
-      lookup_codepipeline_file "pipeline.rb"
+      source_stage = @properties[:stages].first
+      action = source_stage[:actions].first
+      action[:configuration][:branch] = @options[:branch]
     end
 
     def exist?
       File.exist?(@pipeline_path)
+    end
+
+    def s3_bucket
+      S3Bucket.name
+    end
+
+  private
+    def get_pipeline_path
+      lookup_codepipeline_file "pipeline.rb"
     end
   end
 end

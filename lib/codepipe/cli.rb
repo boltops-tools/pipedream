@@ -17,7 +17,7 @@ module Codepipe
 
     desc "deploy PIPELINE_NAME", "Deploy pipeline."
     long_desc Help.text(:deploy)
-    option :branch, aliases: "b", desc: "git branch"
+    option :branch, aliases: "b", desc: "git branch" # important to default to nil
     common_options.call
     def deploy(pipeline_name=nil)
       Deploy.new(options.merge(pipeline_name: pipeline_name)).run
@@ -26,6 +26,7 @@ module Codepipe
     desc "start", "Start codebuild project."
     long_desc Help.text(:start)
     option :sure, desc: "Bypass are you sure prompt"
+    option :branch, aliases: "b", desc: "git branch" # important to default to nil
     common_options.call
     def start(pipeline_name=nil)
       Start.new(options.merge(pipeline_name: pipeline_name)).run

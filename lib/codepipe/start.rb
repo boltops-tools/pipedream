@@ -11,8 +11,38 @@ module Codepipe
     end
 
     def run
+      check_pipeline_exists!
+      redeploy
       resp = codepipeline.start_pipeline_execution(name: pipeline_name)
       codepipeline_info(resp.pipeline_execution_id)
+    end
+
+    # Codepipeline does not currently support specifying a different branch starting an execution.
+    # Workaround this limitation by updating the pipeline and then starting the execution.
+    def redeploy
+      return unless different_branch?
+      puts "Different branch detected."
+      puts "  Current pipeline branch: #{current_pipeline_branch}"
+      puts "  Requested branch: #{@options[:branch]}"
+      puts "Updating pipeline with new branch.".color(:green)
+      Deploy.new(@options).run
+    end
+
+    def different_branch?
+      current_pipeline_branch != @options[:branch]
+    end
+
+    # Actual branch on current pipeline
+    def current_pipeline_branch
+      resp = codepipeline.get_pipeline(name: pipeline_name)
+      source_stage = resp.pipeline.stages.find { |s| s.name == "Source" }
+      action = source_stage.actions.first
+      action.configuration['Branch']
+    end
+    memoize :current_pipeline_branch
+
+    def check_pipeline_exists!
+      pipeline_name
     end
 
     def pipeline_name
