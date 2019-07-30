@@ -2,7 +2,7 @@
 title: Webhook DSL
 nav_text: Webhook
 categories: dsl
-nav_order: 12
+nav_order: 17
 ---
 
 The simplest way to declare a webhook is to use the `github_token` method. This single line is enough to configure and set up the webhook.

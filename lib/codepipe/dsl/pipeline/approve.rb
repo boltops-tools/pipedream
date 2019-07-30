@@ -10,11 +10,9 @@ module Codepipe::Dsl::Pipeline
           version: "1",
         },
         run_order: @run_order,
-        configuration: {
+        configuration: {  # required: will be set
           notification_arn: {ref: "SnsTopic"}, # defaults to generated SNS topic
-        }, # required: will be set
-        # output_artifacts: [name: "BuildArtifact#{name}"], # TODO: maybe make this configurable with a setting
-        # input_artifacts: [name: "SourceArtifact"], # not needed for approval
+        },
       }
 
       # Normalize special options. Simple approach of setting the default

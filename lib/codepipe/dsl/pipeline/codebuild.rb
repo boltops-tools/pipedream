@@ -18,7 +18,7 @@ module Codepipe::Dsl::Pipeline
       actions = projects.map do |item|
         if item.is_a?(String)
           name = item.underscore.camelize
-          project_name = get_project_name(item)
+          project_name = adjusted_project_name(item) # add prefix and suffix
           default.deep_merge(
             name: name,
             configuration: { project_name: project_name },
@@ -50,7 +50,7 @@ module Codepipe::Dsl::Pipeline
     end
 
   private
-    def get_project_name(name)
+    def adjusted_project_name(name)
       [@codebuild_prefix, name, @codebuild_suffix].compact.join
     end
   end

@@ -2,7 +2,7 @@
 title: Pipeline DSL
 nav_text: Pipeline
 categories: dsl
-nav_order: 9
+nav_order: 10
 ---
 
 The pipeline DSL allows you to define the stages and actions within that stage with only a few lines of code. In the Quick Start, we define a very short pipeline for as a simple example.  Here we'll show more of the DSL power.
@@ -45,5 +45,12 @@ Within the build stage, there are multiple actions. Some of them run in parallel
 * The demo3 codebuild project run with `RunOrder=2`.  It starts after both demo1 and demo2 finishes.
 
 The Pipeline DSL allows to you connect the stages together how you want them with very little code.
+
+## Pipeline Specific DSL Docs
+
+{% assign docs = site.docs | where: "categories","dsl-pipeline" %}
+{% for doc in docs -%}
+* [{{doc.nav_text}}]({{doc.url}})
+{% endfor %}
 
 {% include prev_next.md %}
