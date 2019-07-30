@@ -7,7 +7,7 @@ nav_order: 10
 
 The pipeline DSL allows you to define the stages and actions within that stage with only a few lines of code. In the Quick Start, we define a very short pipeline for as a simple example.  Here we'll show more of the DSL power.
 
-```
+```ruby
 stage "Source" do
   github(
     source: "tongueroo/demo-test",
