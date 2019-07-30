@@ -6,13 +6,14 @@ The codepipeline tool provides a DSL to create a CodePipeline project with some 
 
 The codebuild tool installs `codepipline` and `pipe` executables. Both of them do the same thing, `pipe` is just shorter to type.
 
-Note: This DSL does not cover all the methods exhaustively. Am building them as they are needed.
+The documentation site is at: [codepipeline.org](https://codepipeline.org/)
 
 ## Quick Start
 
     pipe init
     pipe deploy
     pipe start
+    pipe delete
 
 The CLI tool also detects and tasks in the current folder's Rakefile and delegate to those tasks.
 
