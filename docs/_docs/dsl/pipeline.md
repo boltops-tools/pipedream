@@ -21,7 +21,7 @@ stage "Build" do
 end
 
 stage "Approve" do
-  approve
+  approve("Approve this deploy")
 end
 
 stage "Deploy" do
