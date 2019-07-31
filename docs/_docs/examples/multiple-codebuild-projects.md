@@ -13,7 +13,7 @@ We'll use the the [codebuild](https://codebuild.cloud/) tool to quickly get goin
 
 You can use any project, even an empty folder. You just have to make sure it is first pushed to GitHub.  If you need an example project, you can try this one: [tongueroo/demo-ufo](https://github.com/tongueroo/demo-ufo).
 
-First, you can use `cb init` create some starter ``.codebuild` files.
+First, you can use `cb init` create some starter `.codebuild` files.
 
     cd init
     git add .
