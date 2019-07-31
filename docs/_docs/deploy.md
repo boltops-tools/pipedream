@@ -46,23 +46,9 @@ By default, the pipeline name is inferred and is the parent folder that you are 
 
 ## Specify Git Branch
 
-It is useful to build pipelines with different source git branches. You can pass a `--branch` option to the `pipe deploy` command. In the `.codepipeline/pipeline.rb` use the DSL method `branch` to reference it.  Example:
+It is useful to build pipelines with different source git branches. You can pass a `--branch` option to the `pipe deploy` command. The cli `—-branch` option always takes the highest precedence. Example:
 
     pipe deploy my-pipeline --branch my-branch
-
-.codepipeline/pipeline.rb
-
-```ruby
-stage "Source" do
-  github(
-    source: "tongueroo/demo-test",
-    auth_token: ssm("/github/user/token")
-  )
-end
-```
-
-Note: Currently CodePipeline does not support specifying a source git branch at runtime. We can only specific it as part of the pipeline definition.
-
 
 ## CLI Reference
 
