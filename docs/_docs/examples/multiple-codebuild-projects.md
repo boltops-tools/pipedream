@@ -53,6 +53,8 @@ Last, start the pipeline execution:
 
     pipe start
 
-That's it!
+That's it!  The pipeline will look like this:
+
+![](/img/docs/multiple-codebuild-projects-pipeline.png)
 
 {% include prev_next.md %}
