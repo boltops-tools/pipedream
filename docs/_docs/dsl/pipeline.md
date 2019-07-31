@@ -2,10 +2,10 @@
 title: Pipeline DSL
 nav_text: Pipeline
 categories: dsl
-nav_order: 10
+nav_order: 11
 ---
 
-The pipeline DSL allows you to define the stages and actions within that stage with only a few lines of code. In the Quick Start, we define a very short pipeline for as a simple example.  Here we'll show more of the DSL power.
+The pipeline DSL allows you to define the Stages and Actions within that Stage with only a few lines of code. In the [Quick Start]({% link quick-start.md %}), we define a very short pipeline to keep the introduction simple.  Here we'll show more of the DSL power.
 
 ```ruby
 stage "Source" do
@@ -31,10 +31,10 @@ end
 
 This pipeline has 3 stages:
 
-1. downloads the source code from Gitub and uploads it to S3 as an output artifact
-2. starts some codebuild project with output artifact from the previous step
-3. waits for a manual approval stage
-4. uses another codebuild to kick off a deploy.
+1. Downloads the source code from Gitub and uploads it to S3 as an output artifact.
+2. Starts 3 codebuild projects with s3 upload from the previous step as an input artifact.
+3. Waits for a manual approval stage.
+4. Uses another codebuild project to kick off a deploy.
 
 ## Build Stage
 

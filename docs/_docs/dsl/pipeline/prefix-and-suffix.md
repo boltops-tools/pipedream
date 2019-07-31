@@ -2,7 +2,7 @@
 title: Prefix and Suffix Option
 nav_text: Prefix and Suffix
 categories: dsl-pipeline
-nav_order: 13
+nav_order: 14
 ---
 
 Somewhat interesting options are the `codebuild_prefix` and `codebuild_suffix` option. These options affect the `codebuild` method and allow you to remove some duplication in the pipeline declaration.
@@ -26,7 +26,7 @@ stage "Deploy" do
 end
 ```
 
-The resulting Action names in the Stage would be a little lengthy and look like this: `DemoWebDeploy`, `DemoClockDeploy`, `DemoWorkerDeploy`. If you wanted to use shorter names like `Web`, `Clock`, and `Worker`, you'd need to use the [Simpified Hash Form]({% link _docs/dsl/pipeline/codebuild.md %}).
+The resulting inferred Action names in the Stage would be a little lengthy and look like this: `DemoWebDeploy`, `DemoClockDeploy`, `DemoWorkerDeploy`. If you wanted to use shorter names like `Web`, `Clock`, and `Worker`, you'd need to use the [Simpified Hash Form]({% link _docs/dsl/pipeline/codebuild.md %}).
 
 ```ruby
 # Example 2
@@ -52,6 +52,6 @@ stage "Deploy" do
 end
 ```
 
-So Example 2 and Examle 3 are equivalent.
+So Example 2 and Example 3 are equivalent.
 
 {% include prev_next.md %}

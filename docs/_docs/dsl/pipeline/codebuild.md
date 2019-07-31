@@ -2,7 +2,7 @@
 title: Codebuild Project
 nav_text: Codebuild
 categories: dsl-pipeline
-nav_order: 12
+nav_order: 13
 ---
 
 The `codebuild` method is one of the most useful methods in the `pipeline.rb` DSL arsenal.  With it, you can add codebuild projects to your pipeline and sequence them quickly.  Let's start with the simplest form.
@@ -19,7 +19,7 @@ stage "Deploy" do
 end
 ```
 
-With just a few lines of code, we have define the pipeline to run the `demo1` codebuild project first.  Then run `demo2` and `demo3` in parallel. Last, run `demo4`.
+With just a few lines of code, we have define the pipeline to run the `demo1` codebuild project first.  Then, in parallel, run `demo2` and `demo3` second. Last, run `demo4`.
 
 ## Simplified Hash Form
 
@@ -33,7 +33,9 @@ stage "Deploy" do
 end
 ```
 
-In this form, we can explicitly set what the Action Name shows up as in the CodePipeline. We can also set the CodeBuild project name explicitly.
+In this form, we can explicitly set what the Action Name displays as in the CodePipeline. We can also set the CodeBuild project name explicitly.
+
+Note: You can mix and match the String form and the Hash form. Each item in the argument list gets evaluated and expanded out appropriately.
 
 ## Full Hash Form
 
@@ -57,6 +59,6 @@ stage "Build" do
 end
 ```
 
-The various forms all use ultimately all merge the properties down to the Full Hash Form.  Generally, it is recommended you start with the simplest form and use the more complex forms when required.
+The various forms all ultimately expand properties to the Full Hash Form.  Generally, it is recommended you start with the simplest form and use the more complex forms when required.
 
 {% include prev_next.md %}

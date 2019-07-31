@@ -2,7 +2,7 @@
 title: Create CodeBuild Project
 nav_text: Create CodeBuild
 categories: examples
-nav_order: 18
+nav_order: 19
 ---
 
 It is common to use codebuild as a Stage Action in the pipeline. Here's are instructions to quickly create a codebuild project.

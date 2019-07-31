@@ -2,12 +2,12 @@
 title: Approval Action DSL
 nav_text: Approve
 categories: dsl
-nav_order: 9
+nav_order: 10
 ---
 
-You can add an approve action to a stage with the simple `approve` method.  There are various helpful forms. Let's start with the simplest form.
+You can add an Approval Action to a Stage with the `approve` method.  There are various helpful forms. Let's start with the simplest form.
 
-## String
+## String Form
 
 The approve method take can take a simple String. In this form, it sets the message for the approval action.  Essentially, it sets the `configuration.CustomData` property of the Approval action.  See [Add an Action to a Pipeline in CodePipeline](https://docs.aws.amazon.com/codepipeline/latest/userguide/approvals-action-add.html) docs for the full structure.
 
@@ -19,7 +19,7 @@ end
 
 With CodePipeline, an SNS topic is required to be associated with the Approval Action. In the case of a String form, the codepipeline tool will automatically create and manage the SNS topic associated with the `approve` declaration.
 
-## Simplified Configuration Hash
+## Simplified Configuration Hash Form
 
 If the `approve` method is provided a Hash with the `notification_arn` and `custom_data`, then the codepipeline tool will set the `configuration` directly. Example:
 
@@ -34,7 +34,7 @@ end
 
 In this case, the codepipeline will *not* create an SNS Topic as we're have specified an existing SNS topic.
 
-## Full Config
+## Full Config Form
 
 The convenience methods merely wrap a CodePipeline Approval Action.  An example of the Approval Action structure is provided in the [Add an Action to a Pipeline in CodePipeline](https://docs.aws.amazon.com/codepipeline/latest/userguide/approvals-action-add.html) docs.
 

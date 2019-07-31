@@ -2,7 +2,7 @@
 title: Multiple CodeBuild Projects
 nav_text: Multiple CodeBuild
 categories: examples
-nav_order: 20
+nav_order: 21
 ---
 
 In this example guide, we'll create a couple of test CodeBuild projects and quickly connect them up to a pipeline.
@@ -11,18 +11,19 @@ In this example guide, we'll create a couple of test CodeBuild projects and quic
 
 We'll use the the [codebuild](https://codebuild.cloud/) tool to quickly get going.
 
-You can use any project, even an empty folder. You just have to make sure it is first pushed to GitHub.  If you need an example project, you can try this one: [tongueroo/demo-ufo](https://github.com/tongueroo/demo-ufo).
+You can use any project, even an empty folder. You just have to make sure it is pushed to GitHub and has a `buildspec.yml`.  If you need an example project, you can try this one: [tongueroo/demo-ufo](https://github.com/tongueroo/demo-ufo).
 
 First, you can use `cb init` create some starter `.codebuild` files.
 
-    cd init
+    gem install codebuild # installs cb command
+    cb init # create starter .codebuild files including buildspec.yml
     git add .
     git commit -m 'add starter .codebuild files'
     git push
 
 Then create the 4 CodeBuild projects for testing:
 
-    for i in 1 2 3 4 ; do pipe deploy demo$i --no-wait ; done
+    for i in {1..4} ; do pipe deploy demo$i --no-wait ; done
 
 ## CodePipeline
 

@@ -1,6 +1,6 @@
 ---
 title: CodePipeline DSL
-nav_order: 8
+nav_order: 9
 ---
 
 CodePipeline provides a simple yet powerful DSL to create CodePipeline related resources.  Here's an example:

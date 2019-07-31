@@ -1,6 +1,6 @@
 ---
 title: Settings
-nav_order: 6
+nav_order: 7
 ---
 
 The `.codepipeline/settings.yml` file can be used to adjust some of the behavior of the codepipeline tool.  Here's an example of a settings.yml file:

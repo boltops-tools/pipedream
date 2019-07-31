@@ -1,6 +1,6 @@
 ---
 title: Deploy
-nav_order: 4
+nav_order: 5
 ---
 
 The pipeline is generated from the DSL and created with CloudFormation. The files that the DSL evaluates are in the `.codepipeline` folder:
@@ -40,7 +40,7 @@ You'll see output that looks something like this:
 
 ## Explicit Pipeline Name
 
-By default, the pipeline name is inferred and is the parent folder that you are within.  You can explicitly specify the pipeline name as the first CLI argument:
+By default, the pipeline name is inferred and is the parent folder name that you are within.  You can explicitly specify the pipeline name as the first CLI argument:
 
     pipe deploy my-pipeline
 

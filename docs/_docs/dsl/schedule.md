@@ -2,7 +2,7 @@
 title: Schedule DSL
 nav_text: Schedule
 categories: dsl
-nav_order: 15
+nav_order: 16
 ---
 
 The codepipeline tool supports creating a CloudWatch scheduled event rule that will trigger the codepipeline project periodically.  You define the schedule in `.codepipeline/schedule.rb`. Here's an example of what that looks like:
@@ -12,7 +12,7 @@ The codepipeline tool supports creating a CloudWatch scheduled event rule that w
 ```ruby
 rate "1 day"
 # or
-cron("0 10 * * ? *") # Run at 10:00 am (UTC) every day
+# cron("0 10 * * ? *") # Run at 10:00 am (UTC) every day
 ```
 
 ## Full DSL

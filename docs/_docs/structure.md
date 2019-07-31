@@ -1,6 +1,6 @@
 ---
 title: Structure
-nav_order: 9
+nav_order: 4
 ---
 
 The `pipe init` command generates the initial directory structure that looks like this:
