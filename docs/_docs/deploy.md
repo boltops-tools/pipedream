@@ -12,7 +12,7 @@ The pipeline is generated from the DSL and created with CloudFormation. By defau
 
 To create the CodePipeline pipeline, you run:
 
-    codepipeline deploy
+    pipe deploy
 
 You'll see output that looks something like this:
 
