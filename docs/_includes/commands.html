@@ -26,6 +26,7 @@ pipe delete
 {% highlight sh %}
 .codepipeline
 ├── pipeline.rb
+├── role.rb
 ├── schedule.rb
 ├── settings.yml
 └── webhook.rb
@@ -42,7 +43,7 @@ pipe deploy # infers the pipeline name from the parent folder
 pipe deploy pipeline-name # explicitly specify pipeline name
 
 pipe start # infers the pipeline name from the parent folder
-pipe start demo-project # explicitly specify pipeline name
+pipe start pipeline-name # explicitly specify pipeline name
 {% endhighlight %}
                                 </div>
                             </div>
