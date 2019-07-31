@@ -32,12 +32,11 @@ If the append_env is configured in the [Settings]({% link _docs/settings.md %}).
 
 ## Stack Name
 
-The CloudFormation stack name which creates the CodePipeline related resources is named the same as the pipeline name with `-cb` appended to the stack name. Examples:
+The CloudFormation stack name which creates the CodePipeline related resources is named the same as the pipeline name with `-pipe` appended to the stack name. Examples:
 
 Pipeline Name | Stack Name
 --- | ---
-demo | demo-cb
-demo-unit | demo-unit-cb
-demo-web-unit | demo-web-unit-cb
+demo | demo-pipe
+my-app | my-app-pipe
 
 {% include prev_next.md %}
