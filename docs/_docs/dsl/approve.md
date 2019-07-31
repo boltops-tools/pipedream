@@ -17,11 +17,11 @@ stage "Approve" do
 end
 ```
 
-In this case, the codepipeline tool creates and manages the SNS topic for you.
+With CodePipeline, an SNS topic is required to be associated with the Approval Action. In the case of a String form, the codepipeline tool will automatically create and manage the SNS topic associated with the `approve` declaration.
 
 ## Simplified Configuration Hash
 
-If the approve method provided a Hash with the `notification_arn` and `custom_data` then the codepipeline tool will set the `configuration` directly. Example:
+If the `approve` method is provided a Hash with the `notification_arn` and `custom_data`, then the codepipeline tool will set the `configuration` directly. Example:
 
 ```ruby
 stage "Approve" do
@@ -32,7 +32,7 @@ stage "Approve" do
 end
 ```
 
-In this case, the codepipeline will *not* create an SNS Topic as we're using an existing SNS topic.
+In this case, the codepipeline will *not* create an SNS Topic as we're have specified an existing SNS topic.
 
 ## Full Config
 

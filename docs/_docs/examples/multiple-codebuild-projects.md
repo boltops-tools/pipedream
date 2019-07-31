@@ -1,8 +1,8 @@
 ---
 title: Multiple CodeBuild Projects
-nav_text: CodeBuild Projects
+nav_text: Multiple CodeBuild
 categories: examples
-nav_order: 19
+nav_order: 20
 ---
 
 In this example guide, we'll create a couple of test CodeBuild projects and quickly connect them up to a pipeline.
@@ -22,7 +22,7 @@ First, you can use `cb init` create some starter ``.codebuild` files.
 
 Then create the 4 CodeBuild projects for testing:
 
-    for i in 1 2 3 4 ; do cb deploy demo$i --no-wait ; done
+    for i in 1 2 3 4 ; do pipe deploy demo$i --no-wait ; done
 
 ## CodePipeline
 

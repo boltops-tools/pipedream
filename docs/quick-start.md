@@ -53,7 +53,7 @@ The pipeline definition is much shorter than typical CloudFormation code. In thi
 1. Downloads the source code from Gitub and uploads it to S3 as an output artifact.
 2. Starts some codebuild project with the code that was previously uploaded to s3 as the input artifact.
 
-Note, you need to have a codebuild project already created as a prerequisite. The instructions for that are below.
+Note, you need to have a codebuild project already created as a prerequisite. The example instructions for that are here: [Create CodeBuild Project]({% link _docs/examples/codebuild-project.md %}).
 
 You can then deploy or create the pipeline with a single command:
 
@@ -68,15 +68,5 @@ Once the stack is complete. You can start the CodePipeline pipeline via the CLI 
 Here's what CodePipeline pipeline output looks like:
 
 ![](/img/docs/codepipeline-output.png)
-
-## CodeBuild Projects
-
-Note, you have to create the codebuild projects as a prerequisite.  The [codebuild.cloud](https://codebuild.cloud) tool helps with this.
-
-Here's an example where we quickly create 4 test codebuild projects: [Multiple CodeBuild Projects](https://codepipeline.org/docs/examples/multiple-codebuild-projects/).  Here's also the command for your convenience.
-
-    cb init # generates starter .codebuild files including the buildspec.yml
-   # commit and yours the .codebuild files
-    cb deploy demo # creates a codebuild project
 
 {% include prev_next.md %}

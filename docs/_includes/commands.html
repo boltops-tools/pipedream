@@ -53,7 +53,7 @@ pipe start pipeline-name # explicitly specify pipeline name
 {% highlight ruby %}
 stage "Source" do
   github(
-    source: "tongueroo/demo-cb",
+    source: "user/repo",
     auth_token: ssm("/github/user/token")
   )
 end

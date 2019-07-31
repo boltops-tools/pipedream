@@ -7,7 +7,7 @@ nav_order: 2
 
 The codepipeline tool provides a DSL that simplifies creating and managing [AWS CodePipeline](https://aws.amazon.com/codepipeline/) resources. You create a Pipeline, Scheduled Event, IAM Role, and Webhook.
 
-The DSL is essentially a wrapper to CloudFormation for resources like the [CodePipeline Project resource](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codepipeline-pipeline.html). This means you can **fully control** and customize of the CodePipeline resources.
+The [codepipeline DSL]({% link _docs/dsl.md %}) is essentially a wrapper to CloudFormation for resources like the [CodePipeline Project resource](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codepipeline-pipeline.html). This means you can **fully control** and customize of the CodePipeline resources.
 
 ## Usage Scenarios
 

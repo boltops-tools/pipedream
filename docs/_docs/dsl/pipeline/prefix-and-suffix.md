@@ -26,7 +26,7 @@ stage "Deploy" do
 end
 ```
 
-The Action names in the Stage would be a little lengthy and look like this: DemoWebDeploy, DemoClockDeploy, DemoWorkerDeploy. If you wanted to use shorter names, you'd need to use the [Simpified Hash Form]({% link _docs/dsl/pipeline/codebuild.md %}).
+The resulting Action names in the Stage would be a little lengthy and look like this: `DemoWebDeploy`, `DemoClockDeploy`, `DemoWorkerDeploy`. If you wanted to use shorter names like `Web`, `Clock`, and `Worker`, you'd need to use the [Simpified Hash Form]({% link _docs/dsl/pipeline/codebuild.md %}).
 
 ```ruby
 # Example 2

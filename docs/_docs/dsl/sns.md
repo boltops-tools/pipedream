@@ -13,10 +13,10 @@ For most cases, the default SNS topic should suffice. However, if you wish to co
 ```ruby
 display_name "my display_name"
 kms_master_key_id "String"
-# subscription([{
-#   endpoint: '',
-#   protocol: ','
-# }])
+subscription([{
+  endpoint: 'my@email.com',
+  protocol: 'email', # protocol values: https://docs.aws.amazon.com/sns/latest/api/API_Subscribe.html
+}])
 topic_name "string", # Recommend not setting because update requires: Replacement. Allow CloudFormation to set it so 2 pipelines dont have same SNS Topic name that collides
 ```
 

@@ -1,7 +1,8 @@
----
-title: Deploy
-nav_order: 4
----
+Examples:
+
+    codepipe deploy
+    codepipe deploy demo # explicitly specify pipeline name
+    codepipe deploy demo -b mybranch # specify git branch
 
 The pipeline is generated from the DSL and created with CloudFormation. The files that the DSL evaluates are in the `.codepipeline` folder:
 
@@ -51,9 +52,3 @@ It is useful to build pipelines with different source git branches. You can pass
     pipe deploy my-pipeline --branch my-branch
 
 Note: When you specify a branch the codepipeline tool actually first updates the pipeline before starting the pipeline execution. This is done because CodePipeline does not natively support specifying the branch. It is discussed more here: [Using Different Branches]({% link _docs/examples/different-branches.md %}).
-
-## CLI Reference
-
-Also, for help info you can check the [pipe deploy]({% link _reference/pipe-deploy.md %}) CLI reference.
-
-{% include prev_next.md %}

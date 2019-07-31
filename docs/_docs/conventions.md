@@ -28,7 +28,7 @@ The pipeline is named `my-pipeline-2`.
 
 ## Settings append_env option
 
-If the append_env is configured in the [Settings]({% link _docs/settings.md %}).
+If the append_env is configured in the [Settings]({% link _docs/settings.md %}), then the `PIPE_ENV` is added to the pipeline name. For example: `demo-development` instead of `demo`.
 
 ## Stack Name
 

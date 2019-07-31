@@ -2,7 +2,7 @@
 title: Using Different Branches
 nav_text: Different Branches
 categories: examples
-nav_order: 18
+nav_order: 19
 ---
 
 CodePipeline currently does not supports starting the pipeline execution with different branches natively. To get around this, we can:
@@ -28,7 +28,7 @@ You might normally set the branch option in your pipeline.rb. Example:
 ```ruby
 stage "Source" do
   github(
-    source: "tongueroo/demo-cb",
+    source: "user/repo",
     auth_token: ssm("/github/user/token")
   )
 end

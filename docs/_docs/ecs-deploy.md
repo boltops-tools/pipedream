@@ -1,11 +1,9 @@
 ---
 title: 'ECS Deploy: Codebuild ufo ship vs CodePipeline ECS Deploy'
-nav_order: 20
+nav_order: 21
 ---
 
-CodePipeline comes with many [Action Type Integrations](https://docs.aws.amazon.com/codepipeline/latest/userguide/integrations-action-type.html).  One of the Integrations is [Amazon Elastic Container Service](https://docs.aws.amazon.com/codepipeline/latest/userguide/integrations-action-type.html#integrations-deploy) deployment.
-
-Currently, it is recommended to use [codebuild and ufo](https://codebuild.cloud/docs/examples/ecs/) to handle deployment to ECS though.  We discuss the main reasons below.
+CodePipeline comes with many [Action Type Integrations](https://docs.aws.amazon.com/codepipeline/latest/userguide/integrations-action-type.html).  One of the Integrations is [Amazon Elastic Container Service](https://docs.aws.amazon.com/codepipeline/latest/userguide/integrations-action-type.html#integrations-deploy) deployment. It is recommended to use [codebuild and ufo](https://codebuild.cloud/docs/examples/ecs/) to handle deployment to ECS though.  We discuss some reasons below.
 
 ## Timeout
 
@@ -19,6 +17,6 @@ By using a codebuild project, we have control over the timeout.
 
 The way the current CodePipeline ECS Deploy Action works is that it pulls down the current ECS task definition that ECS service is using. It then replaces the image property on it. Last, it then updates the ECS service with the newly built Docker image.
 
-The [ufo tool] is more powerful.  The `ufo ship` command also handles creating the [ELB Load Balancer]((https://ufoships.com/docs/extras/load-balancer/)) and a vanity [Route53 endpoint](https://ufoships.com/docs/extras/route53-support/) for us.  Also, it keeps task definition codified.
+The [ufo tool](https://ufoships.com) is more powerful.  The `ufo ship` command also handles creating the [ELB Load Balancer]((https://ufoships.com/docs/extras/load-balancer/)) and a vanity [Route53 endpoint](https://ufoships.com/docs/extras/route53-support/) for us.  Also, it keeps task definitions codified.
 
 {% include prev_next.md %}
