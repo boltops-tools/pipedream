@@ -33,12 +33,12 @@ Create the starter .codepipeline files in the project.
 
     pipe init # generates starter .codepipeline files
 
-An important generated file `.codepipeline/pipeline.rb`. The starter file looks something like this:
+An important generated file is `.codepipeline/pipeline.rb`. The starter file looks something like this:
 
 ```ruby
 stage "Source" do
   github(
-    source: "tongueroo/demo-test",
+    source: "user/repo", # replace with your repo
     auth_token: ssm("/github/user/token")
   )
 end
@@ -48,14 +48,14 @@ stage "Build" do
 end
 ```
 
-This is a short pipeline that has 2 stages:
+The pipeline definition is much shorter than typical CloudFormation code. In this short pipeline, there are 2 stages:
 
-1. downloads the source code from Gitub and uploads it to S3 as a output artifact
-2. starts some codebuild project with the code that was previously uploaded to s3 as the output artifact
+1. Downloads the source code from Gitub and uploads it to S3 as an output artifact.
+2. Starts some codebuild project with the code that was previously uploaded to s3 as the input artifact.
 
-Note: you have to create the codebuild projects as a prequisite.  The [codebuild.cloud](https://codebuild.cloud) tool helps with this.
+Note, you need to have a codebuild project already created as a prerequisite. The instructions for that are below.
 
-To define a pipeline, it much shorter than typical CloudFormation code. You can then create the pipeline with a single command:
+You can then deploy or create the pipeline with a single command:
 
     pipe deploy
 
@@ -68,5 +68,15 @@ Once the stack is complete. You can start the CodePipeline pipeline via the CLI 
 Here's what CodePipeline pipeline output looks like:
 
 ![](/img/docs/codepipeline-output.png)
+
+## CodeBuild Projects
+
+Note, you have to create the codebuild projects as a prerequisite.  The [codebuild.cloud](https://codebuild.cloud) tool helps with this.
+
+Here's an example where we quickly create 4 test codebuild projects: [Multiple CodeBuild Projects](https://codepipeline.org/docs/examples/multiple-codebuild-projects/).  Here's also the command for your convenience.
+
+    cb init # generates starter .codebuild files including the buildspec.yml
+   # commit and yours the .codebuild files
+    cb deploy demo # creates a codebuild project
 
 {% include prev_next.md %}

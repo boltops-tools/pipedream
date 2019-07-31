@@ -5,20 +5,20 @@ nav_order: 2
 
 ## What is codepipeline?
 
-Codepipeline is a tool that simplifies creating and managing [AWS CodePipeline](https://aws.amazon.com/codepipeline/) resources. It provides a DSL to create a Pipeline, Scheduled Event, IAM Role, and Webhook.
+The codepipeline tool provides a DSL that simplifies creating and managing [AWS CodePipeline](https://aws.amazon.com/codepipeline/) resources. You create a Pipeline, Scheduled Event, IAM Role, and Webhook.
 
-The DSL is essentially a wrapper to the CloudFormation for resources like the [CodePipeline Project resource](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codepipeline-pipeline.html). This means you can **fully control** and customize of the CodePipeline resources.
+The DSL is essentially a wrapper to CloudFormation for resources like the [CodePipeline Project resource](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codepipeline-pipeline.html). This means you can **fully control** and customize of the CodePipeline resources.
 
 ## Usage Scenarios
 
 Here are some ways to use CodePipeline:
 
-* continously integration and delivery
-* deploying code
-* building artifacts
+* continuous integration and delivery
+* visualizing the deploy flow
+* building artifacts: Docker images, AMIs, jars, s3 objects, etc
 
 ## CodePipeline vs CodeBuild
 
-CodePipeline is a higher level software than CodeBuild. CodeBuild is a managed build service and you can use it to automated tasks. CodePipeline helps you visualize the steps and puts it altogether.
+CodePipeline is higher-level software than CodeBuild. CodeBuild is a managed build service, and you can use it to automate tasks. CodePipeline helps you sequence the steps and puts it all together; providing you with a high-level visualization.
 
 {% include prev_next.md %}

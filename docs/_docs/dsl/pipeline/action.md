@@ -5,7 +5,7 @@ categories: dsl-pipeline
 nav_order: 11
 ---
 
-The `action` method is a general way to add Actions to your pipeline Stages. Generally, it is recommended to use the helper methods like [codebuild]({% link _docs/dsl/pipeline/codebuild.md %}) and [approve]({% link _docs/dsl/approve.md %}) when possible as it makes the code concise.  Here's an example of a pipeline using the general `action` method.
+The `action` method is a general way to add Actions to pipeline Stages. Generally, it is recommended to use the helper methods like [codebuild]({% link _docs/dsl/pipeline/codebuild.md %}) and [approve]({% link _docs/dsl/approve.md %}) when possible as it makes the code concise.  Here's an example of a pipeline using the general `action` method.
 
 ```ruby
 stage "Build" do
