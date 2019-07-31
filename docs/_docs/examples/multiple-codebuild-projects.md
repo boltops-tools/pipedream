@@ -26,7 +26,7 @@ Then create the 4 CodeBuild projects for testing:
 
 ## CodePipeline
 
-Let's define a pipeline now with the 4 CodeBuild test projects. First, use `pipe init` to create the starter ``.codepipeline` files. Update your `pipeline.rb` with the following:
+Let's define a pipeline now with the 4 CodeBuild test projects. First, use `pipe init` to create the starter `.codepipeline` files. Update your `pipeline.rb` with the following:
 
 codepipeline/pipeline.rb:
 
