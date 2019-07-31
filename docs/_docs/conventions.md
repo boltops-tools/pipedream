@@ -14,7 +14,7 @@ It will set the pipeline name by inferring the name of the parent folder.  For e
 
 The pipeline is named `demo`. You can override this easily by providing a pipeline name.
 
-    cd deploy my-pipeline # explicitly use my-pipeline as pipeline name
+    pipe deploy my-pipeline # explicitly use my-pipeline as pipeline name
 
 The pipeline is named `my-pipeline`
 
