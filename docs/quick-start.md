@@ -33,7 +33,7 @@ Create the starter .codepipeline files in the project.
 
     pipe init # generates starter .codepipeline files
 
-An important generated file is `.codepipeline/pipeline.rb`. The starter file looks something like this:
+An important generated file is `.codepipeline/pipeline.rb`. The starter file defines the pipeline via an [CodePipeline DSL]({% link _docs/dsl.md %}). It looks something like this:
 
 ```ruby
 stage "Source" do

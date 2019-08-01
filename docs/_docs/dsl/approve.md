@@ -26,7 +26,7 @@ If the `approve` method is provided a Hash with the `notification_arn` and `cust
 ```ruby
 stage "Approve" do
   approve(
-    notification_arn: "arn:aws:sns:us-west-2:536766270177:hello-topic",
+    notification_arn: "arn:aws:sns:us-west-2:112233445566:hello-topic",
     custom_data: "Approve deployment",
   )
 end
