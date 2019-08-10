@@ -12,7 +12,11 @@ Gem::Specification.new do |spec|
   spec.homepage      = "https://github.com/tongueroo/codepipeline"
   spec.license       = "MIT"
 
-  spec.files         = `git ls-files`.split($/)
+  vendor_files       = Dir.glob("vendor/**/*")
+  gem_files          = `git -C "#{File.dirname(__FILE__)}" ls-files -z`.split("\x0").reject do |f|
+    f.match(%r{^(test|spec|features|docs)/})
+  end
+  spec.files         = gem_files + vendor_files
   spec.bindir        = "exe"
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
