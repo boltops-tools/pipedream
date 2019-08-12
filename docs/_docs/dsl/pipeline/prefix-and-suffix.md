@@ -5,7 +5,7 @@ categories: dsl-pipeline
 nav_order: 14
 ---
 
-Somewhat interesting options are the `codebuild_prefix` and `codebuild_suffix` option. These options affect the `codebuild` method and allow you to remove some duplication in the pipeline declaration.
+The `codebuild_prefix` and `codebuild_suffix` options are experimental and may be removed in the future. These options affect the `codebuild` method and allow you to remove some duplication in the pipeline declaration.
 
 ## Example
 
