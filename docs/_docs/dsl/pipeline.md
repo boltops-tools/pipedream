@@ -2,7 +2,7 @@
 title: Pipeline DSL
 nav_text: Pipeline
 categories: dsl
-nav_order: 11
+nav_order: 10
 ---
 
 The pipeline DSL allows you to define the Stages and Actions within that Stage with only a few lines of code. In the [Quick Start]({% link quick-start.md %}), we define a very short pipeline to keep the introduction simple.  Here we'll show more of the DSL power.

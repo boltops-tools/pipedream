@@ -33,7 +33,6 @@ Here are some examples of resources it can create:
 * [iam role]({% link _docs/dsl/role.md %}): The IAM role associated with the CodePipeline pipeline.
 * [webhook]({% link _docs/dsl/webhook.md %}): The webhook associated with the CodePipeline pipeline.
 * [schedule]({% link _docs/dsl/schedule.md %}): An CloudWatch Event rule: triggers the pipeline to start on a scheduled basis.
-* [approve]({% link _docs/dsl/approve.md %}): An manual approval action step.
 * [sns topic]({% link _docs/dsl/sns.md %}): The SNS Topic associated with the approval step. This is optional and provides a way to customize the SNS topic if needed.
 
 {% include prev_next.md %}

@@ -1,8 +1,8 @@
 ---
 title: Approval Action DSL
 nav_text: Approve
-categories: dsl
-nav_order: 10
+categories: dsl-pipeline
+nav_order: 12
 ---
 
 You can add an Approval Action to a Stage with the `approve` method.  There are various helpful forms. Let's start with the simplest form.
