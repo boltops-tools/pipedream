@@ -3,6 +3,9 @@
 All notable changes to this project will be documented in this file.
 This project *tries* to adhere to [Semantic Versioning](http://semver.org/), even before v1.0.
 
+## [0.3.3]
+- allow no settings.yml file
+
 ## [0.3.2]
 - update vendor/aws_data
 
