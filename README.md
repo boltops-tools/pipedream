@@ -3,7 +3,7 @@
 ![Build Status](https://codebuild.us-west-2.amazonaws.com/badges?uuid=eyJlbmNyeXB0ZWREYXRhIjoiM3hGMlViMUtRRS9maitXVnhPNUp2ZFE3eUkzV0doNG5OR0lRRGtNOVBiWDVsb0tjY2dTVnhHamJOSzZRYU5aaW9FOS9peEUwVHBVUzk3cXVjd2FqcHFNPSIsIml2UGFyYW1ldGVyU3BlYyI6InNDdzUzVmRCd0FHSjBrTnQiLCJtYXRlcmlhbFNldFNlcmlhbCI6MX0%3D&branch=master)
 [![Gem Version](https://badge.fury.io/rb/codepipeline.png)](http://badge.fury.io/rb/codepipeline)
 
-The codepipeline tool provides a DSL to create a CodePipeline project with some reasonable defaults.
+The codepipeline tool provides a DSL to make it easy create a CodePipeline pipeline.
 
 The codebuild tool installs `codepipline` and `pipe` executables. Both of them do the same thing, `pipe` is just shorter to type.
 
