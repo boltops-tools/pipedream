@@ -34,10 +34,13 @@ module Codepipe
     # When ufo is determined from settings it should not called Codepipe.env since that in turn calls
     # Settings.new.data which can then cause an infinite loop.
     def pipe_env
-      settings = YAML.load_file("#{cb_root}/.codepipeline/settings.yml")
-      env = settings.find do |_env, section|
-        section ||= {}
-        ENV['AWS_PROFILE'] && ENV['AWS_PROFILE'] == section['aws_profile']
+      path = "#{cb_root}/.codepipeline/settings.yml"
+      if File.exist?(path)
+        settings = YAML.load_file(path)
+        env = settings.find do |_env, section|
+          section ||= {}
+          ENV['AWS_PROFILE'] && ENV['AWS_PROFILE'] == section['aws_profile']
+        end
       end
 
       pipe_env = env.first if env
