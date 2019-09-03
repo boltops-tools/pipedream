@@ -4,6 +4,7 @@ module Codepipe
     def self.cli_options
       [
         [:name, desc: "CodePipeline project name."],
+        [:mode, desc: "Modes: light or full"],
         [:force, type: :boolean, desc: "Bypass overwrite are you sure prompt for existing files."],
         [:template, desc: "Custom template to use."],
         [:template_mode, desc: "Template mode: replace or additive."],
@@ -32,10 +33,20 @@ module Codepipe
 
     def copy_project
       puts "Initialize codepipeline project in .codepipeline"
+
+      excludes = %w[.git]
+      if @options[:mode] == "light"
+        excludes += %w[
+          settings.yml
+          sns.rb
+        ]
+      end
+      pattern = Regexp.new(excludes.join('|'))
+
       if @options[:template]
-        directory ".", ".codepipeline", exclude_pattern: /.git/
+        directory ".", ".codepipeline", exclude_pattern: pattern
       else
-        directory ".", exclude_pattern: /.git/
+        directory ".", exclude_pattern: pattern
       end
     end
 

@@ -6,8 +6,6 @@ stage "Source" do
   )
 end
 
-# codebuild_prefix "myprefix-"
-
 # Example below:
 
 # stage "Build" do

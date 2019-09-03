@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    codepipeline (0.3.1)
+    codepipeline (0.3.3)
       activesupport
       aws-sdk-cloudformation
       aws-sdk-codepipeline
@@ -17,20 +17,21 @@ PATH
 GEM
   remote: https://rubygems.org/
   specs:
-    activesupport (5.2.3)
+    activesupport (6.0.0)
       concurrent-ruby (~> 1.0, >= 1.0.2)
       i18n (>= 0.7, < 2)
       minitest (~> 5.1)
       tzinfo (~> 1.1)
+      zeitwerk (~> 2.1, >= 2.1.8)
     aws-eventstream (1.0.3)
-    aws-partitions (1.199.0)
+    aws-partitions (1.207.0)
     aws-sdk-cloudformation (1.25.0)
       aws-sdk-core (~> 3, >= 3.61.1)
       aws-sigv4 (~> 1.1)
-    aws-sdk-codepipeline (1.23.0)
+    aws-sdk-codepipeline (1.24.0)
       aws-sdk-core (~> 3, >= 3.61.1)
       aws-sigv4 (~> 1.1)
-    aws-sdk-core (3.62.0)
+    aws-sdk-core (3.65.1)
       aws-eventstream (~> 1.0, >= 1.0.2)
       aws-partitions (~> 1.0)
       aws-sigv4 (~> 1.1)
@@ -38,17 +39,17 @@ GEM
     aws-sdk-kms (1.24.0)
       aws-sdk-core (~> 3, >= 3.61.1)
       aws-sigv4 (~> 1.1)
-    aws-sdk-s3 (1.46.0)
+    aws-sdk-s3 (1.48.0)
       aws-sdk-core (~> 3, >= 3.61.1)
       aws-sdk-kms (~> 1)
       aws-sigv4 (~> 1.1)
-    aws-sdk-ssm (1.54.0)
+    aws-sdk-ssm (1.55.0)
       aws-sdk-core (~> 3, >= 3.61.1)
       aws-sigv4 (~> 1.1)
     aws-sigv4 (1.1.0)
       aws-eventstream (~> 1.0, >= 1.0.2)
     byebug (11.0.1)
-    cfn_camelizer (0.2.0)
+    cfn_camelizer (0.3.0)
       activesupport
       memoist
       rainbow
@@ -66,7 +67,7 @@ GEM
     minitest (5.11.3)
     rainbow (3.0.0)
     rake (12.3.3)
-    render_me_pretty (0.8.2)
+    render_me_pretty (0.8.3)
       activesupport
       rainbow
       tilt
