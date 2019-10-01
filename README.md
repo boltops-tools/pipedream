@@ -18,7 +18,7 @@ The documentation site is at: [pipedream.run](https://pipedream.run/)
 
 ## Init and Structure
 
-First, run `pipe init` to generate a starter ``.pipedream` folder structure.
+First, run `pipe init` to generate a starter `.pipedream` folder structure.
 
     $ tree .pipedream
     .pipedream
