@@ -4,12 +4,12 @@ Examples:
     codepipe deploy demo # explicitly specify pipeline name
     codepipe deploy demo -b mybranch # specify git branch
 
-The pipeline is generated from the DSL and created with CloudFormation. The files that the DSL evaluates are in the `.codepipeline` folder:
+The pipeline is generated from the DSL and created with CloudFormation. The files that the DSL evaluates are in the `.pipedream` folder:
 
-    .codepipeline/pipeline.rb
-    .codepipeline/role.rb
-    .codepipeline/schedule.rb
-    .codepipeline/webhook.rb
+    .pipedream/pipeline.rb
+    .pipedream/role.rb
+    .pipedream/schedule.rb
+    .pipedream/webhook.rb
 
 To create the CodePipeline pipeline, you run:
 
@@ -51,4 +51,4 @@ It is useful to build pipelines with different source git branches. You can pass
 
     pipe deploy my-pipeline --branch my-branch
 
-Note: When you specify a branch the codepipeline tool actually first updates the pipeline before starting the pipeline execution. This is done because CodePipeline does not natively support specifying the branch. It is discussed more here: [Using Different Branches]({% link _docs/examples/different-branches.md %}).
+Note: When you specify a branch pipedream actually first updates the pipeline before starting the pipeline execution. This is done because CodePipeline does not natively support specifying the branch. It is discussed more here: [Using Different Branches]({% link _docs/examples/different-branches.md %}).

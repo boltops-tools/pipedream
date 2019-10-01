@@ -30,7 +30,7 @@ module Pipedream
     # 2-way binding.
     def set_aws_profile!
       return if ENV['TEST']
-      return unless File.exist?("#{Pipedream.root}/.codepipeline/settings.yml") # for rake docs
+      return unless File.exist?("#{Pipedream.root}/.pipedream/settings.yml") # for rake docs
       return unless settings # Only load if within Pipedream project and there's a settings.yml
 
       data = settings || {}
@@ -46,9 +46,9 @@ module Pipedream
     memoize :settings
 
     def check_codepipeline_project!
-      check_path = "#{Pipedream.root}/.codepipeline"
+      check_path = "#{Pipedream.root}/.pipedream"
       unless File.exist?(check_path)
-        puts "ERROR: No .codepipeline folder found.  Are you sure you are in a project with codepipeline setup?".color(:red)
+        puts "ERROR: No .pipedream folder found.  Are you sure you are in a project with codepipeline setup?".color(:red)
         puts "Current directory: #{Dir.pwd}"
         puts "If you want to set up codepipeline for this prjoect, please create a settings file via: codepipeline init"
         exit 1 unless ENV['TEST']

@@ -1,9 +1,9 @@
 # Site settings
-title: codepipeline
+title: pipedream
 email: tongueroo@gmail.com
-url: https://codepipeline.org
-description: "CodePipeline DSL"
-keywords: "codepipeline boltops dsl ruby aws"
+url: https://pipedream.run
+description: "Pipedream CodePipeline DSL"
+keywords: "pipedream codepipeline boltops dsl ruby aws"
 skills: ""
 meta_author: Tung Nguyen
 
@@ -46,7 +46,7 @@ social:
   - title: twitter
     url: http://twitter.com/tongueroo
   - title: github
-    url: https://github.com/tongueroo/codepipeline
+    url: https://github.com/tongueroo/pipedream
 
 # Credits content
 credits:
@@ -55,7 +55,7 @@ credits:
 markdown: kramdown
 permalink: pretty
 
-gh_url: https://github.com/tongueroo/codepipeline
+gh_url: https://github.com/tongueroo/pipedream
 
 collections:
   docs:

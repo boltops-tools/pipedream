@@ -7,7 +7,7 @@ nav_order: 15
 
 The codepipeline tool can create the IAM service role associated with the pipeline. Here's an example:
 
-.codepipeline/role.rb:
+.pipedream/role.rb:
 
 ```ruby
 iam_policy("logs", "ssm")
@@ -45,7 +45,7 @@ managed_iam_policy("AmazonS3ReadOnlyAccess", "AmazonEC2ReadOnlyAccess")
 The convenience methods merely wrap properties of the [AWS::IAM::Role
  CloudFormation Resource](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html).  If you wanted to set the CloudFormation properties more directly, here's an example of using the "Full" DSL.
 
-.codepipeline/role.rb:
+.pipedream/role.rb:
 
 ```ruby
 assume_role_policy_document(

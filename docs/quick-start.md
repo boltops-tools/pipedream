@@ -7,18 +7,18 @@ In a hurry? No problem!  Here's a quick start to get going.
 
 ## Summary
 
-    gem install codepipeline
+    gem install pipedream
     cd <your-project>
-    pipe init # generates starter .codepipeline files
-    # edit .codepipeline/pipeline.rb
+    pipe init # generates starter .pipedream files
+    # edit .pipedream/pipeline.rb
     pipe deploy # create the CodePipeline pipeline via CloudFormation
     pipe start  # start a CodePipeline pipeline execution
 
 ## What Happened?
 
-Here are a little more details on what the summarized commands do. First, we install the codepipeline tool.
+Here are a little more details on what the summarized commands do. First, we install the pipedream tool.
 
-    gem install codepipeline
+    gem install pipedream
 
 Change into your project directory.
 
@@ -29,11 +29,11 @@ If you need a demo project, you can try this demo project: [tongueroo/demo-ufo](
     git clone https://github.com/tongueroo/demo-ufo demo
     cd demo
 
-Create the starter .codepipeline files in the project.
+Create the starter .pipedream files in the project.
 
-    pipe init # generates starter .codepipeline files
+    pipe init # generates starter .pipedream files
 
-An important generated file is `.codepipeline/pipeline.rb`. The starter file defines the pipeline via an [CodePipeline DSL]({% link _docs/dsl.md %}). It looks something like this:
+An important generated file is `.pipedream/pipeline.rb`. The starter file defines the pipeline via an [CodePipeline DSL]({% link _docs/dsl.md %}). It looks something like this:
 
 ```ruby
 stage "Source" do
@@ -59,7 +59,7 @@ You can then deploy or create the pipeline with a single command:
 
     pipe deploy
 
-This deploys a CloudFormation stack that creates a CodePipeline pipeline and IAM role.  The IAM role permissions is defined in `.codepipeline/role.rb` via the [IAM Role DSL]({% link _docs/dsl/role.md %}).
+This deploys a CloudFormation stack that creates a CodePipeline pipeline and IAM role.  The IAM role permissions is defined in `.pipedream/role.rb` via the [IAM Role DSL]({% link _docs/dsl/role.md %}).
 
 Once the stack is complete. You can start the CodePipeline pipeline via the CLI or the CodePipeline console.  Here is the CLI command:
 

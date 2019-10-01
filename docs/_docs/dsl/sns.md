@@ -6,9 +6,9 @@ nav_order: 17
 ---
 
 The codepipeline tool will create an SNS Topic and associate it with your [Approval Action]({% link _docs/dsl/pipeline/approve.md %}) if necessary.
-For exmaple, if you have created an Approval Action in the pipeline with the `approve` method, then the codepipeline tool will create and manage the SNS topic for you.
+For exmaple, if you have created an Approval Action in the pipeline with the `approve` method, then pipedream will create and manage the SNS topic for you.
 
-For most cases, the default SNS topic should suffice. However, if you wish to control the SNS topic properties you can do so with a `.codepipeline/sns.rb` file.  Here's an example:
+For most cases, the default SNS topic should suffice. However, if you wish to control the SNS topic properties you can do so with a `.pipedream/sns.rb` file.  Here's an example:
 
 ```ruby
 display_name "my display_name"

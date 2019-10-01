@@ -21,7 +21,7 @@ module Pipedream
     def set_source_path
       return unless @options[:template]
 
-      custom_template = "#{ENV['HOME']}/.codepipeline/templates/#{full_repo_name}"
+      custom_template = "#{ENV['HOME']}/.pipedream/templates/#{full_repo_name}"
 
       if @options[:template_mode] == "replace" # replace the template entirely
         override_source_paths(custom_template)
@@ -32,7 +32,7 @@ module Pipedream
     end
 
     def copy_project
-      puts "Initialize codepipeline project in .codepipeline"
+      puts "Initialize codepipeline project in .pipedream"
 
       excludes = %w[.git]
       if @options[:mode] == "light"
@@ -44,7 +44,7 @@ module Pipedream
       pattern = Regexp.new(excludes.join('|'))
 
       if @options[:template]
-        directory ".", ".codepipeline", exclude_pattern: pattern
+        directory ".", ".pipedream", exclude_pattern: pattern
       else
         directory ".", exclude_pattern: pattern
       end

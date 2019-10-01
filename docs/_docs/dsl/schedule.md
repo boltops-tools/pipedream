@@ -5,9 +5,9 @@ categories: dsl
 nav_order: 16
 ---
 
-The codepipeline tool supports creating a CloudWatch scheduled event rule that will trigger the codepipeline project periodically.  You define the schedule in `.codepipeline/schedule.rb`. Here's an example of what that looks like:
+The codepipeline tool supports creating a CloudWatch scheduled event rule that will trigger the codepipeline project periodically.  You define the schedule in `.pipedream/schedule.rb`. Here's an example of what that looks like:
 
-.codepipeline/schedule.rb:
+.pipedream/schedule.rb:
 
 ```ruby
 rate "1 day"
@@ -19,7 +19,7 @@ rate "1 day"
 
 The convenience methods merely wrap properties of the [AWS::Events::Rule](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-events-rule.html#cfn-events-rule-description).  If you wanted to set the CloudFormation properties more directly, here's an example of using the Full DSL.
 
-.codepipeline/schedule.rb:
+.pipedream/schedule.rb:
 
 ```ruby
 description "my description"

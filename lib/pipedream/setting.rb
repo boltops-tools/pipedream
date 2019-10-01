@@ -9,7 +9,7 @@ module Pipedream
     end
 
     # data contains the settings.yml config.  The order or precedence for settings
-    # is the project ufo/settings.yml and then the ~/.codepipeline/settings.yml.
+    # is the project ufo/settings.yml and then the ~/.pipedream/settings.yml.
     def data
       Pipedream.check_codepipeline_project! if @check_codepipeline_project
       return {} unless File.exist?(project_settings_path)
@@ -17,7 +17,7 @@ module Pipedream
       # project based settings files
       project = load_file(project_settings_path)
 
-      user_file = "#{ENV['HOME']}/.codepipeline/settings.yml"
+      user_file = "#{ENV['HOME']}/.pipedream/settings.yml"
       user = File.exist?(user_file) ? YAML.load_file(user_file) : {}
 
       default_file = File.expand_path("default/settings.yml", __dir__)
@@ -34,7 +34,7 @@ module Pipedream
     # When ufo is determined from settings it should not called Pipedream.env since that in turn calls
     # Settings.new.data which can then cause an infinite loop.
     def pipe_env
-      path = "#{cb_root}/.codepipeline/settings.yml"
+      path = "#{cb_root}/.pipedream/settings.yml"
       if File.exist?(path)
         settings = YAML.load_file(path)
         env = settings.find do |_env, section|
@@ -72,7 +72,7 @@ module Pipedream
     end
 
     def project_settings_path
-      "#{cb_root}/.codepipeline/settings.yml"
+      "#{cb_root}/.pipedream/settings.yml"
     end
 
     def cb_root

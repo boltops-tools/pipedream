@@ -41,7 +41,7 @@ module Pipedream
     end
 
     def lookup_codepipeline_file(name)
-      [".codepipeline", @options[:type], name].compact.join("/")
+      [".pipedream", @options[:type], name].compact.join("/")
     end
   end
 end

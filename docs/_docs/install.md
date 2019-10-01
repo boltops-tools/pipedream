@@ -7,7 +7,7 @@ nav_order: 3
 
 Install codepipeline via RubyGems.
 
-    gem install codepipeline
+    gem install pipedream
 
 The [Quick Start]({% link quick-start.md %}) provides a guide on how to use the codebuild tool.  The [DSL Docs]({% link _docs/dsl.md %}) provide more detail on the syntax.
 

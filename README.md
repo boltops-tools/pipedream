@@ -22,7 +22,7 @@ The CLI tool also detects and tasks in the current folder's Rakefile and delegat
 
 ## DSL
 
-.codepipeline/pipeline.rb:
+.pipedream/pipeline.rb:
 
 ```ruby
 stage "Source" do
@@ -52,7 +52,7 @@ And then execute:
 
 Or install it yourself as:
 
-    gem install codepipeline
+    gem install pipedream
 
 ## Contributing
 

@@ -17,11 +17,11 @@ stage "Approve" do
 end
 ```
 
-With CodePipeline, an SNS topic is required to be associated with the Approval Action. In the case of a String form, the codepipeline tool will automatically create and manage the SNS topic associated with the `approve` declaration.
+With CodePipeline, an SNS topic is required to be associated with the Approval Action. In the case of a String form, pipedream will automatically create and manage the SNS topic associated with the `approve` declaration.
 
 ## Simplified Configuration Hash Form
 
-If the `approve` method is provided a Hash with the `notification_arn` and `custom_data`, then the codepipeline tool will set the `configuration` directly. Example:
+If the `approve` method is provided a Hash with the `notification_arn` and `custom_data`, then pipedream will set the `configuration` directly. Example:
 
 ```ruby
 stage "Approve" do

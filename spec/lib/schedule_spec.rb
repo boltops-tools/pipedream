@@ -1,6 +1,6 @@
 describe Pipedream::Schedule do
   let(:schedule) do
-    Pipedream::Schedule.new(schedule_path: "spec/fixtures/app/.codepipeline/schedule.rb")
+    Pipedream::Schedule.new(schedule_path: "spec/fixtures/app/.pipedream/schedule.rb")
   end
   context "general" do
     it "builds up the template in memory" do
