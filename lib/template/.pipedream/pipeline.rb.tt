@@ -1,8 +1,8 @@
 stage "Source" do
   github(
     source: "<%= project_github_repo %>",
-    branch: branch, # branch method defaults to "master" or the `pipe deploy --branch` option
-    auth_token: ssm("/codebuild/github/oauth_token") # example ssm name
+    # branch: "master", # branch method defaults to "master" or the `pipe deploy --branch` option
+    auth_token: ssm("/codepipeline/github/token") # example ssm name
   )
 end
 

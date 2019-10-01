@@ -61,7 +61,7 @@ module Pipedream
       return default unless File.exist?(".git/config") && git_installed?
 
       url = `git config --get remote.origin.url`.strip
-      repo = url.sub('git@github.com:','').sub(/\.git$/,'')
+      repo = Dsl::Pipeline::Github.extract_repo_source(url)
       repo == '' ? default : repo
     end
   end

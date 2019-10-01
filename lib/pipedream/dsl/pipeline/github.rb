@@ -3,6 +3,7 @@ module Pipedream::Dsl::Pipeline
     def github(props)
       # nice shorthands
       source = props.delete(:source)
+      source = extract_repo_source(source)
       owner,repo = source.split("/")
 
       # cli option can override this in codepipe/pipeline.rb set_source!
@@ -32,5 +33,10 @@ module Pipedream::Dsl::Pipeline
       }
       action(props.reverse_merge(default))
     end
+
+    def extract_repo_source(url)
+      url.sub('git@github.com:','').sub('https://github.com/','').sub(/\.git$/,'')
+    end
+    extend self # mainly for extract_repo_source
   end
 end
