@@ -39,7 +39,7 @@ An important generated file is `.pipedream/pipeline.rb`. The starter file define
 stage "Source" do
   github(
     source: "user/repo", # replace with your repo
-    auth_token: ssm("/github/user/token")
+    auth_token: ssm("/github/user/token") # replace with your token
   )
 end
 
