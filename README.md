@@ -23,16 +23,12 @@ First, run `pipe init` to generate a starter `.pipedream` folder structure.
     $ tree .pipedream
     .pipedream
     ├── pipeline.rb
-    ├── schedule.rb
-    ├── settings.yml
-    └── sns.rb
+    └── schedule.rb
 
 File | Description
 --- | ---
 pipeline.rb | The CodePipeline pipeline written as a DSL.  This is required. Here are the [Pipeline DSL docs](https://pipedream.run/docs/dsl/pipeline/)
 schedule.rb | A CloudWatch scheduled event written as a DSL. Here are the [schedule.rb docs](https://pipedream.run/docs/dsl/schedule/)
-settings.yml | Settings to for pipedream.  Here are the [Settings docs](https://pipedream.run/docs/settings/)
-sns.rb | An SNS topic associated with an [Approval action](https://pipedream.run/docs/dsl/pipeline/approve/) written as a DSL.  Here are the [SNS docs](https://pipedream.run/docs/dsl/sns/)
 
 ## DSL
 

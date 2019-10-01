@@ -4,7 +4,7 @@ module Pipedream
     def self.cli_options
       [
         [:name, desc: "CodePipeline project name."],
-        [:mode, desc: "Modes: light or full"],
+        [:mode, desc: "Modes: light or full", default: "light" ],
         [:force, type: :boolean, desc: "Bypass overwrite are you sure prompt for existing files."],
         [:template, desc: "Custom template to use."],
         [:template_mode, desc: "Template mode: replace or additive."],
