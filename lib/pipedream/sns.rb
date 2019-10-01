@@ -1,6 +1,6 @@
-module Codepipe
+module Pipedream
   class Sns
-    include Codepipe::Dsl::Sns
+    include Pipedream::Dsl::Sns
     include Evaluate
 
     def initialize(options={})

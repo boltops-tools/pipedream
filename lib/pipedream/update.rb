@@ -1,4 +1,4 @@
-module Codepipe
+module Pipedream
   class Update < Stack
     def perform
       cfn.update_stack(

@@ -2,7 +2,7 @@ require 'pathname'
 require 'yaml'
 require 'active_support/core_ext/string'
 
-module Codepipe
+module Pipedream
   module Core
     extend Memoist
 
@@ -26,16 +26,16 @@ module Codepipe
     end
     memoize :env_extra
 
-    # Overrides AWS_PROFILE based on the Codepipe.env if set in configs/settings.yml
+    # Overrides AWS_PROFILE based on the Pipedream.env if set in configs/settings.yml
     # 2-way binding.
     def set_aws_profile!
       return if ENV['TEST']
-      return unless File.exist?("#{Codepipe.root}/.codepipeline/settings.yml") # for rake docs
-      return unless settings # Only load if within Codepipe project and there's a settings.yml
+      return unless File.exist?("#{Pipedream.root}/.codepipeline/settings.yml") # for rake docs
+      return unless settings # Only load if within Pipedream project and there's a settings.yml
 
       data = settings || {}
       if data[:aws_profile]
-        puts "Using AWS_PROFILE=#{data[:aws_profile]} from PIPE_ENV=#{Codepipe.env} in config/settings.yml"
+        puts "Using AWS_PROFILE=#{data[:aws_profile]} from PIPE_ENV=#{Pipedream.env} in config/settings.yml"
         ENV['AWS_PROFILE'] = data[:aws_profile]
       end
     end
@@ -46,7 +46,7 @@ module Codepipe
     memoize :settings
 
     def check_codepipeline_project!
-      check_path = "#{Codepipe.root}/.codepipeline"
+      check_path = "#{Pipedream.root}/.codepipeline"
       unless File.exist?(check_path)
         puts "ERROR: No .codepipeline folder found.  Are you sure you are in a project with codepipeline setup?".color(:red)
         puts "Current directory: #{Dir.pwd}"
@@ -57,7 +57,7 @@ module Codepipe
 
   private
     def env_from_profile
-      Codepipe::Setting.new.pipe_env
+      Pipedream::Setting.new.pipe_env
     end
   end
 end

@@ -1,11 +1,11 @@
 $:.unshift(File.expand_path("../", __FILE__))
-require "codepipe/version"
+require "pipedream/version"
 require "rainbow/ext/string"
 require "memoist"
 require "active_support/core_ext/hash"
 
-require "codepipe/autoloader"
-Codepipe::Autoloader.setup
+require "pipedream/autoloader"
+Pipedream::Autoloader.setup
 
 gem_root = File.dirname(__dir__)
 $:.unshift("#{gem_root}/vendor/aws_data/lib")
@@ -15,9 +15,9 @@ require "cfn_camelizer"
 $:.unshift("#{gem_root}/vendor/cfn-status/lib")
 require "cfn/status"
 
-module Codepipe
+module Pipedream
   class Error < StandardError; end
   extend Core
 end
 
-Codepipe.set_aws_profile!
+Pipedream.set_aws_profile!

@@ -13,7 +13,7 @@ class Thor
   end
 end
 
-module Codepipe
+module Pipedream
   class Command < Thor
     class << self
       def dispatch(m, args, options, config)

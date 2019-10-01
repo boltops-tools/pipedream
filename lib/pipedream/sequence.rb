@@ -1,7 +1,7 @@
 require 'fileutils'
 require 'thor'
 
-module Codepipe
+module Pipedream
   class Sequence < Thor::Group
     include AwsServices
     include Thor::Actions

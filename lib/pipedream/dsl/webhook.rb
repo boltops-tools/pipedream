@@ -1,4 +1,4 @@
-module Codepipe::Dsl
+module Pipedream::Dsl
   module Webhook
     include Ssm
 

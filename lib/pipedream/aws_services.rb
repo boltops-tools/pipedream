@@ -1,7 +1,7 @@
 require "aws-sdk-codepipeline"
 require "aws-sdk-cloudformation"
 
-module Codepipe
+module Pipedream
   module AwsServices
     include Helpers
 

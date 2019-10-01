@@ -1,7 +1,7 @@
 require 'yaml'
 require 'render_me_pretty'
 
-module Codepipe
+module Pipedream
   class Setting
     extend Memoist
     def initialize(check_codepipeline_project=true)
@@ -11,7 +11,7 @@ module Codepipe
     # data contains the settings.yml config.  The order or precedence for settings
     # is the project ufo/settings.yml and then the ~/.codepipeline/settings.yml.
     def data
-      Codepipe.check_codepipeline_project! if @check_codepipeline_project
+      Pipedream.check_codepipeline_project! if @check_codepipeline_project
       return {} unless File.exist?(project_settings_path)
 
       # project based settings files
@@ -30,8 +30,8 @@ module Codepipe
     end
     memoize :data
 
-    # Resolves infinite problem since Codepipe.env can be determined from PIPE_ENV or settings.yml files.
-    # When ufo is determined from settings it should not called Codepipe.env since that in turn calls
+    # Resolves infinite problem since Pipedream.env can be determined from PIPE_ENV or settings.yml files.
+    # When ufo is determined from settings it should not called Pipedream.env since that in turn calls
     # Settings.new.data which can then cause an infinite loop.
     def pipe_env
       path = "#{cb_root}/.codepipeline/settings.yml"

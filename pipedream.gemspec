@@ -1,11 +1,11 @@
 # coding: utf-8
 lib = File.expand_path("../lib", __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require "codepipe/version"
+require "pipedream/version"
 
 Gem::Specification.new do |spec|
   spec.name          = "codepipeline"
-  spec.version       = Codepipe::VERSION
+  spec.version       = Pipedream::VERSION
   spec.authors       = ["Tung Nguyen"]
   spec.email         = ["tongueroo@gmail.com"]
   spec.summary       = "CodePipeline DSL Tool to Quickly Create CodePipeline Pipeline"

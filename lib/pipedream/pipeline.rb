@@ -1,4 +1,4 @@
-module Codepipe
+module Pipedream
   class Pipeline
     extend Memoist
     include Dsl::Pipeline

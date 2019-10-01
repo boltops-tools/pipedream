@@ -1,6 +1,6 @@
-module Codepipe
+module Pipedream
   class Schedule
-    include Codepipe::Dsl::Schedule
+    include Pipedream::Dsl::Schedule
     include Evaluate
 
     def initialize(options={})

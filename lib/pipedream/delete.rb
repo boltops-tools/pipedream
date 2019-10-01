@@ -1,4 +1,4 @@
-module Codepipe
+module Pipedream
   class Delete
     include AwsServices
 

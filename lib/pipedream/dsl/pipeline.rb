@@ -1,4 +1,4 @@
-module Codepipe::Dsl
+module Pipedream::Dsl
   module Pipeline
     include Approve
     include Codebuild

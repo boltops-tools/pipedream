@@ -1,4 +1,4 @@
-module Codepipe
+module Pipedream
   module Evaluate
     def evaluate(path)
       source_code = IO.read(path)

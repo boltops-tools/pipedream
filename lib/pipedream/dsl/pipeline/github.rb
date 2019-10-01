@@ -1,4 +1,4 @@
-module Codepipe::Dsl::Pipeline
+module Pipedream::Dsl::Pipeline
   module Github
     def github(props)
       # nice shorthands

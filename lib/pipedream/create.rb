@@ -1,4 +1,4 @@
-module Codepipe
+module Pipedream
   class Create < Stack
     def perform
       cfn.create_stack(

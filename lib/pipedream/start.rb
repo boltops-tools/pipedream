@@ -1,4 +1,4 @@
-module Codepipe
+module Pipedream
   class Start
     extend Memoist
     include AwsServices
@@ -17,7 +17,7 @@ module Codepipe
       codepipeline_info(resp.pipeline_execution_id)
     end
 
-    # Codepipeline does not currently support specifying a different branch starting an execution.
+    # Pipedreamline does not currently support specifying a different branch starting an execution.
     # Workaround this limitation by updating the pipeline and then starting the execution.
     def redeploy
       return unless different_branch?

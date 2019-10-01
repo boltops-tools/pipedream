@@ -1,6 +1,6 @@
 require "zeitwerk"
 
-module Codepipe
+module Pipedream
   class Autoloader
     class Inflector < Zeitwerk::Inflector
       def camelize(basename, _abspath)

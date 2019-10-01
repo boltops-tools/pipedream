@@ -1,4 +1,4 @@
-module Codepipe::Dsl
+module Pipedream::Dsl
   module Sns
     PROPERTIES = %w[
       display_name

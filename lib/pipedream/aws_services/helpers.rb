@@ -1,4 +1,4 @@
-module Codepipe::AwsServices
+module Pipedream::AwsServices
   module Helpers
     def stack_exists?(stack_name)
       return false if ENV['TEST']
@@ -26,8 +26,8 @@ module Codepipe::AwsServices
     end
 
     def pipeline_name_convention(name_base)
-      items = [@pipeline_name, @options[:type], Codepipe.env_extra]
-      items.insert(2, Codepipe.env) if Codepipe.settings.dig(:stack_naming, :append_env)
+      items = [@pipeline_name, @options[:type], Pipedream.env_extra]
+      items.insert(2, Pipedream.env) if Pipedream.settings.dig(:stack_naming, :append_env)
       items.reject(&:blank?).compact.join("-")
     end
 
@@ -43,8 +43,8 @@ module Codepipe::AwsServices
     #     myapp-ci-deploy-development-2
     #
     def inferred_stack_name(pipeline_name)
-      items = [pipeline_name, @options[:type], Codepipe.env_extra, "pipe"]
-      items.insert(2, Codepipe.env) if Codepipe.settings.dig(:stack_naming, :append_env)
+      items = [pipeline_name, @options[:type], Pipedream.env_extra, "pipe"]
+      items.insert(2, Pipedream.env) if Pipedream.settings.dig(:stack_naming, :append_env)
       items.reject(&:blank?).compact.join("-")
     end
 

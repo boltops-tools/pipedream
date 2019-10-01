@@ -1,8 +1,8 @@
 require "yaml"
 
-module Codepipe
+module Pipedream
   class Role
-    include Codepipe::Dsl::Role
+    include Pipedream::Dsl::Role
     include Evaluate
 
     def initialize(options={})

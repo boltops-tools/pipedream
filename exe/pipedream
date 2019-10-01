@@ -8,7 +8,7 @@ Signal.trap("INT") {
 }
 
 $:.unshift(File.expand_path("../../lib", __FILE__))
-require "codepipe"
-require "codepipe/cli"
+require "pipedream"
+require "pipedream/cli"
 
-Codepipe::CLI.start(ARGV)
+Pipedream::CLI.start(ARGV)

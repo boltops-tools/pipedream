@@ -1,4 +1,4 @@
-module Codepipe::Dsl
+module Pipedream::Dsl
   module Role
     PROPERTIES = %w[
       assume_role_policy_document

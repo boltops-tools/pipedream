@@ -1,6 +1,6 @@
-module Codepipe
+module Pipedream
   class Webhook
-    include Codepipe::Dsl::Webhook
+    include Pipedream::Dsl::Webhook
     include Evaluate
 
     def initialize(options={})

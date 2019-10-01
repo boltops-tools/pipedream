@@ -1,4 +1,4 @@
-module Codepipe
+module Pipedream
   class Build
     def initialize(options)
       @options = options

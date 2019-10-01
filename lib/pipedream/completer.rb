@@ -68,7 +68,7 @@ Sometimes the commands are not simple thor commands but are subcommands or Thor:
 
 Auto-completion accounts for each of these type of commands.
 =end
-module Codepipe
+module Pipedream
   class Completer
     def initialize(command_class, *params)
       @params = params

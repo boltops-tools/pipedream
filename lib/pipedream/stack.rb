@@ -1,6 +1,6 @@
 require "aws-sdk-cloudformation"
 
-module Codepipe
+module Pipedream
   class Stack
     include AwsServices
 
