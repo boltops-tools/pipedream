@@ -10,7 +10,7 @@ CodePipeline currently does not supports starting the pipeline execution with di
 1. update the pipeline before starting it.
 2. create additional pipelines.
 
-The codepipeline tool supports both methods.
+Pipe Dream supports both methods.
 
 ## Update Pipeline Approach
 

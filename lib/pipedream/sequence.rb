@@ -29,7 +29,7 @@ module Pipedream
         abort "Unable to detect git installation on your system.  Git needs to be installed in order to use the --template option."
       end
 
-      template_path = "#{ENV['HOME']}/.codebuild/templates/#{full_repo_name}"
+      template_path = "#{ENV['HOME']}/.pipedream/templates/#{full_repo_name}"
       if File.exist?(template_path)
         sh("cd #{template_path} && git pull")
       else

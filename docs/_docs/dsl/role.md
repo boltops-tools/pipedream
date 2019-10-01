@@ -5,7 +5,7 @@ categories: dsl
 nav_order: 15
 ---
 
-The codepipeline tool can create the IAM service role associated with the pipeline. Here's an example:
+Pipe Dream can create the IAM service role associated with the pipeline. Here's an example:
 
 .pipedream/role.rb:
 

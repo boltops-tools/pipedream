@@ -5,17 +5,17 @@ categories: examples
 nav_order: 19
 ---
 
-It is common to use codebuild as a Stage Action in the pipeline. Here's are instructions to quickly create a codebuild project.
+It is common to use CodeBuild as a Stage Action in the pipeline. Here's are instructions to quickly create a CodeBuild project.
 
-We'll use the [codebuild.cloud](https://codebuild.cloud) tool to help with this. Here are the commands.
+We'll use the [cody.run](https://cody.run) tool to help with this. Here are the commands.
 
-    gem install codebuild # installs cb command
-    cb init # generates starter .codebuild files including the buildspec.yml
-    # commit and yours the .codebuild files
-    git add .codebuild
-    git commit -m 'add .codebuild files'
+    gem install cody # installs cody command
+    cody init # generates starter .cody files including the buildspec.yml
+    # commit and yours the .cody files
+    git add .cody
+    git commit -m 'add .cody files'
     git push
-    cb deploy demo # creates a codebuild project
+    cody deploy demo # creates a codebuild project
 
 There's also an example where we quickly create 4 test codebuild projects here: [Multiple CodeBuild Projects](https://codepipeline.org/docs/examples/multiple-codebuild-projects/).
 

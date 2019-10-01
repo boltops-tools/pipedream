@@ -1,8 +1,8 @@
 Examples:
 
-    codepipe deploy
-    codepipe deploy demo # explicitly specify pipeline name
-    codepipe deploy demo -b mybranch # specify git branch
+    pipe deploy
+    pipe deploy demo # explicitly specify pipeline name
+    pipe deploy demo -b mybranch # specify git branch
 
 The pipeline is generated from the DSL and created with CloudFormation. The files that the DSL evaluates are in the `.pipedream` folder:
 

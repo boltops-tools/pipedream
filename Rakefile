@@ -5,7 +5,7 @@ task default: :spec
 
 RSpec::Core::RakeTask.new
 
-require_relative "lib/codepipe"
+require_relative "lib/pipedream"
 require "cli_markdown"
 desc "Generates cli reference docs as markdown"
 task :docs do

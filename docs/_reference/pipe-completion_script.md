@@ -13,7 +13,7 @@ Generates a script that can be eval to setup auto-completion.
 
 To use, add the following to your `~/.bashrc` or `~/.profile`
 
-    eval $(codepipe completion_script)
+    eval $(pipe completion_script)
 
 
 ## Options
