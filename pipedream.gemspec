@@ -4,12 +4,12 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require "pipedream/version"
 
 Gem::Specification.new do |spec|
-  spec.name          = "codepipeline"
+  spec.name          = "pipedream"
   spec.version       = Pipedream::VERSION
   spec.authors       = ["Tung Nguyen"]
   spec.email         = ["tongueroo@gmail.com"]
-  spec.summary       = "CodePipeline DSL Tool to Quickly Create CodePipeline Pipeline"
-  spec.homepage      = "https://github.com/tongueroo/codepipeline"
+  spec.summary       = "Pipedream provides a powerful DSL create and manage AWS CodePipeline pipelines"
+  spec.homepage      = "https://github.com/tongueroo/pipedream"
   spec.license       = "MIT"
 
   vendor_files       = Dir.glob("vendor/**/*")
