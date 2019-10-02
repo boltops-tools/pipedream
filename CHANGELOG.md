@@ -3,6 +3,9 @@
 All notable changes to this project will be documented in this file.
 This project *tries* to adhere to [Semantic Versioning](http://semver.org/), even before v1.0.
 
+## [0.4.2]
+- fix project_name
+
 ## [0.4.1]
 - remove codebuild_prefix and codebuild_suffix helpers
 
