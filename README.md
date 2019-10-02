@@ -1,5 +1,5 @@
 <div align="center">
-  <a href="http://pipedream.run"><img src="https://uc36e028c6cb752b665158d3d40f.previews.dropboxusercontent.com/p/thumb/AAn9XKH3Lq6cl3bQeuQHwBozQDPXpdRkNAbftzPwXN-ecs_3BjSc5ZRu9is4fTs9Tx0IwAcjY3gerzPXL0iWGiR0bMD3RZcfyGHm-p8GYP8TZ6O0cU56wjm8badwkVXX9zEvquPBmdwolzd1qnSZBeDxSirye-Ie1Hrc73_JeF8OqsM37Ed8mClMRDJscH05EwbaUBdZc8csNThy2_Y-kNB3eFYhoa8jlPxaBEeYcE1B3azr8k2IRNw2UMp70dcLHc2LT-w_gJaEHKIsAU3lGBrnZfcPpDnhhtq1CDv2HsW2jMTSQ8Za0M-aURRZP3Ge_zetXBkApajaL4tLSo7AwTcnFb3IU9rxVxnihdK0GuwcC-qMkpmvR605ZmJ3YS_P-bVugcd0B9ZJ0mYzCGaRIskjdciFzVibwsbIeo8mYyLBGWdgQZZOyAYUxYer2lxCL-TDW6QhA2EL3M2qCgvjwzQqE3iisYMEkdFz0iemxz_ToKujsakyKzTXAXoO4wYo3Lc/p.png?fv_content=true&size_mode=5" /></a>
+  <a href="http://pipedream.run"><img src="https://raw.githubusercontent.com/tongueroo/pipedream/master/docs/img/logos/pipedream-with-text.png" /></a>
 </div>
 
 # Pipe Dream
