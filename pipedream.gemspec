@@ -8,7 +8,7 @@ Gem::Specification.new do |spec|
   spec.version       = Pipedream::VERSION
   spec.authors       = ["Tung Nguyen"]
   spec.email         = ["tongueroo@gmail.com"]
-  spec.summary       = "Pipedream provides a powerful DSL create and manage AWS CodePipeline pipelines"
+  spec.summary       = "A beautiful and powerful DSL to create and manage AWS CodePipeline pipelines"
   spec.homepage      = "https://github.com/tongueroo/pipedream"
   spec.license       = "MIT"
 
