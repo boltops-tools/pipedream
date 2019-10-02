@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    pipedream (0.3.3)
+    pipedream (0.4.0)
       activesupport
       aws-sdk-cloudformation
       aws-sdk-codepipeline
