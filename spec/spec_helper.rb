@@ -13,7 +13,7 @@ ENV['PIPE_ROOT'] = "spec/fixtures/app"
 require "pp"
 require "byebug"
 root = File.expand_path("../", File.dirname(__FILE__))
-require "#{root}/lib/codepipe"
+require "#{root}/lib/pipedream"
 
 module Helper
   def execute(cmd)
