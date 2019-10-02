@@ -1,6 +1,6 @@
 # Pipedreamline
 
-![Build Status](https://codebuild.us-west-2.amazonaws.com/badges?uuid=eyJlbmNyeXB0ZWREYXRhIjoiM3hGMlViMUtRRS9maitXVnhPNUp2ZFE3eUkzV0doNG5OR0lRRGtNOVBiWDVsb0tjY2dTVnhHamJOSzZRYU5aaW9FOS9peEUwVHBVUzk3cXVjd2FqcHFNPSIsIml2UGFyYW1ldGVyU3BlYyI6InNDdzUzVmRCd0FHSjBrTnQiLCJtYXRlcmlhbFNldFNlcmlhbCI6MX0%3D&branch=master)
+![Build Status](https://codebuild.us-west-2.amazonaws.com/badges?uuid=eyJlbmNyeXB0ZWREYXRhIjoiWk1FM0dldzE5MUM5R3VqVGxxTmRFb1JGNnkxQjJpTDYvajYrQk91YzErNjdNc1VYVElHM3V5ZEJXcStyMmZVc210WG8vUURSV2JST0ZpSWc5Y0pYR3k0PSIsIml2UGFyYW1ldGVyU3BlYyI6IldvYXhLMU8yS2pQdVRKbEoiLCJtYXRlcmlhbFNldFNlcmlhbCI6MX0%3D&branch=master)
 [![Gem Version](https://badge.fury.io/rb/pipedream.png)](http://badge.fury.io/rb/pipedream)
 
 Pipe Dream provides a DSL to make it easy create a CodePipeline pipeline.
