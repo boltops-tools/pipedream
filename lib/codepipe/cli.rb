@@ -20,6 +20,7 @@ module Codepipe
     option :branch, aliases: "b", desc: "git branch" # important to default to nil
     common_options.call
     def deploy(pipeline_name=nil)
+      puts "[DEPRECATION] This gem has been renamed to pipedream and will no longer be supported. Please switch to pipedream as soon as possible."
       Deploy.new(options.merge(pipeline_name: pipeline_name)).run
     end
 

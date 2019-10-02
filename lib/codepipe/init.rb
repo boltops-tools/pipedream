@@ -13,6 +13,7 @@ module Codepipe
     cli_options.each { |o| class_option(*o) }
 
     def setup_template_repo
+      puts "[DEPRECATION] This gem has been renamed to pipedream and will no longer be supported. Please switch to pipedream as soon as possible."
       return unless @options[:template]&.include?('/')
 
       sync_template_repo
