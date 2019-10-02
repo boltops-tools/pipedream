@@ -80,7 +80,7 @@ iam_policy("logs", "ssm")
                                 <h3>webhook.rb</h3>
                                 <div class="commands">
 {% highlight ruby %}
-github_token(ssm("/codebuild/github/token"))
+github_token(ssm("/codepipeline/github/token"))
 {% endhighlight %}
                                 </div>
                             </div>

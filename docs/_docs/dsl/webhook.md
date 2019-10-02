@@ -10,7 +10,7 @@ The simplest way to declare a webhook is to use the `github_token` method. This 
 .pipedream/webhook.rb:
 
 ```ruby
-github_token(ssm("/codebuild/github/token"))
+github_token(ssm("/codepipeline/github/token"))
 ```
 
 ## Full DSL
@@ -21,7 +21,7 @@ The convenience methods merely wrap properties of the [AWS::CodePipeline::Webhoo
 
 ```ruby
 authentication "GITHUB_HMAC"
-authentication_configuration(secret_token: ssm("/codebuild/github/token"))
+authentication_configuration(secret_token: ssm("/codepipeline/github/token"))
 filters([{
   json_path: "$.ref",
   match_equals: "refs/heads/{Branch}",
