@@ -2,7 +2,7 @@
 title: SNS Topic DSL
 nav_text: Sns Topic
 categories: dsl
-nav_order: 17
+nav_order: 16
 ---
 
 Pipe Dream will create an SNS Topic and associate it with your [Approval Action]({% link _docs/dsl/pipeline/approve.md %}) automatically.

@@ -2,7 +2,7 @@
 title: Multiple CodeBuild Projects
 nav_text: Multiple CodeBuild
 categories: examples
-nav_order: 21
+nav_order: 20
 ---
 
 In this example guide, we'll create a couple of test CodeBuild projects and quickly connect them up to a pipeline.

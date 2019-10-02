@@ -2,7 +2,7 @@
 title: Using Different Branches
 nav_text: Different Branches
 categories: examples
-nav_order: 20
+nav_order: 19
 ---
 
 CodePipeline currently does not supports starting the pipeline execution with different branches natively. To get around this, we can:

@@ -18,7 +18,6 @@ module Pipedream::Dsl::Pipeline
       actions = projects.map do |item|
         if item.is_a?(String)
           name = item.underscore.camelize
-          project_name = adjusted_project_name(item) # add prefix and suffix
           default.deep_merge(
             name: name,
             configuration: { project_name: project_name },
@@ -39,19 +38,6 @@ module Pipedream::Dsl::Pipeline
       end
 
       action(*actions)
-    end
-
-    def codebuild_prefix(v)
-      @codebuild_prefix = v
-    end
-
-    def codebuild_suffix(v)
-      @codebuild_suffix = v
-    end
-
-  private
-    def adjusted_project_name(name)
-      [@codebuild_prefix, name, @codebuild_suffix].compact.join
     end
   end
 end
