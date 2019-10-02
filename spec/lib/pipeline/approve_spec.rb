@@ -1,8 +1,8 @@
-describe Codepipe::Pipeline do
+describe Pipedream::Pipeline do
   let(:stack) do
-    stack = Codepipe::Stack.new(
+    stack = Pipedream::Stack.new(
       pipeline_path: "spec/fixtures/pipelines/#{pipeline_example}.rb",
-      stack_name: "fake", # to avoid .codepipeline check in settings
+      stack_name: "fake", # to avoid .pipedream check in settings
     )
     allow(stack).to receive(:perform)
     allow(stack).to receive(:url_info)

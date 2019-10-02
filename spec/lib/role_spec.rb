@@ -1,6 +1,6 @@
-describe Codepipe::Role do
+describe Pipedream::Role do
   let(:role) do
-    Codepipe::Role.new(role_path: "spec/fixtures/app/.codepipeline/role.rb")
+    Pipedream::Role.new(role_path: "spec/fixtures/app/.pipedream/role.rb")
   end
   context "general" do
     it "builds up the template in memory" do

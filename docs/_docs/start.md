@@ -18,7 +18,7 @@ If you would like start a build using a specific code branch you can use the `--
 
     pipe start -b feature-branch
 
-Note: When you specify a branch the codepipeline tool actually first updates the pipeline before starting the pipeline execution. This is done because CodePipeline does not natively support specifying the branch. It is discussed more here: [Using Different Branches]({% link _docs/examples/different-branches.md %}).
+Note: When you specify a branch pipedream actually first updates the pipeline before starting the pipeline execution. This is done because CodePipeline does not natively support specifying the branch. It is discussed more here: [Using Different Branches]({% link _docs/examples/different-branches.md %}).
 
 ## AWS CLI Equivalent
 

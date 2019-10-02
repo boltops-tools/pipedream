@@ -3,7 +3,7 @@ title: Settings
 nav_order: 7
 ---
 
-The `.codepipeline/settings.yml` file can be used to adjust some of the behavior of the codepipeline tool.  Here's an example of a settings.yml file:
+The `.pipedream/settings.yml` file can be used to adjust some of the behavior of pipedream.  Here's an example of a settings.yml file:
 
 ```yaml
 base:
@@ -29,6 +29,6 @@ The base settings are common and used for all the environments. The other enviro
 Name | Description
 --- | ---
 stack_naming.append_env | Determines if `PIPE_ENV` value is append to the pipeline name.
-aws_profile | This provides a way to bind PIPE_ENV to AWS_PROFILE tightly. This prevents you from forgetting to switch your PIPE_ENV when switching your AWS_PROFILE, thereby accidentally launching a stack in the wrong environment.
+aws_profile | This provides a way to bind `PIPE_ENV` to `AWS_PROFILE` tightly. This prevents you from forgetting to switch your `PIPE_ENV` when switching your `AWS_PROFILE`, thereby accidentally launching a stack in the wrong environment.
 
 {% include prev_next.md %}

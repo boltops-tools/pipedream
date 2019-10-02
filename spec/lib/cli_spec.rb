@@ -1,4 +1,4 @@
-describe Codepipe::CLI do
+describe Pipedream::CLI do
   before(:all) do
     @args = "--noop"
     @old_root = Dir.pwd

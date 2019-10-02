@@ -1,13 +1,13 @@
-# Codepipeline
+# Pipedreamline
 
 ![Build Status](https://codebuild.us-west-2.amazonaws.com/badges?uuid=eyJlbmNyeXB0ZWREYXRhIjoiM3hGMlViMUtRRS9maitXVnhPNUp2ZFE3eUkzV0doNG5OR0lRRGtNOVBiWDVsb0tjY2dTVnhHamJOSzZRYU5aaW9FOS9peEUwVHBVUzk3cXVjd2FqcHFNPSIsIml2UGFyYW1ldGVyU3BlYyI6InNDdzUzVmRCd0FHSjBrTnQiLCJtYXRlcmlhbFNldFNlcmlhbCI6MX0%3D&branch=master)
-[![Gem Version](https://badge.fury.io/rb/codepipeline.png)](http://badge.fury.io/rb/codepipeline)
+[![Gem Version](https://badge.fury.io/rb/pipedream.png)](http://badge.fury.io/rb/pipedream)
 
-The codepipeline tool provides a DSL to make it easy create a CodePipeline pipeline.
+Pipe Dream provides a DSL to make it easy create a CodePipeline pipeline.
 
-The codebuild tool installs `codepipline` and `pipe` executables. Both of them do the same thing, `pipe` is just shorter to type.
+Pipe Dream installs `pipedream` and `pipe` executables. Both of them do the same thing, `pipe` is just shorter to type.
 
-The documentation site is at: [codepipeline.org](https://codepipeline.org/)
+The documentation site is at: [pipedream.run](https://pipedream.run/)
 
 ## Quick Start
 
@@ -16,13 +16,23 @@ The documentation site is at: [codepipeline.org](https://codepipeline.org/)
     pipe start
     pipe delete
 
-The CLI tool also detects and tasks in the current folder's Rakefile and delegate to those tasks.
-
 ## Init and Structure
+
+First, run `pipe init` to generate a starter `.pipedream` folder structure.
+
+    $ tree .pipedream
+    .pipedream
+    ├── pipeline.rb
+    └── schedule.rb
+
+File | Description
+--- | ---
+pipeline.rb | The CodePipeline pipeline written as a DSL.  This is required. Here are the [Pipeline DSL docs](https://pipedream.run/docs/dsl/pipeline/)
+schedule.rb | A CloudWatch scheduled event written as a DSL. Here are the [schedule.rb docs](https://pipedream.run/docs/dsl/schedule/)
 
 ## DSL
 
-.codepipeline/pipeline.rb:
+.pipedream/pipeline.rb:
 
 ```ruby
 stage "Source" do
@@ -38,13 +48,13 @@ stage "DeployStacks" do
 end
 ```
 
-More [DSL docs](https://codepipeline.org/docs/dsl/)
+More [DSL docs](https://pipedream.run/docs/dsl/)
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
-    gem "codepipeline"
+    gem "pipedream"
 
 And then execute:
 
@@ -52,7 +62,7 @@ And then execute:
 
 Or install it yourself as:
 
-    gem install codepipeline
+    gem install pipedream
 
 ## Contributing
 

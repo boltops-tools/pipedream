@@ -24,7 +24,7 @@ pipe delete
                                 <h3>Structure</h3>
                                 <div class="commands">
 {% highlight sh %}
-.codepipeline
+.pipedream
 ├── pipeline.rb
 ├── role.rb
 ├── schedule.rb
@@ -80,7 +80,7 @@ iam_policy("logs", "ssm")
                                 <h3>webhook.rb</h3>
                                 <div class="commands">
 {% highlight ruby %}
-github_token(ssm("/codebuild/github/token"))
+github_token(ssm("/codepipeline/github/token"))
 {% endhighlight %}
                                 </div>
                             </div>

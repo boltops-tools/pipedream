@@ -1,0 +1,40 @@
+stage "Source" do
+  github(
+    source: "<%= project_github_repo %>",
+    # branch: "master", # branch defaults to "master" or the `pipe deploy --branch` option
+    auth_token: ssm("/codepipeline/github/token") # example ssm name
+  )
+end
+
+# IMPORANT: A valid pipeline requires at least 2 stages befre you are able to run
+#
+#     pipe deploy
+#
+# Here are some possible examples below. If you need help creating a CodeBuild project one, check out
+# https://pipedream.run/docs/examples/codebuild-project/
+
+# stage "Build" do
+#   codebuild "demo"
+# end
+
+# stage "MoreBuilds" do
+#   codebuild "project1"
+#   codebuild "project2", "project3" # runs in parallel
+#   codebuild "project4"
+# end
+
+# stage "Approve" do
+#   # Existing SNS Topic
+#   # approve(
+#   #   notification_arn: "arn:aws:sns:us-west-2:536766270177:hello-topic",
+#   #   custom_data: "Approve deployment",
+#   # )
+#
+#   # OR
+#   # CodePipeline will create and managed the SNS Topoic
+#   approve("Approve deployment")
+# end
+
+# stage "Deploy" do
+#   codebuild "project5"
+# end

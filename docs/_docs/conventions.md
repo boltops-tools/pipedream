@@ -3,7 +3,7 @@ title: Naming Conventions
 nav_order: 8
 ---
 
-The codepipeline tool follows a few naming conventions.
+Pipe Dream follows a few naming conventions.
 
 ## Pipeline Name
 
