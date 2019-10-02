@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    pipedream (0.4.1)
+    pipedream (0.4.2)
       activesupport
       aws-sdk-cloudformation
       aws-sdk-codepipeline
@@ -83,7 +83,7 @@ GEM
     rspec-mocks (3.8.1)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.8.0)
-    rspec-support (3.8.2)
+    rspec-support (3.8.3)
     simplecov (0.13.0)
       docile (~> 1.1.0)
       json (>= 1.8, < 3)
