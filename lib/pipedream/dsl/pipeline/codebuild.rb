@@ -20,7 +20,7 @@ module Pipedream::Dsl::Pipeline
           name = item.underscore.camelize
           default.deep_merge(
             name: name,
-            configuration: { project_name: project_name },
+            configuration: { project_name: name },
           )
         else # Hash
           # With the hash, the user needs to set: name and configuration.project_name
