@@ -1,3 +1,7 @@
+<div align="center">
+  <a href="http://pipedream.run"><img src="https://raw.githubusercontent.com/tongueroo/pipedream/master/docs/img/logos/project-logo.png" /></a>
+</div>
+
 # Pipe Dream
 
 ![Build Status](https://codebuild.us-west-2.amazonaws.com/badges?uuid=eyJlbmNyeXB0ZWREYXRhIjoiWk1FM0dldzE5MUM5R3VqVGxxTmRFb1JGNnkxQjJpTDYvajYrQk91YzErNjdNc1VYVElHM3V5ZEJXcStyMmZVc210WG8vUURSV2JST0ZpSWc5Y0pYR3k0PSIsIml2UGFyYW1ldGVyU3BlYyI6IldvYXhLMU8yS2pQdVRKbEoiLCJtYXRlcmlhbFNldFNlcmlhbCI6MX0%3D&branch=master)
