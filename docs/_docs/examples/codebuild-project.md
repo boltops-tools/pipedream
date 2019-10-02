@@ -11,7 +11,7 @@ We'll use the [cody.run](https://cody.run) tool to help with this. Here are the 
 
     gem install cody # installs cody command
     cody init # generates starter .cody files including the buildspec.yml
-    # commit and yours the .cody files
+    # edit and commit the .cody files
     git add .cody
     git commit -m 'add .cody files'
     git push
