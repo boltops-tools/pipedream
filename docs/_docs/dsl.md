@@ -1,9 +1,9 @@
 ---
-title: CodePipeline DSL
+title: Pipe Dream DSL
 nav_order: 9
 ---
 
-CodePipeline provides a simple yet powerful DSL to create CodePipeline related resources.  Here's an example:
+Pipe Dream provides a simple yet powerful DSL to create CodePipeline related resources.  Here's an example:
 
 ```ruby
 stage "Source" do
