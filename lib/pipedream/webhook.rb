@@ -54,7 +54,7 @@ module Pipedream
   private
 
     def get_webhook_path
-      lookup_codepipeline_file("webhook.rb")
+      lookup_pipedream_file("webhook.rb")
     end
   end
 end

@@ -32,7 +32,7 @@ stage "Approve" do
 end
 ```
 
-In this case, the codepipeline will *not* create an SNS Topic as we're have specified an existing SNS topic.
+In this case, the Pipe Dream will *not* create an SNS Topic as we're have specified an existing SNS topic.
 
 ## Full Config Form
 

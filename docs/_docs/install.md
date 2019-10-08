@@ -5,7 +5,7 @@ nav_order: 3
 
 ## RubyGems
 
-Install codepipeline via RubyGems.
+Install pipedream via RubyGems.
 
     gem install pipedream
 

@@ -29,7 +29,7 @@ Then create the 4 CodeBuild projects for testing:
 
 Let's define a pipeline now with the 4 CodeBuild test projects. First, use `pipe init` to create the starter `.pipedream` files. Update your `pipeline.rb` with the following:
 
-codepipeline/pipeline.rb:
+.pipedream/pipeline.rb:
 
 ```ruby
 stage "Source" do

@@ -55,7 +55,7 @@ module Pipedream
 
   private
     def get_pipeline_path
-      lookup_codepipeline_file "pipeline.rb"
+      lookup_pipedream_file "pipeline.rb"
     end
   end
 end

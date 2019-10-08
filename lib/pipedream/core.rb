@@ -45,12 +45,12 @@ module Pipedream
     end
     memoize :settings
 
-    def check_codepipeline_project!
+    def check_pipedream_project!
       check_path = "#{Pipedream.root}/.pipedream"
       unless File.exist?(check_path)
-        puts "ERROR: No .pipedream folder found.  Are you sure you are in a project with codepipeline setup?".color(:red)
+        puts "ERROR: No .pipedream folder found.  Are you sure you are in a project with pipedream setup?".color(:red)
         puts "Current directory: #{Dir.pwd}"
-        puts "If you want to set up codepipeline for this prjoect, please create a settings file via: codepipeline init"
+        puts "If you want to set up pipedream for this prjoect, please create a settings file via: pipe init"
         exit 1 unless ENV['TEST']
       end
     end

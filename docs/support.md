@@ -5,13 +5,13 @@ nav_order: 22
 
 ## Getting Help
 
-If you're looking for support for codepipeline, here are some options:
+If you're looking for support for Pipe Dream, here are some options:
 
-* Read the [Documentation](http://https://codepipeline.org)
+* Read the [Documentation](https://pipedream.run)
 
 ## Report a bug
 
-If you think you've found a bug within the codepipeline repository, [open an issue](https://github.com/tongueroo/pipedream/issues/new/choose).
+If you think you've found a bug within the pipedream repository, [open an issue](https://github.com/tongueroo/pipedream/issues/new/choose).
 
 Happy Hackin' 😁
 

@@ -5,7 +5,7 @@ categories: dsl
 nav_order: 15
 ---
 
-Pipe Dream supports creating a CloudWatch scheduled event rule that will trigger the codepipeline project periodically.  You define the schedule in `.pipedream/schedule.rb`. Here's an example of what that looks like:
+Pipe Dream supports creating a CloudWatch scheduled event rule that will trigger the pipeline periodically.  You define the schedule in `.pipedream/schedule.rb`. Here's an example of what that looks like:
 
 .pipedream/schedule.rb:
 

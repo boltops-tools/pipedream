@@ -61,7 +61,7 @@ module Pipedream
 
   private
     def get_schedule_path
-      lookup_codepipeline_file("schedule.rb")
+      lookup_pipedream_file("schedule.rb")
     end
 
     def events_rule_role

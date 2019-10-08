@@ -17,6 +17,6 @@ We'll use the [cody.run](https://cody.run) tool to help with this. Here are the 
     git push
     cody deploy demo # creates a codebuild project
 
-There's also an example where we quickly create 4 test codebuild projects here: [Multiple CodeBuild Projects](https://codepipeline.org/docs/examples/multiple-codebuild-projects/).
+There's also an example where we quickly create 4 test codebuild projects here: [Multiple CodeBuild Projects](https://pipedream.run/docs/examples/multiple-codebuild-projects/).
 
 {% include prev_next.md %}

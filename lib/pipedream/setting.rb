@@ -4,14 +4,14 @@ require 'render_me_pretty'
 module Pipedream
   class Setting
     extend Memoist
-    def initialize(check_codepipeline_project=true)
-      @check_codepipeline_project = check_codepipeline_project
+    def initialize(check_pipedream_project=true)
+      @check_pipedream_project = check_pipedream_project
     end
 
     # data contains the settings.yml config.  The order or precedence for settings
     # is the project ufo/settings.yml and then the ~/.pipedream/settings.yml.
     def data
-      Pipedream.check_codepipeline_project! if @check_codepipeline_project
+      Pipedream.check_pipedream_project! if @check_pipedream_project
       return {} unless File.exist?(project_settings_path)
 
       # project based settings files

@@ -37,7 +37,7 @@ module Pipedream
 
   private
     def get_sns_path
-      lookup_codepipeline_file("sns.rb")
+      lookup_pipedream_file("sns.rb")
     end
   end
 end

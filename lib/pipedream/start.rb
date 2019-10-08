@@ -54,9 +54,9 @@ module Pipedream
         resource = resp.stack_resources.find do |r|
           r.logical_resource_id == "CodePipeline"
         end
-        resource.physical_resource_id # codepipeline project name
+        resource.physical_resource_id # pipeline name
       else
-        puts "ERROR: Unable to find the codepipeline project with either full_pipeline_name: #{@full_pipeline_name} or stack name: #{@stack_name}".color(:red)
+        puts "ERROR: Unable to find the pipeline with either full_pipeline_name: #{@full_pipeline_name} or stack name: #{@stack_name}".color(:red)
         exit 1
       end
     end

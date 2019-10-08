@@ -38,7 +38,7 @@ module Pipedream
 
   private
     def get_role_path
-      lookup_codepipeline_file("role.rb")
+      lookup_pipedream_file("role.rb")
     end
 
     def default_properties

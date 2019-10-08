@@ -32,7 +32,7 @@ module Pipedream
     end
 
     def copy_project
-      puts "Initialize codepipeline project in .pipedream"
+      puts "Initialize pipedream project in .pipedream"
 
       excludes = %w[.git]
       if @options[:mode] == "light"
