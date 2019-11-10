@@ -1,6 +1,8 @@
 require "aws-sdk-codepipeline"
 require "aws-sdk-cloudformation"
 
+require "aws_mfa_secure/ext/aws" # add MFA support
+
 module Pipedream
   module AwsServices
     include Helpers
