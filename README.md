@@ -7,6 +7,8 @@
 ![Build Status](https://codebuild.us-west-2.amazonaws.com/badges?uuid=eyJlbmNyeXB0ZWREYXRhIjoiWk1FM0dldzE5MUM5R3VqVGxxTmRFb1JGNnkxQjJpTDYvajYrQk91YzErNjdNc1VYVElHM3V5ZEJXcStyMmZVc210WG8vUURSV2JST0ZpSWc5Y0pYR3k0PSIsIml2UGFyYW1ldGVyU3BlYyI6IldvYXhLMU8yS2pQdVRKbEoiLCJtYXRlcmlhbFNldFNlcmlhbCI6MX0%3D&branch=master)
 [![Gem Version](https://badge.fury.io/rb/pipedream.png)](http://badge.fury.io/rb/pipedream)
 
+[![BoltOps Badge](https://img.boltops.com/boltops/badges/boltops-badge.png)](https://www.boltops.com)
+
 Pipe Dream provides a DSL to make it easy create a CodePipeline pipeline.
 
 Pipe Dream installs `pipedream` and `pipe` executables. Both of them do the same thing, `pipe` is just shorter to type.
