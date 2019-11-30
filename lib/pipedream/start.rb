@@ -66,12 +66,15 @@ module Pipedream
     def codepipeline_info(execution_id)
       region = `aws configure get region`.strip rescue "us-east-1"
       url = "https://#{region}.console.aws.amazon.com/codesuite/codepipeline/pipelines/#{pipeline_name}/view"
-      cli = "aws codepipeline get-pipeline-execution --pipeline-execution-id #{execution_id} --pipeline-name #{pipeline_name}"
 
       puts "Pipeline started: #{pipeline_name}"
       puts "Please check the CodePipeline console for the status."
       puts "CodePipeline Console: #{url}"
-      puts "Pipeline cli: #{cli}"
+      puts "Pipeline cli commands:"
+      puts
+      puts "    aws codepipeline get-pipeline-execution --pipeline-execution-id #{execution_id} --pipeline-name #{pipeline_name}"
+      puts "    aws codepipeline get-pipeline-state --name #{pipeline_name}"
+      puts
     end
 
     def pipeline_exists?(name)
