@@ -6,7 +6,7 @@ stage "Source" do
   )
 end
 
-# IMPORANT: A valid pipeline requires at least 2 stages befre you are able to run
+# IMPORANT: A valid pipeline requires at least 2 stages before you are able to run
 #
 #     pipe deploy
 #
