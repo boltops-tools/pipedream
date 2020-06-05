@@ -17,10 +17,10 @@ module Pipedream::Dsl::Pipeline
 
       actions = projects.map do |item|
         if item.is_a?(String)
-          name = item.underscore.camelize
+          name = item
           default.deep_merge(
             name: name,
-            configuration: { project_name: name },
+            configuration: { project_name: item },
           )
         else # Hash
           # With the hash notation, user needs to set: name and project_name
