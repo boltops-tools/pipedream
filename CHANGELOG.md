@@ -1,7 +1,12 @@
 # Change Log
 
 All notable changes to this project will be documented in this file.
-This project *tries* to adhere to [Semantic Versioning](http://semver.org/), even before v1.0.
+This project *loosely* adheres to [Semantic Versioning](http://semver.org/), even before v1.0.
+
+## [0.4.5]
+- add aws codepipeline get-pipeline-state command hint in output also
+- dont autocamelize code build project name
+- #3 fix typo
 
 ## [0.4.4]
 - add mfa support for normal IAM user
