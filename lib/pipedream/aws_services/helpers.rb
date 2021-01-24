@@ -44,7 +44,8 @@ module Pipedream::AwsServices
     #
     def inferred_stack_name(pipeline_name)
       items = [pipeline_name, @options[:type], Pipedream.env_extra, "pipe"]
-      items.insert(2, Pipedream.env) if Pipedream.settings.dig(:stack_naming, :append_env)
+      append_env = Pipedream.settings.dig(:stack_naming, :append_env)
+      items.insert(2, Pipedream.env) if append_env
       items.reject(&:blank?).compact.join("-")
     end
 

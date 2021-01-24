@@ -25,7 +25,11 @@ module Pipedream
 
       all_envs = default.deep_merge(user.deep_merge(project))
       all_envs = merge_base(all_envs)
-      data = all_envs[pipe_env] || all_envs["base"] || {}
+
+      env_data = all_envs[pipe_env] || {}
+      base_data = all_envs["base"] || {}
+      data = base_data.merge(env_data)
+
       data.deep_symbolize_keys
     end
     memoize :data
@@ -76,7 +80,7 @@ module Pipedream
     end
 
     def cb_root
-      ENV["CODEPIPELINE_ROOT"] || Dir.pwd
+      ENV["PIPE_ROOT"] || Dir.pwd
     end
   end
 end
