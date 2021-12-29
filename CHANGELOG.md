@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 This project *loosely* adheres to [Semantic Versioning](http://semver.org/), even before v1.0.
 
+## [0.4.6] - 2021-12-29
+- [#4](https://github.com/boltops-tools/pipedream/pull/4) fix activesupport require
+- fix settings merge
+
 ## [0.4.5]
 - add aws codepipeline get-pipeline-state command hint in output also
 - dont autocamelize code build project name
