@@ -5,7 +5,6 @@ module Pipedream
     end
 
     def run
-      puts "build"
       options = @options
       Pipeline.new(options).run
     end
