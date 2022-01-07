@@ -12,7 +12,7 @@ module Pipedream::Dsl::Pipeline
         run_order: @run_order,
         # configuration: { project_name: '' }, # will be set
         # output_artifacts: [name: "BuildArtifact#{name}"], # TODO: maybe make this configurable with a setting
-        input_artifacts: [name: "SourceArtifact"],
+        input_artifacts: [name: "MainArtifact"],
       }
 
       actions = projects.map do |item|
@@ -32,6 +32,7 @@ module Pipedream::Dsl::Pipeline
             item[:configuration] = { project_name: project_name }
           end
 
+          item[:name] ||= project_name
           item.reverse_merge(default)
         end
       end

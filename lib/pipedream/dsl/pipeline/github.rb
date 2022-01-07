@@ -13,8 +13,10 @@ module Pipedream::Dsl::Pipeline
       o_auth_token = props.delete(:auth_token)
       poll_for_source_changes = props.delete(:poll_for_source_changes) || "false"
 
+      source_name = props.delete(:source_name) || "Main"
+
       default = {
-        name: "Source",
+        name: source_name,
         action_type_id: {
           category: "Source",
           owner: "ThirdParty",
@@ -29,7 +31,7 @@ module Pipedream::Dsl::Pipeline
           poll_for_source_changes: poll_for_source_changes,
           repo: repo,
         },
-        output_artifacts: [name: "SourceArtifact"]
+        output_artifacts: [name: "#{source_name}Artifact"]
       }
       action(props.reverse_merge(default))
     end

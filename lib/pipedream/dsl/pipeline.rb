@@ -9,6 +9,7 @@ module Pipedream::Dsl
       artifact_store
       artifact_stores
       disable_inboundstage_transitions
+      input_artifacts
       name
       restart_execution_on_update
       role_arn
@@ -20,6 +21,10 @@ module Pipedream::Dsl
       end
     end
 
+    def pipeline_name
+      @options[:pipeline_name]
+    end
+
     def stage(name, &block)
       # Reset values for each stage declaraion
       @run_order = 1
@@ -29,9 +34,15 @@ module Pipedream::Dsl
       block.call
     end
 
+    def in_parallel
+      @in_parallel = true
+      yield
+      @in_parallel = false
+    end
+
     def action(*props)
       @current_stage[:actions] += props
-      @run_order += 1
+      @run_order += 1 unless @in_parallel
     end
   end
 end
