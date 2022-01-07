@@ -3,6 +3,9 @@
 All notable changes to this project will be documented in this file.
 This project *loosely* adheres to [Semantic Versioning](http://semver.org/), even before v1.0.
 
+## [0.4.8] - 2022-01-07
+- [#5](https://github.com/boltops-tools/pipedream/pull/5) improvements for multiple sources and in_parallel method
+
 ## [0.4.7] - 2021-12-29
 - add rexml dependency
 
