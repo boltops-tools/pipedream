@@ -1,13 +1,15 @@
 class Pipedream::Builder
   class Pipeline < Pipedream::Dsl::Base
-    include Dsl::Pipeline
+    include Pipedream::Dsl::Pipeline
 
     def initialize(options={})
       super
       @stages = []
     end
 
-    def run
+    def build
+      check_exist!
+
       evaluate_path(pipeline_path)
       @properties[:stages] ||= @stages
       set_source_branch!
@@ -41,15 +43,17 @@ class Pipedream::Builder
       action[:configuration][:branch] = @options[:branch]
     end
 
-    def exist?
-      File.exist?(pipeline_path)
-    end
-
     def s3_bucket
       S3Bucket.name
     end
 
   private
+    def check_exist!
+      return if File.exist?(pipeline_path)
+      puts "ERROR: pipeline does not exist: #{pipeline_path}".color(:red)
+      exit 1
+    end
+
     def pipeline_path
       lookup_pipedream_file "pipeline.rb"
     end

@@ -2,7 +2,7 @@ class Pipedream::Builder
   class Schedule < Pipedream::Dsl::Base
     include Pipedream::Dsl::Schedule
 
-    def run
+    def build
       return unless File.exist?(schedule_path)
 
       old_properties = @properties.clone

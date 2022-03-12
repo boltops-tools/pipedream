@@ -7,7 +7,7 @@ class Pipedream::Builder
       @properties = default_properties
     end
 
-    def run
+    def build
       return unless File.exist?(webhook_path)
 
       old_properties = @properties.clone

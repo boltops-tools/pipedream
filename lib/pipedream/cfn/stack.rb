@@ -1,49 +1,7 @@
 module Pipedream::Cfn
   class Stack < Pipedream::CLI::Base
-    def initialize(options={})
-      super
-      @template = {
-        "Description" => "CodePipeline Project: #{@full_pipeline_name}",
-        "Resources" => {}
-      }
-    end
-
     def run
-      options = @options.merge(
-        pipeline_name: @pipeline_name,
-        full_pipeline_name: @full_pipeline_name,
-      )
-
-      pipeline_builder = Pipeline.new(options)
-      unless pipeline_builder.exist?
-        puts "ERROR: pipeline does not exist: #{pipeline_builder.pipeline_path}".color(:red)
-        exit 1
-        return
-      end
-      pipeline = pipeline_builder.run
-      @template["Resources"].merge!(pipeline)
-
-      if pipeline["Pipeline"]["Properties"]["RoleArn"] == {"Fn::GetAtt"=>"IamRole.Arn"}
-        role = Role.new(options).run
-        @template["Resources"].merge!(role)
-      end
-
-      if sns_topic?(pipeline)
-        role = Sns.new(options).run
-        @template["Resources"].merge!(role)
-      end
-
-      webhook = Webhook.new(options).run
-      @template["Resources"].merge!(webhook) if webhook
-
-      schedule = Schedule.new(options).run
-      @template["Resources"].merge!(schedule) if schedule
-
-      template_path = "/tmp/codepipeline.yml"
-      FileUtils.mkdir_p(File.dirname(template_path))
-      IO.write(template_path, YAML.dump(@template))
-      puts "Generated CloudFormation template at #{template_path.color(:green)}"
-      return if @options[:noop]
+      @template = Pipedream::Builder.new(@options).template
       puts "Deploying stack #{@stack_name.color(:green)} with CodePipeline project #{@full_pipeline_name.color(:green)}"
 
       begin
