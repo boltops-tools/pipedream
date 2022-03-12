@@ -1,15 +1,5 @@
-module Pipedream
-  class Start
-    extend Memoist
-    include AwsServices
-
-    def initialize(options)
-      @options = options
-      @pipeline_name = options[:pipeline_name] || inferred_pipeline_name
-      @full_pipeline_name = pipeline_name_convention(@pipeline_name)
-      @stack_name = options[:stack_name] || inferred_stack_name(@pipeline_name)
-    end
-
+class Pipedream::CLI
+  class Start < Base
     def run
       check_pipeline_exists!
       redeploy

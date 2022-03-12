@@ -1,18 +1,14 @@
-module Pipedream
-  class Pipeline
-    extend Memoist
+class Pipedream::Builder
+  class Pipeline < Pipedream::Dsl::Base
     include Dsl::Pipeline
-    include Evaluate
 
     def initialize(options={})
-      @options = options
-      @pipeline_path = options[:pipeline_path] || get_pipeline_path
-      @properties = default_properties # defaults make pipeline.rb simpler
+      super
       @stages = []
     end
 
     def run
-      evaluate(@pipeline_path)
+      evaluate(pipeline_path)
       @properties[:stages] ||= @stages
       set_source_branch!
 
@@ -46,7 +42,7 @@ module Pipedream
     end
 
     def exist?
-      File.exist?(@pipeline_path)
+      File.exist?(pipeline_path)
     end
 
     def s3_bucket
@@ -54,7 +50,7 @@ module Pipedream
     end
 
   private
-    def get_pipeline_path
+    def pipeline_path
       lookup_pipedream_file "pipeline.rb"
     end
   end

@@ -1,19 +1,17 @@
-module Pipedream
-  class Webhook
+class Pipedream::Builder
+  class Webhook < Pipedream::Dsl::Base
     include Pipedream::Dsl::Webhook
-    include Evaluate
 
     def initialize(options={})
       @options = options
-      @webhook_path = options[:webhook_path] || get_webhook_path
       @properties = default_properties
     end
 
     def run
-      return unless File.exist?(@webhook_path)
+      return unless File.exist?(webhook_path)
 
       old_properties = @properties.clone
-      evaluate(@webhook_path)
+      evaluate(webhook_path)
       set_secret_token!
       set_target_action_token!
       return if old_properties == @properties # empty webhook.rb file
@@ -60,9 +58,9 @@ module Pipedream
         }
       )
     end
-  private
 
-    def get_webhook_path
+  private
+    def webhook_path
       lookup_pipedream_file("webhook.rb")
     end
   end

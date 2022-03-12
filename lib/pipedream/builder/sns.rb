@@ -1,16 +1,9 @@
-module Pipedream
-  class Sns
+class Pipedream::Builder
+  class Sns < Pipedream::Dsl::Base
     include Pipedream::Dsl::Sns
-    include Evaluate
-
-    def initialize(options={})
-      @options = options
-      @sns_path = options[:sns_path] || get_sns_path
-      @properties = default_properties
-    end
 
     def run
-      evaluate(@sns_path) if File.exist?(@sns_path)
+      evaluate(sns_path) if File.exist?(sns_path)
 
       resource = {
         sns_topic: {
@@ -36,7 +29,7 @@ module Pipedream
     end
 
   private
-    def get_sns_path
+    def sns_path
       lookup_pipedream_file("sns.rb")
     end
   end

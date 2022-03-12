@@ -1,19 +1,12 @@
-module Pipedream
-  class Schedule
+class Pipedream::Builder
+  class Schedule < Pipedream::Dsl::Base
     include Pipedream::Dsl::Schedule
-    include Evaluate
-
-    def initialize(options={})
-      @options = options
-      @schedule_path = options[:schedule_path] || get_schedule_path
-      @properties = default_properties
-    end
 
     def run
-      return unless File.exist?(@schedule_path)
+      return unless File.exist?(schedule_path)
 
       old_properties = @properties.clone
-      evaluate(@schedule_path)
+      evaluate(schedule_path)
 
       @properties[:schedule_expression] = @schedule_expression if @schedule_expression
       set_rule_event! if @rule_event_props
@@ -60,7 +53,7 @@ module Pipedream
     end
 
   private
-    def get_schedule_path
+    def schedule_path
       lookup_pipedream_file("schedule.rb")
     end
 

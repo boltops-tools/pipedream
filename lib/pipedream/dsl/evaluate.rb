@@ -1,4 +1,4 @@
-module Pipedream
+module Pipedream::Dsl
   module Evaluate
     def evaluate(path)
       source_code = IO.read(path)

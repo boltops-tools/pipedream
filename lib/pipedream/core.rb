@@ -1,5 +1,6 @@
 require 'pathname'
 require 'yaml'
+require 'active_support'
 require 'active_support/core_ext/string'
 
 module Pipedream
@@ -12,52 +13,75 @@ module Pipedream
     end
 
     def env
-      # 2-way binding
-      pipe_env = env_from_profile || 'development'
-      pipe_env = ENV['PIPE_ENV'] if ENV['PIPE_ENV'] # highest precedence
-      ActiveSupport::StringInquirer.new(pipe_env)
+      env = ENV['PIPE_ENV'] || 'dev'
+      ActiveSupport::StringInquirer.new(env)
     end
     memoize :env
 
     def env_extra
-      env_extra = ENV['PIPE_ENV_EXTRA'] if ENV['PIPE_ENV_EXTRA'] # highest precedence
+      env_extra = ENV['PIPE_EXTRA'] if ENV['PIPE_EXTRA'] # highest precedence
       return if env_extra&.empty?
       env_extra
     end
     memoize :env_extra
 
-    # Overrides AWS_PROFILE based on the Pipedream.env if set in configs/settings.yml
-    # 2-way binding.
-    def set_aws_profile!
-      return if ENV['TEST']
-      return unless File.exist?("#{Pipedream.root}/.pipedream/settings.yml") # for rake docs
-      return unless settings # Only load if within Pipedream project and there's a settings.yml
+    def app
+      return ENV['PIPE_APP'] if ENV['PIPE_APP']
 
-      data = settings || {}
-      if data[:aws_profile]
-        puts "Using AWS_PROFILE=#{data[:aws_profile]} from PIPE_ENV=#{Pipedream.env} in config/settings.yml"
-        ENV['AWS_PROFILE'] = data[:aws_profile]
+      if @@config_loaded
+        config.app
+      else
+        call_line = caller.find {|l| l.include?('.PIPE') }
+        puts "ERROR: Using PIPE.app or :APP expansion very early in the PIPE boot process".color(:red)
+        puts <<~EOL.color(:red)
+          The PIPE.app or :APP expansions are not yet available at this point
+          You can either:
+
+          1. Use the PIPE_APP env var to set it, which allows it to be used.
+          2. Hard code your actual app name.
+
+          Called from:
+
+              #{call_line}
+
+        EOL
+        exit 1
       end
     end
 
-    def settings
-      Setting.new.data
+    def log_root
+      "#{root}/log"
     end
-    memoize :settings
 
-    def check_pipedream_project!
-      check_path = "#{Pipedream.root}/.pipedream"
-      unless File.exist?(check_path)
-        puts "ERROR: No .pipedream folder found.  Are you sure you are in a project with pipedream setup?".color(:red)
-        puts "Current directory: #{Dir.pwd}"
-        puts "If you want to set up pipedream for this prjoect, please create a settings file via: pipe init"
-        exit 1 unless ENV['TEST']
+    def configure(&block)
+      Config.instance.configure(&block)
+    end
+
+    # Checking whether or not the config has been loaded and saving it to @@config_loaded
+    # because users can call helper methods in `.CODY/config.rb` files that rely on the config
+    # already being loaded. This would produce an infinite loop. The @@config_loaded allows
+    # methods to use this info to prevent an infinite loop.
+    # Notable methods that use this: CODY.app and CODY.logger
+    cattr_accessor :config_loaded
+    # In general, use the CODY.config instead of Config.instance.config since it guarantees the load_project_config call
+    def config
+      Config.instance.load_project_config
+      @@config_loaded = true
+      Config.instance.config
+    end
+    memoize :config
+
+    # Allow different logger when running up all or rspec-lono
+    cattr_writer :logger
+    def logger
+      if @@config_loaded
+        @@logger = config.logger
+      else
+        # When .CODY/config.rb is not yet loaded. IE: a helper method like waf
+        # gets called in the .CODY/config.rb itself and uses the logger.
+        # This avoids an infinite loop. Note: It does create a different Logger
+        @@logger ||= Logger.new(ENV['PIPE_LOG_PATH'] || $stderr)
       end
-    end
-
-  private
-    def env_from_profile
-      Pipedream::Setting.new.pipe_env
     end
   end
 end

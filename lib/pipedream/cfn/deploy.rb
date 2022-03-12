@@ -1,4 +1,4 @@
-module Pipedream
+module Pipedream::Cfn
   class Deploy < Stack
     def run
       handle_rollback_completed!

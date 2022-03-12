@@ -17,6 +17,8 @@ module Pipedream
   class Command < Thor
     class << self
       def dispatch(m, args, options, config)
+        check_project!(args)
+
         # Allow calling for help via:
         #   codepipe command help
         #   codepipe command -h
@@ -41,6 +43,28 @@ module Pipedream
         end
 
         super
+      end
+
+      def help_flags
+        Thor::HELP_MAPPINGS + ["help"]
+      end
+      private :help_flags
+
+      def subcommand?
+        !!caller.detect { |l| l.include?('in subcommand') }
+      end
+
+      def check_project!(args)
+        command_name = args.first
+        return if subcommand?
+        return if command_name.nil?
+        return if help_flags.include?(args.last) # IE: -h help
+        return if %w[-h -v --version central init start version].include?(command_name)
+        return if File.exist?("#{Pipedream.root}/.pipedream")
+
+        logger.error "ERROR: It doesnt look like this project has pipedream set up.".color(:red)
+        logger.error "Are you sure you are in a project with .pipedream files?".color(:red)
+        ENV['PIPE_TEST'] ? raise : exit(1)
       end
 
       # Override command_help to include the description at the top of the

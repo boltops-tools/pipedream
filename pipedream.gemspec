@@ -28,6 +28,8 @@ Gem::Specification.new do |spec|
   spec.add_dependency "aws-sdk-codepipeline"
   spec.add_dependency "aws-sdk-s3"
   spec.add_dependency "aws-sdk-ssm"
+  spec.add_dependency "aws_data"
+  spec.add_dependency "cfn-status"
   spec.add_dependency "cfn_camelizer"
   spec.add_dependency "memoist"
   spec.add_dependency "rainbow"

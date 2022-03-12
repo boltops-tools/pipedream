@@ -1,18 +1,9 @@
-require "yaml"
-
-module Pipedream
-  class Role
-    include Pipedream::Dsl::Role
-    include Evaluate
-
-    def initialize(options={})
-      @options = options
-      @role_path = options[:role_path] || get_role_path
-      @properties = default_properties
-    end
+class Pipedream::Builder
+  class IamRole < Pipedream::Dsl::Base
+    include Pipedream::Dsl::IamRole
 
     def run
-      evaluate(@role_path) if File.exist?(@role_path)
+      evaluate(iam_role_path) if File.exist?(iam_role_path)
       @properties[:policies] = [{
         policy_name: "CodePipelineAccess",
         policy_document: {
@@ -37,10 +28,6 @@ module Pipedream
     end
 
   private
-    def get_role_path
-      lookup_pipedream_file("role.rb")
-    end
-
     def default_properties
       {
         assume_role_policy_document: {
@@ -176,6 +163,11 @@ module Pipedream
         "resource"=>"*",
         "effect"=>"Allow",
       }]
+    end
+
+  private
+    def iam_role_path
+      lookup_pipedream_file("iam_role.rb")
     end
   end
 end

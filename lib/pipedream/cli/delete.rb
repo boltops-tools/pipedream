@@ -1,13 +1,5 @@
-module Pipedream
-  class Delete
-    include AwsServices
-
-    def initialize(options)
-      @options = options
-      @pipeline_name = options[:pipeline_name] || inferred_pipeline_name
-      @stack_name = options[:stack_name] || inferred_stack_name(@pipeline_name)
-    end
-
+class Pipedream::CLI
+  class Delete < Base
     def run
       message = "Deleted #{@stack_name} stack."
       if @options[:noop]

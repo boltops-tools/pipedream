@@ -1,5 +1,5 @@
 module Pipedream::Dsl
-  module Role
+  module IamRole
     PROPERTIES = %w[
       assume_role_policy_document
       managed_policy_arns

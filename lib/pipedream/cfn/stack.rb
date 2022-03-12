@@ -1,15 +1,7 @@
-require "aws-sdk-cloudformation"
-
-module Pipedream
-  class Stack
-    include AwsServices
-
-    def initialize(options)
-      @options = options
-      @pipeline_name = @options[:pipeline_name] || inferred_pipeline_name
-      @stack_name = options[:stack_name] || inferred_stack_name(@pipeline_name)
-
-      @full_pipeline_name = pipeline_name_convention(@pipeline_name)
+module Pipedream::Cfn
+  class Stack < Pipedream::CLI::Base
+    def initialize(options={})
+      super
       @template = {
         "Description" => "CodePipeline Project: #{@full_pipeline_name}",
         "Resources" => {}
