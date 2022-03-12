@@ -15,6 +15,7 @@ module Pipedream
       old_properties = @properties.clone
       evaluate(@webhook_path)
       set_secret_token!
+      set_target_action_token!
       return if old_properties == @properties # empty webhook.rb file
 
       resource = {
@@ -38,10 +39,18 @@ module Pipedream
         }],
         # name: '', # optional
         register_with_third_party: 'true', # optional
-        target_action: 'Source',
+        # target_action: @target_action || 'Main',
         target_pipeline: {ref: "Pipeline"},
         target_pipeline_version: {"Fn::GetAtt": "Pipeline.Version"},
       }
+    end
+
+    def set_target_action_token!
+      @properties[:target_action] = @target_action || 'Main'
+    end
+
+    def target_action(value)
+      @target_action = value
     end
 
     def set_secret_token!
