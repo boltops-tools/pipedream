@@ -27,7 +27,7 @@ module Pipedream::Dsl::Pipeline
           #
           #   codebuild(name: "action-name", project_name: "codebuild-project-names")
           #
-          project_name = item.delete(:project_name)
+          project_name = item.delete(:project_name) || item[:name]
           if project_name
             item[:configuration] = { project_name: project_name }
           end
