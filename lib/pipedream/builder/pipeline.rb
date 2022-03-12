@@ -10,7 +10,7 @@ class Pipedream::Builder
     def build
       check_exist!
 
-      evaluate_path(pipeline_path)
+      evaluate_file(pipeline_path)
       @properties[:stages] ||= @stages
       set_source_branch!
 

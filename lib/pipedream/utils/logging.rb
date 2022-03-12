@@ -1,7 +1,7 @@
 module Pipedream::Utils
   module Logging
     def logger
-      Cody.logger
+      Pipedream.logger
     end
   end
 end

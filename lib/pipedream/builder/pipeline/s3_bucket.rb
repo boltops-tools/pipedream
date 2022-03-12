@@ -1,6 +1,4 @@
-require "aws-sdk-s3"
-
-class Pipedream::Pipeline
+class Pipedream::Builder::Pipeline
   class S3Bucket
     extend Memoist
     include Pipedream::AwsServices

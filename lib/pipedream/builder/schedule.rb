@@ -6,7 +6,7 @@ class Pipedream::Builder
       return unless File.exist?(schedule_path)
 
       old_properties = @properties.clone
-      evaluate_path(schedule_path)
+      evaluate_file(schedule_path)
 
       @properties[:schedule_expression] = @schedule_expression if @schedule_expression
       set_rule_event! if @rule_event_props

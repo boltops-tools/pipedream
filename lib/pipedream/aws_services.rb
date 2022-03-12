@@ -1,5 +1,6 @@
-require "aws-sdk-codepipeline"
 require "aws-sdk-cloudformation"
+require "aws-sdk-codepipeline"
+require "aws-sdk-s3"
 
 require "aws_mfa_secure/ext/aws" # add MFA support
 
