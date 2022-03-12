@@ -11,8 +11,8 @@ module Pipedream::Dsl::Pipeline
         },
         RunOrder: @run_order,
         # Configuration: { ProjectName: '' }, # will be set
-        # OutputArtifacts: [Name: "BuildArtifact#{name}"], # TODO: maybe make this configurable with a setting
-        InputArtifacts: [Name: "MainArtifact"],
+        # OutputArtifacts: [Name: "Build#{name}"], # TODO: maybe make this configurable with a setting
+        InputArtifacts: [Name: "Main"],
       }
 
       actions = projects.map do |item|

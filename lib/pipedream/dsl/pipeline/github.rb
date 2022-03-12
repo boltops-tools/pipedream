@@ -31,7 +31,7 @@ module Pipedream::Dsl::Pipeline
           poll_for_source_changes: poll_for_source_changes,
           repo: repo,
         },
-        output_artifacts: [name: "#{source_name}Artifact"]
+        output_artifacts: [name: source_name]
       }
       action(props.reverse_merge(default))
     end
