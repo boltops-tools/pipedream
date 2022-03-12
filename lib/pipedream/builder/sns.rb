@@ -3,7 +3,7 @@ class Pipedream::Builder
     include Pipedream::Dsl::Sns
 
     def run
-      evaluate(sns_path) if File.exist?(sns_path)
+      evaluate_path(sns_path) if File.exist?(sns_path)
 
       resource = {
         sns_topic: {

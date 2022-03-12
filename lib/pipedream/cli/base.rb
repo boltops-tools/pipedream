@@ -2,6 +2,7 @@ class Pipedream::CLI
   class Base
     extend Memoist
     include Pipedream::AwsServices
+    include Pipedream::Names::Conventions
     include Pipedream::Utils::Logging
     include Pipedream::Utils::Pretty
 

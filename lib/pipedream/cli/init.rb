@@ -37,7 +37,6 @@ class Pipedream::CLI
       excludes = %w[.git]
       if @options[:mode] == "light"
         excludes += %w[
-          settings.yml
           sns.rb
         ]
       end

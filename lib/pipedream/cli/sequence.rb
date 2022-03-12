@@ -3,7 +3,7 @@ require 'thor'
 
 class Pipedream::CLI
   class Sequence < Thor::Group
-    include AwsServices
+    include Pipedream::AwsServices
     include Thor::Actions
 
     add_runtime_options! # force, pretend, quiet, skip options

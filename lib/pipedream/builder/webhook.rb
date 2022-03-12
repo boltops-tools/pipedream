@@ -11,7 +11,7 @@ class Pipedream::Builder
       return unless File.exist?(webhook_path)
 
       old_properties = @properties.clone
-      evaluate(webhook_path)
+      evaluate_path(webhook_path)
       set_secret_token!
       set_target_action_token!
       return if old_properties == @properties # empty webhook.rb file

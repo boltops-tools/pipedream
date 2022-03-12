@@ -2,7 +2,7 @@ module Pipedream::Names
   module Conventions
     def pipeline_name_convention(name_base)
       items = [@pipeline_name, @options[:type], Pipedream.env_extra]
-      items.insert(2, Pipedream.env) if Pipedream.settings.dig(:stack_naming, :append_env)
+      items.insert(2, Pipedream.env) if Pipedream.config.names.append_env
       items.reject(&:blank?).compact.join("-")
     end
 
@@ -19,7 +19,7 @@ module Pipedream::Names
     #
     def inferred_stack_name(pipeline_name)
       items = [pipeline_name, @options[:type], Pipedream.env_extra, "pipe"]
-      append_env = Pipedream.settings.dig(:stack_naming, :append_env)
+      append_env = Pipedream.config.names.append_env
       items.insert(2, Pipedream.env) if append_env
       items.reject(&:blank?).compact.join("-")
     end

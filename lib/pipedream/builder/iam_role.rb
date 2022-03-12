@@ -3,7 +3,7 @@ class Pipedream::Builder
     include Pipedream::Dsl::IamRole
 
     def run
-      evaluate(iam_role_path) if File.exist?(iam_role_path)
+      evaluate_path(iam_role_path) if File.exist?(iam_role_path)
       @properties[:policies] = [{
         policy_name: "CodePipelineAccess",
         policy_document: {

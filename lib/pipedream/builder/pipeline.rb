@@ -8,7 +8,7 @@ class Pipedream::Builder
     end
 
     def run
-      evaluate(pipeline_path)
+      evaluate_path(pipeline_path)
       @properties[:stages] ||= @stages
       set_source_branch!
 

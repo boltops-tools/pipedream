@@ -16,11 +16,23 @@ module Pipedream
       option :stack_name, desc: "Override the generated stack name. If you use this you must always specify it"
       option :wait, type: :boolean, default: true, desc: "Wait for operation to complete"
     end
+    branch_option = Proc.new do
+      option :branch, aliases: "b", desc: "git branch" # important to default to nil
+    end
+
+    desc "build PIPELINE_NAME", "Build CloudFormation Template"
+    long_desc Help.text(:build)
+    common_options.call
+    branch_option.call
+    def build(pipeline_name=nil)
+      Pipedream::Builder.new(options.merge(pipeline_name: pipeline_name)).template
+    end
 
     desc "deploy PIPELINE_NAME", "Deploy pipeline."
     long_desc Help.text(:deploy)
     option :branch, aliases: "b", desc: "git branch" # important to default to nil
     common_options.call
+    branch_option.call
     def deploy(pipeline_name=nil)
       Deploy.new(options.merge(pipeline_name: pipeline_name)).run
     end
@@ -30,6 +42,7 @@ module Pipedream
     option :sure, desc: "Bypass are you sure prompt"
     option :branch, aliases: "b", desc: "git branch" # important to default to nil
     common_options.call
+    branch_option.call
     def start(pipeline_name=nil)
       Start.new(options.merge(pipeline_name: pipeline_name)).run
     end
