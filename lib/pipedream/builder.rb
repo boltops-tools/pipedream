@@ -33,10 +33,10 @@ module Pipedream
     end
 
     def write
-      template_path = "#{ENV['HOME']}/.pipedream/output/template.yml"
+      template_path = ".pipedream/output/template.yml"
       FileUtils.mkdir_p(File.dirname(template_path))
       IO.write(template_path, YAML.dump(@template))
-      logger.info "Template built: #{pretty_home(template_path)}"
+      logger.info "Template built: #{pretty_path(template_path)}"
     end
 
     def sns_topic?(template)

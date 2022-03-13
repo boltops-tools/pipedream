@@ -1,7 +1,7 @@
 module Pipedream::Utils
   module Pretty
     def pretty_path(path)
-      path.sub("#{Cody.root}/",'').sub(/^\.\//,'')
+      path.sub("#{Pipedream.root}/",'').sub(/^\.\//,'')
     end
 
     # Replace HOME with ~ - different from the main pretty_path
