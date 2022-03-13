@@ -1,8 +1,8 @@
 stage "Source" do
   github(
-    source: "<%= project_github_repo %>",
-    # branch: "master", # branch defaults to "master" or the `pipe deploy --branch` option
-    auth_token: ssm("/codepipeline/github/token") # example ssm name
+    Source: "<%= project_github_repo %>",
+    # Branch: "master", # branch defaults to "master" or the `pipe deploy --branch` option
+    AuthToken: ssm("/codepipeline/github/token") # example ssm name
   )
 end
 
@@ -26,8 +26,8 @@ end
 # stage "Approve" do
 #   # Existing SNS Topic
 #   # approve(
-#   #   notification_arn: "arn:aws:sns:us-west-2:536766270177:hello-topic",
-#   #   custom_data: "Approve deployment",
+#   #   NotificationArn: "arn:aws:sns:us-west-2:536766270177:hello-topic",
+#   #   CustomData: "Approve deployment",
 #   # )
 #
 #   # OR

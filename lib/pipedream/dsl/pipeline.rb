@@ -6,17 +6,17 @@ module Pipedream::Dsl
     include Ssm
 
     PROPERTIES = %w[
-      artifact_store
-      artifact_stores
-      disable_inboundstage_transitions
-      input_artifacts
-      name
-      restart_execution_on_update
-      role_arn
-      stages
+      ArtifactStore
+      ArtifactStores
+      DisableInboundstageTransitions
+      InputArtifacts
+      Name
+      RestartExecutionOnUpdate
+      RoleArn
+      Stages
     ]
     PROPERTIES.each do |prop|
-      define_method(prop) do |v|
+      define_method(prop.underscore) do |v|
         @properties[prop.to_sym] = v
       end
     end
@@ -29,7 +29,7 @@ module Pipedream::Dsl
       # Reset values for each stage declaraion
       @run_order = 1
 
-      @current_stage = {name: name, actions: []}
+      @current_stage = {Name: name, Actions: []}
       @stages << @current_stage
       block.call
     end
@@ -41,7 +41,7 @@ module Pipedream::Dsl
     end
 
     def action(*props)
-      @current_stage[:actions] += props
+      @current_stage[:Actions] += props
       @run_order += 1 unless @in_parallel
     end
   end

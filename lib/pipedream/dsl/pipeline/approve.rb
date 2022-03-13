@@ -2,27 +2,27 @@ module Pipedream::Dsl::Pipeline
   module Approve
     def approve(props)
       default = {
-        name: "approve",
-        action_type_id: {
-          category: "Approval",
-          owner: "AWS",
-          provider: "Manual",
-          version: "1",
+        Name: "approve",
+        ActionTypeId: {
+          Category: "Approval",
+          Owner: "AWS",
+          Provider: "Manual",
+          Version: "1",
         },
-        run_order: @run_order,
-        configuration: {  # required: will be set
-          notification_arn: {ref: "SnsTopic"}, # defaults to generated SNS topic
+        RunOrder: @run_order,
+        Configuration: {  # required: will be set
+          NotificationArn: {Ref: "SnsTopic"}, # defaults to generated SNS topic
         },
       }
 
       # Normalize special options. Simple approach of setting the default
       case props
       when String, Symbol
-        default[:configuration][:custom_data] = props
+        default[:Configuration][:CustomData] = props
         props = {}
       when Hash
-        default[:configuration][:notification_arn] = props.delete(:notification_arn) if props.key?(:notification_arn)
-        default[:configuration][:custom_data] = props.delete(:custom_data) if props.key?(:custom_data)
+        default[:Configuration][:NotificationArn] = props.delete(:NotificationArn) if props.key?(:NotificationArn)
+        default[:Configuration][:CustomData] = props.delete(:CustomData) if props.key?(:CustomData)
       else
         raise "Invalid props type: #{props.class}"
       end

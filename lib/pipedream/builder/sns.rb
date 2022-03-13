@@ -6,24 +6,24 @@ class Pipedream::Builder
       evaluate_file(sns_path) if File.exist?(sns_path)
 
       resource = {
-        sns_topic: {
-          type: "AWS::SNS::Topic",
-          properties: @properties
+        SnsTopic: {
+          Type: "AWS::SNS::Topic",
+          Properties: @properties
         }
       }
-      CfnCamelizer.transform(resource)
+      auto_camelize(resource)
     end
 
     def default_properties
       display_name = "#{@options[:full_pipeline_name]} pipeline"
       {
-        display_name: display_name,
-        # kms_master_key_id: "string",
-        # subscription: [{
-        #   endpoint: '',
-        #   protocol: ','
+        DisplayName: display_name,
+        # KmsMasterKeyId: "string",
+        # Subscription: [{
+        #   Endpoint: '',
+        #   Protocol: ','
         # }],
-        # topic_name: "string", # Not setting because update requires: Replacement. Dont want 2 pipelines to collide
+        # TopicName: "string", # Not setting because update requires: Replacement. Dont want 2 pipelines to collide
       }
       # https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sns-subscription.html
     end

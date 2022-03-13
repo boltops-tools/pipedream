@@ -24,36 +24,28 @@ class Pipedream::Builder::Pipeline
     def ensure_exists(name)
       return if exists?(name) || ENV['TEST']
       s3.create_bucket(bucket: name)
-      policy = {
-        "Version": "2012-10-17",
-        "Id": "SSEAndSSLPolicy",
-        "Statement": [
-          {
-            "Sid": "DenyUnEncryptedObjectUploads",
-            "Effect": "Deny",
-            "Principal": "*",
-            "Action": "s3:PutObject",
-            "Resource": "arn:aws:s3:::#{name}/*",
-            "Condition": {
-              "StringNotEquals": {
-                "s3:x-amz-server-side-encryption": "aws:kms"
-              }
-            }
-          },
-          {
-              "Sid": "DenyInsecureConnections",
-              "Effect": "Deny",
-              "Principal": "*",
-              "Action": "s3:*",
-              "Resource": "arn:aws:s3:::#{name}/*",
-              "Condition": {
-                  "Bool": {
-                      "aws:SecureTransport": "false"
-                  }
-              }
-          }
-        ]
-      }
+      policy =<<~EOL
+        ---
+        Version: '2012-10-17'
+        Id: SSEAndSSLPolicy
+        Statement:
+        - Sid: DenyUnEncryptedObjectUploads
+          Effect: Deny
+          Principal: "*"
+          Action: s3:PutObject
+          Resource: arn:aws:s3:::#{name}/*
+          Condition:
+            StringNotEquals:
+              S3:x-amz-server-side-encryption: aws:kms
+        - Sid: DenyInsecureConnections
+          Effect: Deny
+          Principal: "*"
+          Action: s3:*
+          Resource: arn:aws:s3:::#{name}/*
+          Condition:
+            Bool:
+              Aws:SecureTransport: 'false'
+      EOL
       s3.put_bucket_policy(
         bucket: name,
         policy: JSON.dump(policy),
@@ -76,11 +68,5 @@ class Pipedream::Builder::Pipeline
         false
       end
     end
-
-  private
-    def aws
-      AwsData.new
-    end
-    memoize :aws
   end
 end

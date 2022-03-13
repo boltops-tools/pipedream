@@ -11,25 +11,25 @@ class Pipedream::Builder
       check_exist!
 
       evaluate_file(pipeline_path)
-      @properties[:stages] ||= @stages
+      @properties[:Stages] ||= @stages
       set_source_branch!
 
       resource = {
-        pipeline: {
-          type: "AWS::CodePipeline::Pipeline",
-          properties: @properties
+        Pipeline: {
+          Type: "AWS::CodePipeline::Pipeline",
+          Properties: @properties
         }
       }
-      CfnCamelizer.transform(resource)
+      auto_camelize(resource)
     end
 
     def default_properties
       {
-        name: @full_pipeline_name,
-        role_arn: { "Fn::GetAtt": "IamRole.Arn" },
-        artifact_store: {
-          type: "S3",
-          location: s3_bucket, # auto creates s3 bucket
+        Name: @full_pipeline_name,
+        RoleArn: { "Fn::GetAtt": "IamRole.Arn" },
+        ArtifactStore: {
+          Type: "S3",
+          Location: s3_bucket, # auto creates s3 bucket
         }
       }
     end
@@ -38,9 +38,9 @@ class Pipedream::Builder
     def set_source_branch!
       return unless @options[:branch]
 
-      source_stage = @properties[:stages].first
-      action = source_stage[:actions].first
-      action[:configuration][:branch] = @options[:branch]
+      source_stage = @properties[:Stages].first
+      action = source_stage[:Actions].first
+      action[:Configuration][:Branch] = @options[:branch]
     end
 
     def s3_bucket

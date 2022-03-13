@@ -8,7 +8,7 @@
 # display_name "my display_name"
 # kms_master_key_id "String"
 # subscription([{
-#   endpoint: '',
-#   protocol: ','
+#   Endpoint: '',
+#   Protocol: ','
 # }])
 # topic_name "string", # Recommend not setting because update requires: Replacement. Allow CloudFormation to set it so 2 pipelines dont have same SNS Topic name that collides

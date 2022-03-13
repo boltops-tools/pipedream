@@ -19,6 +19,9 @@ module Pipedream
     branch_option = Proc.new do
       option :branch, aliases: "b", desc: "git branch" # important to default to nil
     end
+    yes_option = Proc.new do
+      option :yes, aliases: "y", desc: "Bypass are you sure prompt"
+    end
 
     desc "build PIPELINE_NAME", "Build CloudFormation Template"
     long_desc Help.text(:build)
@@ -33,13 +36,13 @@ module Pipedream
     option :branch, aliases: "b", desc: "git branch" # important to default to nil
     common_options.call
     branch_option.call
+    yes_option.call
     def up(pipeline_name=nil)
       Pipedream::Cfn::Deploy.new(options.merge(pipeline_name: pipeline_name)).run
     end
 
     desc "start", "Start Pipeline"
     long_desc Help.text(:start)
-    option :sure, desc: "Bypass are you sure prompt"
     option :branch, aliases: "b", desc: "git branch" # important to default to nil
     common_options.call
     branch_option.call
@@ -49,8 +52,8 @@ module Pipedream
 
     desc "down", "Delete CloudFormation stack with Pipeline"
     long_desc Help.text(:down)
-    option :sure, desc: "Bypass are you sure prompt"
     common_options.call
+    yes_option
     def down(pipeline_name=nil)
       Down.new(options.merge(pipeline_name: pipeline_name)).run
     end

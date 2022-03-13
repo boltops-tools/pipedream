@@ -4,23 +4,23 @@ class Pipedream::Builder
 
     def build
       evaluate_file(iam_role_path) if File.exist?(iam_role_path)
-      @properties[:policies] = [{
-        policy_name: "CodePipelineAccess",
-        policy_document: {
-          version: "2012-10-17",
-          statement: derived_iam_statements
+      @properties[:Policies] = [{
+        PolicyName: "CodePipelineAccess",
+        PolicyDocument: {
+          Version: "2012-10-17",
+          Statement: derived_iam_statements,
         }
       }]
 
-      @properties[:managed_policy_arns] = @managed_policy_arns if @managed_policy_arns && !@managed_policy_arns.empty?
+      @properties[:ManagedPolicyArns] = @managed_policy_arns if @managed_policy_arns && !@managed_policy_arns.empty?
 
       resource = {
         logical_id => {
-          type: "AWS::IAM::Role",
-          properties: @properties
+          Type: "AWS::IAM::Role",
+          Properties: @properties
         }
       }
-      CfnCamelizer.transform(resource)
+      auto_camelize(resource)
     end
 
     def logical_id
@@ -30,17 +30,17 @@ class Pipedream::Builder
   private
     def default_properties
       {
-        assume_role_policy_document: {
-          statement: [{
-            action: ["sts:AssumeRole"],
-            effect: "Allow",
-            principal: {
-              service: principal_services
+        AssumeRolePolicyDocument: {
+          Statement: [{
+            Action: ["sts:AssumeRole"],
+            Effect: "Allow",
+            Principal: {
+              Service: principal_services
             }
           }],
-          version: "2012-10-17"
+          Version: "2012-10-17"
         },
-        path: "/"
+        Path: "/"
       }
     end
 
@@ -52,117 +52,113 @@ class Pipedream::Builder
       @iam_statements || default_iam_statements
     end
 
+    # Based on the one created by CodePipeline Console
     def default_iam_statements
-      # Based on the one created by CodePipeline Console
-      [{
-        "action"=>["iam:PassRole"],
-        "resource"=>"*",
-        "effect"=>"Allow",
-        "condition"=>
-          {"string_equals_if_exists"=>
-            {"iam:passed_to_service"=>
-              ["cloudformation.amazonaws.com",
-               "elasticbeanstalk.amazonaws.com",
-               "ec2.amazonaws.com",
-               "ecs-tasks.amazonaws.com"]
-            }
-          }
-      },{
-        "action"=>
-          ["codecommit:CancelUploadArchive",
-           "codecommit:GetBranch",
-           "codecommit:GetCommit",
-           "codecommit:GetUploadArchiveStatus",
-           "codecommit:UploadArchive"],
-          "resource"=>"*",
-          "effect"=>"Allow"
-      },{
-        "action"=>
-         ["codedeploy:CreateDeployment",
-          "codedeploy:GetApplication",
-          "codedeploy:GetApplicationRevision",
-          "codedeploy:GetDeployment",
-          "codedeploy:GetDeploymentConfig",
-          "codedeploy:RegisterApplicationRevision"],
-          "resource"=>"*",
-          "effect"=>"Allow"
-      },{
-        "action"=>
-          ["elasticbeanstalk:*",
-           "ec2:*",
-           "elasticloadbalancing:*",
-           "autoscaling:*",
-           "cloudwatch:*",
-           "s3:*",
-           "sns:*",
-           "cloudformation:*",
-           "rds:*",
-           "sqs:*",
-           "ecs:*"],
-        "resource"=>"*",
-        "effect"=>"Allow"
-      },{
-        "action"=>["lambda:InvokeFunction", "lambda:ListFunctions"],
-        "resource"=>"*",
-        "effect"=>"Allow"
-      },{
-        "action"=>
-           ["opsworks:CreateDeployment",
-            "opsworks:DescribeApps",
-            "opsworks:DescribeCommands",
-            "opsworks:DescribeDeployments",
-            "opsworks:DescribeInstances",
-            "opsworks:DescribeStacks",
-            "opsworks:UpdateApp",
-            "opsworks:UpdateStack"],
-          "resource"=>"*",
-          "effect"=>"Allow"
-      },{
-        "action"=>
-         ["cloudformation:CreateStack",
-          "cloudformation:DeleteStack",
-          "cloudformation:DescribeStacks",
-          "cloudformation:UpdateStack",
-          "cloudformation:CreateChangeSet",
-          "cloudformation:DeleteChangeSet",
-          "cloudformation:DescribeChangeSet",
-          "cloudformation:ExecuteChangeSet",
-          "cloudformation:SetStackPolicy",
-          "cloudformation:ValidateTemplate"],
-        "resource"=>"*",
-        "effect"=>"Allow"
-      },{
-        "action"=>["codebuild:BatchGetBuilds", "codebuild:StartBuild"],
-        "resource"=>"*",
-        "effect"=>"Allow"
-      },{
-        "action"=>
-          ["devicefarm:ListProjects",
-           "devicefarm:ListDevicePools",
-           "devicefarm:GetRun",
-           "devicefarm:GetUpload",
-           "devicefarm:CreateUpload",
-           "devicefarm:ScheduleRun"],
-          "resource"=>"*",
-          "effect"=>"Allow",
-      },{
-        "action"=>
-          ["servicecatalog:ListProvisioningArtifacts",
-           "servicecatalog:CreateProvisioningArtifact",
-           "servicecatalog:DescribeProvisioningArtifact",
-           "servicecatalog:DeleteProvisioningArtifact",
-           "servicecatalog:UpdateProduct"],
-        "resource"=>"*",
-        "effect"=>"Allow",
-      },{
-        "action"=>["cloudformation:ValidateTemplate"],
-        "resource"=>"*",
-        "effect"=>"Allow",
-      },{
-        "action"=>["ecr:DescribeImages"],
-        "resource"=>"*",
-        "effect"=>"Allow",
-      }]
+      text =<<~EOL
+        ---
+        - Action:
+          - iam:PassRole
+          Resource: "*"
+          Effect: Allow
+          Condition:
+            StringEqualsIfExists:
+              Iam:passedToService:
+              - cloudformation.amazonaws.com
+              - elasticbeanstalk.amazonaws.com
+              - ec2.amazonaws.com
+              - ecs-tasks.amazonaws.com
+        - Action:
+          - codecommit:CancelUploadArchive
+          - codecommit:GetBranch
+          - codecommit:GetCommit
+          - codecommit:GetUploadArchiveStatus
+          - codecommit:UploadArchive
+          Resource: "*"
+          Effect: Allow
+        - Action:
+          - codedeploy:CreateDeployment
+          - codedeploy:GetApplication
+          - codedeploy:GetApplicationRevision
+          - codedeploy:GetDeployment
+          - codedeploy:GetDeploymentConfig
+          - codedeploy:RegisterApplicationRevision
+          Resource: "*"
+          Effect: Allow
+        - Action:
+          - elasticbeanstalk:*
+          - ec2:*
+          - elasticloadbalancing:*
+          - autoscaling:*
+          - cloudwatch:*
+          - s3:*
+          - sns:*
+          - cloudformation:*
+          - rds:*
+          - sqs:*
+          - ecs:*
+          Resource: "*"
+          Effect: Allow
+        - Action:
+          - lambda:InvokeFunction
+          - lambda:ListFunctions
+          Resource: "*"
+          Effect: Allow
+        - Action:
+          - opsworks:CreateDeployment
+          - opsworks:DescribeApps
+          - opsworks:DescribeCommands
+          - opsworks:DescribeDeployments
+          - opsworks:DescribeInstances
+          - opsworks:DescribeStacks
+          - opsworks:UpdateApp
+          - opsworks:UpdateStack
+          Resource: "*"
+          Effect: Allow
+        - Action:
+          - cloudformation:CreateStack
+          - cloudformation:DeleteStack
+          - cloudformation:DescribeStacks
+          - cloudformation:UpdateStack
+          - cloudformation:CreateChangeSet
+          - cloudformation:DeleteChangeSet
+          - cloudformation:DescribeChangeSet
+          - cloudformation:ExecuteChangeSet
+          - cloudformation:SetStackPolicy
+          - cloudformation:ValidateTemplate
+          Resource: "*"
+          Effect: Allow
+        - Action:
+          - codebuild:BatchGetBuilds
+          - codebuild:StartBuild
+          Resource: "*"
+          Effect: Allow
+        - Action:
+          - devicefarm:ListProjects
+          - devicefarm:ListDevicePools
+          - devicefarm:GetRun
+          - devicefarm:GetUpload
+          - devicefarm:CreateUpload
+          - devicefarm:ScheduleRun
+          Resource: "*"
+          Effect: Allow
+        - Action:
+          - servicecatalog:ListProvisioningArtifacts
+          - servicecatalog:CreateProvisioningArtifact
+          - servicecatalog:DescribeProvisioningArtifact
+          - servicecatalog:DeleteProvisioningArtifact
+          - servicecatalog:UpdateProduct
+          Resource: "*"
+          Effect: Allow
+        - Action:
+          - cloudformation:ValidateTemplate
+          Resource: "*"
+          Effect: Allow
+        - Action:
+          - ecr:DescribeImages
+          Resource: "*"
+          Effect: Allow
+      EOL
+      YAML.load(text)
     end
 
   private
