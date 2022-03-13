@@ -28,13 +28,13 @@ module Pipedream
       Pipedream::Builder.new(options.merge(pipeline_name: pipeline_name)).template
     end
 
-    desc "deploy PIPELINE_NAME", "Deploy pipeline."
-    long_desc Help.text(:deploy)
+    desc "up PIPELINE_NAME", "Deploy pipeline stack"
+    long_desc Help.text(:up)
     option :branch, aliases: "b", desc: "git branch" # important to default to nil
     common_options.call
     branch_option.call
-    def deploy(pipeline_name=nil)
-      Deploy.new(options.merge(pipeline_name: pipeline_name)).run
+    def up(pipeline_name=nil)
+      Pipedream::Cfn::Deploy.new(options.merge(pipeline_name: pipeline_name)).run
     end
 
     desc "start", "Start codebuild project."

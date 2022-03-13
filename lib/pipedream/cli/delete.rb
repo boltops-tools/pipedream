@@ -5,7 +5,7 @@ class Pipedream::CLI
       if @options[:noop]
         puts "NOOP #{message}"
       else
-        are_you_sure?(@stack_name, :delete)
+        are_you_sure?
 
         if stack_exists?(@stack_name)
           cfn.delete_stack(stack_name: @stack_name)
@@ -13,6 +13,16 @@ class Pipedream::CLI
         else
           puts "#{@stack_name.inspect} stack does not exist".color(:red)
         end
+      end
+    end
+
+  private
+    def are_you_sure?
+      message = "Will delete stack #{@stack_name.color(:green)}"
+      if @options[:yes]
+        logger.info message
+      else
+        sure?(message)
       end
     end
   end

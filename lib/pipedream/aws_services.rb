@@ -6,7 +6,7 @@ require "aws_mfa_secure/ext/aws" # add MFA support
 
 module Pipedream
   module AwsServices
-    include Helpers
+    include Concerns
 
     def codepipeline
       @codepipeline ||= Aws::CodePipeline::Client.new

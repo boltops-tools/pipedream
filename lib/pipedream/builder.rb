@@ -29,6 +29,7 @@ module Pipedream
       @template["Resources"].merge!(schedule) if schedule
 
       write
+      @template
     end
 
     def write

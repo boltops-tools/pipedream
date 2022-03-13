@@ -1,5 +1,30 @@
 module Pipedream::AwsServices
-  module Helpers
+  module Concerns
+    extend ActiveSupport::Concern
+
+    included do
+      delegate :region, :account, to: :aws
+      alias_method :aws_region, :region
+      alias_method :current_region, :region
+      alias_method :aws_account, :account
+    end
+
+    def aws
+      @aws_data ||= AwsData.new
+    end
+
+    def find_stack(stack_name)
+      resp = cfn.describe_stacks(stack_name: stack_name)
+      resp.stacks.first
+    rescue Aws::CloudFormation::Errors::ValidationError => e
+      # example: Stack with id demo-web does not exist
+      if e.message =~ /Stack with/ && e.message =~ /does not exist/
+        nil
+      else
+        raise
+      end
+    end
+
     def stack_exists?(stack_name)
       return false if ENV['TEST']
 
@@ -23,26 +48,6 @@ module Pipedream::AwsServices
         end
       end
       exist
-    end
-
-    def are_you_sure?(stack_name, action)
-      if @options[:sure]
-        sure = 'y'
-      else
-        message = case action
-        when :update
-          "Are you sure you want to want to update the #{stack_name.color(:green)} stack with the changes? (y/N)"
-        when :delete
-          "Are you sure you want to want to delete the #{stack_name.color(:green)} stack? (y/N)"
-        end
-        puts message
-        sure = $stdin.gets
-      end
-
-      unless sure =~ /^y/
-        puts "Whew! Exiting without running #{action}."
-        exit 0
-      end
     end
   end
 end

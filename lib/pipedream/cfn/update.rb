@@ -1,4 +1,4 @@
-module Pipedream
+module Pipedream::Cfn
   class Update < Stack
     def perform
       cfn.update_stack(

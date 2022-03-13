@@ -5,6 +5,7 @@ class Pipedream::CLI
     include Pipedream::Names::Conventions
     include Pipedream::Utils::Logging
     include Pipedream::Utils::Pretty
+    include Pipedream::Utils::Sure
 
     def initialize(options={})
       @options = options
