@@ -54,7 +54,6 @@ class Pipedream::CLI
 
   private
     def codepipeline_info(execution_id)
-      region = `aws configure get region`.strip rescue "us-east-1"
       url = "https://#{region}.console.aws.amazon.com/codesuite/codepipeline/pipelines/#{pipeline_name}/view"
 
       puts "Pipeline started: #{pipeline_name}"
