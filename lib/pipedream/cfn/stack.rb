@@ -41,7 +41,7 @@ module Pipedream::Cfn
     end
 
     def status
-      @status ||= Cfn::Status.new(@stack_name)
+      @status ||= CfnStatus.new(@stack_name)
     end
   end
 end
