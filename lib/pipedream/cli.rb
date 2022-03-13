@@ -37,7 +37,7 @@ module Pipedream
       Pipedream::Cfn::Deploy.new(options.merge(pipeline_name: pipeline_name)).run
     end
 
-    desc "start", "Start codebuild project."
+    desc "start", "Start Pipeline"
     long_desc Help.text(:start)
     option :sure, desc: "Bypass are you sure prompt"
     option :branch, aliases: "b", desc: "git branch" # important to default to nil
@@ -47,12 +47,12 @@ module Pipedream
       Start.new(options.merge(pipeline_name: pipeline_name)).run
     end
 
-    desc "delete", "Delete codebuild project."
-    long_desc Help.text(:delete)
+    desc "down", "Delete CloudFormation stack with Pipeline"
+    long_desc Help.text(:down)
     option :sure, desc: "Bypass are you sure prompt"
     common_options.call
-    def delete(pipeline_name=nil)
-      Delete.new(options.merge(pipeline_name: pipeline_name)).run
+    def down(pipeline_name=nil)
+      Down.new(options.merge(pipeline_name: pipeline_name)).run
     end
 
     desc "completion *PARAMS", "Prints words for auto-completion."
