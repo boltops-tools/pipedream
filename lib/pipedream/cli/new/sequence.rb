@@ -1,7 +1,7 @@
 require 'fileutils'
 require 'thor'
 
-class Pipedream::CLI
+module Pipedream::CLI::New
   class Sequence < Thor::Group
     include Pipedream::AwsServices
     include Thor::Actions
@@ -10,7 +10,7 @@ class Pipedream::CLI
       # https://github.com/erikhuda/thor/blob/master/lib/thor/actions.rb#L49
 
     def self.source_paths
-      [File.expand_path("../../template", __dir__)]
+      [File.expand_path("../../../template", __dir__)]
     end
 
   private

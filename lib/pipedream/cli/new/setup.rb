@@ -1,6 +1,5 @@
-class Pipedream::CLI
-  class Init < Sequence
-    # Ugly, this is how I can get the options from to match with this Thor::Group
+module Pipedream::CLI::New
+  class Setup < Sequence
     def self.cli_options
       [
         [:name, desc: "CodePipeline project name."],
@@ -26,7 +25,7 @@ class Pipedream::CLI
       if @options[:template_mode] == "replace" # replace the template entirely
         override_source_paths(custom_template)
       else # additive: modify on top of default template
-        default_template = File.expand_path("../../template", __FILE__)
+        default_template = File.expand_path("../../../template", __dir__)
         override_source_paths([custom_template, default_template])
       end
     end
@@ -49,6 +48,17 @@ class Pipedream::CLI
       end
     end
 
+    def update_gitignore
+      text =<<~EOL
+        .pipedream/output
+      EOL
+      if File.exist?(".gitignore")
+        append_to_file ".gitignore", text
+      else
+        create_file ".gitignore", text
+      end
+    end
+
   private
     def project_name
       inferred_name = File.basename(Dir.pwd).gsub('_','-').gsub(/[^0-9a-zA-Z,-]/, '')
@@ -60,7 +70,7 @@ class Pipedream::CLI
       return default unless File.exist?(".git/config") && git_installed?
 
       url = `git config --get remote.origin.url`.strip
-      repo = Dsl::Pipeline::Github.extract_repo_source(url)
+      repo = Pipedream::Dsl::Pipeline::Github.extract_repo_source(url)
       repo == '' ? default : repo
     end
   end
