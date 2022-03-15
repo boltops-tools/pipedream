@@ -5,12 +5,12 @@ module Pipedream
     class_option :verbose, type: :boolean
     class_option :noop, type: :boolean
 
-    desc "setup", "Set up initial .pipedream files"
-    long_desc Help.text(:setup)
-    New::Setup.cli_options.each do |args|
+    desc "init", "Generate initial .pipedream files"
+    long_desc Help.text(:init)
+    New::Init.cli_options.each do |args|
       option(*args)
     end
-    register(New::Setup, "setup", "setup", "Set up initial .pipedream files")
+    register(New::Init, "init", "init", "Generate initial .pipedream files")
 
     common_options = Proc.new do
       option :stack_name, desc: "Override the generated stack name. If you use this you must always specify it"

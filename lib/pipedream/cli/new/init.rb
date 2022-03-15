@@ -1,5 +1,5 @@
 module Pipedream::CLI::New
-  class Setup < Sequence
+  class Init < Sequence
     def self.cli_options
       [
         [:name, desc: "CodePipeline project name."],
