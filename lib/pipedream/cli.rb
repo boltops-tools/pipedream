@@ -12,8 +12,7 @@ module Pipedream
     end
     register(New::Init, "init", "init", "Generate initial .pipedream files")
 
-    common_options = Proc.new do
-      option :stack_name, desc: "Override the generated stack name. If you use this you must always specify it"
+    wait_option = Proc.new do
       option :wait, type: :boolean, default: true, desc: "Wait for operation to complete"
     end
     branch_option = Proc.new do
@@ -25,7 +24,7 @@ module Pipedream
 
     desc "build PIPELINE_NAME", "Build CloudFormation Template"
     long_desc Help.text(:build)
-    common_options.call
+    wait_option.call
     branch_option.call
     def build(pipeline_name=nil)
       Pipedream::Builder.new(options.merge(pipeline_name: pipeline_name)).template
@@ -34,7 +33,7 @@ module Pipedream
     desc "up PIPELINE_NAME", "Deploy pipeline stack"
     long_desc Help.text(:up)
     option :branch, aliases: "b", desc: "git branch" # important to default to nil
-    common_options.call
+    wait_option.call
     branch_option.call
     yes_option.call
     def up(pipeline_name=nil)
@@ -44,15 +43,21 @@ module Pipedream
     desc "start", "Start Pipeline"
     long_desc Help.text(:start)
     option :branch, aliases: "b", desc: "git branch" # important to default to nil
-    common_options.call
+    wait_option.call
     branch_option.call
     def start(pipeline_name=nil)
       Start.new(options.merge(pipeline_name: pipeline_name)).run
     end
 
+    desc "status", "status Pipeline"
+    long_desc Help.text(:status)
+    def status(pipeline_name=nil)
+      Status.new(options.merge(pipeline_name: pipeline_name)).run
+    end
+
     desc "down", "Delete CloudFormation stack with Pipeline"
     long_desc Help.text(:down)
-    common_options.call
+    wait_option.call
     yes_option
     def down(pipeline_name=nil)
       Down.new(options.merge(pipeline_name: pipeline_name)).run

@@ -16,6 +16,8 @@ end
 module Pipedream
   class Command < Thor
     class << self
+      include Pipedream::Utils::Logging
+
       def dispatch(m, args, options, config)
         check_project!(args)
 
@@ -59,7 +61,7 @@ module Pipedream
         return if subcommand?
         return if command_name.nil?
         return if help_flags.include?(args.last) # IE: -h help
-        return if %w[-h -v --version central init start version].include?(command_name)
+        return if %w[-h -v --version central init start status version].include?(command_name)
         return if File.exist?("#{Pipedream.root}/.pipedream")
 
         logger.error "ERROR: It doesnt look like this project has pipedream set up.".color(:red)
