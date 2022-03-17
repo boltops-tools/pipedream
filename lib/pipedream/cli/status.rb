@@ -20,9 +20,9 @@ class Pipedream::CLI
         get_pipeline_state.stage_states.each do |state|
           show_stage(state)
         end
-        completed = completed?(pipeline_state)
+        completed = completed?
         break if completed
-        sleep 1 # if dont poll quick enough might miss the InProgress status
+        sleep 1 # if dont poll quick enough higher chance of missing the InProgress status
       end
     end
 
@@ -56,13 +56,17 @@ class Pipedream::CLI
       end
     end
 
-    def completed?(pipeline_state)
-      in_progress = pipeline_state.stage_states.find do |stage|
-        stage.action_states.find do |action|
-          action.latest_execution && action.latest_execution.status == "InProgress"
-        end
+    # resp.pipeline_execution_summaries[0].status #=> String, one of "Cancelled", "InProgress", "Stopped", "Stopping", "Succeeded", "Superseded", "Failed"
+    def completed?
+      @execution_id
+      resp = codepipeline.list_pipeline_executions(pipeline_name: @full_pipeline_name)
+      executions = resp.pipeline_execution_summaries
+      execution = executions.find do |e|
+        e.pipeline_execution_id == @execution_id
       end
-      !in_progress
+      return false unless execution
+      in_progress_statuses = %w[InProgress Stopping]
+      !in_progress_statuses.include?(execution.status)
     end
 
     def get_pipeline_state
