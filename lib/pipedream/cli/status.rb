@@ -8,11 +8,35 @@ class Pipedream::CLI
       # puts "Most recent execution_id: #{execution_id}"
 
       resp = codepipeline.get_pipeline_state(name: @full_pipeline_name)
-      # puts YAML.dump(resp.to_h.deep_stringify_keys)
+      puts YAML.dump(resp.to_h.deep_stringify_keys)
 
-      resp.stage_states.each do |state|
-        show_stage(state)
+      show_stages
+    end
+
+    def show_stages
+      completed = false
+      until completed do
+        pipeline_state = get_pipeline_state
+        get_pipeline_state.stage_states.each do |state|
+          show_stage(state)
+        end
+        completed = completed?(pipeline_state)
+        break if completed
+        sleep 5
       end
+    end
+
+    def completed?(pipeline_state)
+      in_progress = pipeline_state.stage_states.find do |stage|
+        stage.action_states.find do |action|
+          action.latest_execution.status == "InProgress"
+        end
+      end
+      !in_progress
+    end
+
+    def get_pipeline_state
+      codepipeline.get_pipeline_state(name: @full_pipeline_name) # resp
     end
 
     # Stage name
@@ -24,14 +48,34 @@ class Pipedream::CLI
     #
     #
     def show_stage(stage)
-      puts "Stage: #{stage.stage_name}".color(:green)
+      header = "Stage: #{stage.stage_name}"
+      header << " Execution id #{stage.latest_execution.pipeline_execution_id}"
+      show(header.color(:purple))
       stage.action_states.each do |action|
         line = event_time(action.latest_execution.last_status_change)
-        line << " Action #{action.action_name}"
-        line << " Status #{action.latest_execution.status}"
-        line << " Summary #{action.latest_execution.summary}" if action.latest_execution.respond_to?(:summary)
-        puts line
+        line << " #{action.action_name}:"
+        line << " Status #{status_color(action.latest_execution.status)}"
+        line << " - #{action.latest_execution.summary}" unless action.latest_execution.summary.blank?
+        show line
       end
+    end
+
+    def status_color(status)
+      case status
+      when "InProgress"
+        status.color(:yellow)
+      when "Succeeded"
+        status.color(:green)
+      else
+        status.color(:red)
+      end
+    end
+
+    @@shown = []
+    def show(message)
+      return if @@shown.include?(message)
+      puts message
+      @@shown << message
     end
 
     # https://stackoverflow.com/questions/18000432/rails-12-hour-am-pm-range-for-a-day
