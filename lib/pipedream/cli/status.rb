@@ -1,8 +1,8 @@
 class Pipedream::CLI
   class Status < Base
     def run(execution_id=nil)
-      resp = codepipeline.get_pipeline_state(name: @full_pipeline_name)
-      puts YAML.dump(resp.to_h.deep_stringify_keys)
+      # resp = codepipeline.get_pipeline_state(name: @full_pipeline_name)
+      # puts YAML.dump(resp.to_h.deep_stringify_keys)
 
       @execution_id = execution_id || recent_execution_id
       show_stages
@@ -17,44 +17,63 @@ class Pipedream::CLI
       completed = false
       until completed do
         pipeline_state = get_pipeline_state
-        get_pipeline_state.stage_states.each do |state|
-          show_stage(state)
+        get_pipeline_state.stage_states.each do |stage_state|
+          show_stage(stage_state)
+          show_inbound_waiting(stage_state)
         end
         completed = completed?
         break if completed
         sleep 1 # if dont poll quick enough higher chance of missing the InProgress status
+        # sleep 5
+
+        if File.exist?("/tmp/loud.txt")
+          resp = codepipeline.get_pipeline_state(name: @full_pipeline_name)
+          puts YAML.dump(resp.to_h.deep_stringify_keys)
+        end
       end
     end
 
-    def show_stage(stage)
+    # Waiting for the InProgress Stage ahead
+    def show_inbound_waiting(stage_state)
+      return unless stage_state.inbound_execution&.pipeline_execution_id == @execution_id
+      show "Waiting for another #{stage_state.stage_name} stage that's in progress"
+    end
+
+    def show_stage(stage_state)
       # Filter by execution_id
       if @execution_id
-        # puts "@execution_id #{@execution_id} current execution id #{stage.latest_execution.pipeline_execution_id}"
-        return unless @execution_id == stage.latest_execution.pipeline_execution_id
-        # if @execution_id == stage.latest_execution.pipeline_execution_id
-        #   puts "MATCHES will show stage #{stage.stage_name}".color(:green)
+        # puts "@execution_id #{@execution_id} current execution id #{stage_state.latest_execution.pipeline_execution_id}"
+        return unless @execution_id == stage_state.latest_execution.pipeline_execution_id
+        # if @execution_id == stage_state.latest_execution.pipeline_execution_id
+        #   puts "MATCHES will show stage #{stage_state.stage_name}".color(:green)
         # else
-        #   puts "NO MATCH will NOT show #{stage.stage_name}".color(:red)
+        #   puts "NO MATCH will NOT show #{stage_state.stage_name}".color(:red)
         #   return
         # end
       end
 
-      header = "Stage #{stage.stage_name}"
+      header = "Stage #{stage_state.stage_name}"
       # if logger.level <= Logger::DEBUG # info is 1 debug is 0
-        header << " Execution id #{stage.latest_execution.pipeline_execution_id}"
+        header << " Execution id #{stage_state.latest_execution.pipeline_execution_id}"
       # end
       show(header.color(:purple))
-      stage.action_states.each do |action|
+      stage_state.action_states.each do |action|
         latest_execution = action.latest_execution
         next unless latest_execution
         line = event_time(latest_execution.last_status_change)
         line << " #{action.action_name}:"
         line << " Status #{status_color(latest_execution.status)}"
         line << " #{latest_execution.summary}" unless latest_execution.summary.blank?
-        line << " #{stage.latest_execution.pipeline_execution_id}" # debug
+        line << " #{stage_state.latest_execution.pipeline_execution_id}" # debug
         show line
       end
     end
+
+    # - stage_name: Deploy
+    #   inbound_execution:
+    #     pipeline_execution_id: 501e9a69-1f02-43b1-819a-e51e33f453e4
+    #     status: InProgress
+
 
     # resp.pipeline_execution_summaries[0].status #=> String, one of "Cancelled", "InProgress", "Stopped", "Stopping", "Succeeded", "Superseded", "Failed"
     def completed?
