@@ -37,7 +37,7 @@ class Pipedream::CLI
       end
 
       header = "Stage #{stage_state.stage_name}"
-      if logger.level <= Logger::DEBUG # info is 1 debug is 0
+      if debug?
         header << " Execution id #{stage_state.latest_execution.pipeline_execution_id}"
       end
       show(header.color(:purple))
@@ -48,9 +48,13 @@ class Pipedream::CLI
         line << " #{action.action_name}:"
         line << " Status #{status_color(latest_execution.status)}"
         line << " #{latest_execution.summary}" unless latest_execution.summary.blank?
-        line << " #{stage_state.latest_execution.pipeline_execution_id}" # debug
+        line << " #{stage_state.latest_execution.pipeline_execution_id}" if debug?
         show line
       end
+    end
+
+    def debug?
+      logger.level <= Logger::DEBUG # info is 1 debug is 0
     end
 
     # Waiting for the InProgress Stage ahead
