@@ -1,18 +1,18 @@
 class Pipedream::CLI
   class Status < Base
-    def run
-      # puts "@pipeline_name #{@pipeline_name}"
-      # puts "@full_pipeline_name #{@full_pipeline_name}"
-
-      # execution_id = recent_execution_id
-      # puts "Most recent execution_id: #{execution_id}"
-
+    def run(execution_id=nil)
       resp = codepipeline.get_pipeline_state(name: @full_pipeline_name)
       puts YAML.dump(resp.to_h.deep_stringify_keys)
 
+      @execution_id = execution_id || recent_execution_id
       show_stages
     end
 
+    # Stage: Source
+    # 06:49:59PM Central: Status Succeeded commit message 1
+    # 06:50:00PM App: Status Succeeded commit message 2
+    # Stage: Deploy
+    # 06:55:13PM code-build-job: Status Succeeded
     def show_stages
       completed = false
       until completed do
@@ -26,10 +26,32 @@ class Pipedream::CLI
       end
     end
 
+    def show_stage(stage)
+      # Filter by execution_id
+      if @execution_id
+        return unless @execution_id == stage.latest_execution.pipeline_execution_id
+      end
+
+      header = "Stage #{stage.stage_name}"
+      # if logger.level <= Logger::DEBUG # info is 1 debug is 0
+        header << " Execution id #{stage.latest_execution.pipeline_execution_id}"
+      # end
+      show(header.color(:purple))
+      stage.action_states.each do |action|
+        latest_execution = action.latest_execution
+        next unless latest_execution
+        line = event_time(latest_execution.last_status_change)
+        line << " #{action.action_name}:"
+        line << " Status #{status_color(latest_execution.status)}"
+        line << " #{latest_execution.summary}" unless latest_execution.summary.blank?
+        show line
+      end
+    end
+
     def completed?(pipeline_state)
       in_progress = pipeline_state.stage_states.find do |stage|
         stage.action_states.find do |action|
-          action.latest_execution.status == "InProgress"
+          action.latest_execution && action.latest_execution.status == "InProgress"
         end
       end
       !in_progress
@@ -37,27 +59,6 @@ class Pipedream::CLI
 
     def get_pipeline_state
       codepipeline.get_pipeline_state(name: @full_pipeline_name) # resp
-    end
-
-    # Stage name
-    #   Action name 1
-    #   Action name 2 etc
-    #
-    # Source action has a summary with the commit message.
-    # Other actions dont
-    #
-    #
-    def show_stage(stage)
-      header = "Stage: #{stage.stage_name}"
-      header << " Execution id #{stage.latest_execution.pipeline_execution_id}"
-      show(header.color(:purple))
-      stage.action_states.each do |action|
-        line = event_time(action.latest_execution.last_status_change)
-        line << " #{action.action_name}:"
-        line << " Status #{status_color(action.latest_execution.status)}"
-        line << " - #{action.latest_execution.summary}" unless action.latest_execution.summary.blank?
-        show line
-      end
     end
 
     def status_color(status)
@@ -74,7 +75,7 @@ class Pipedream::CLI
     @@shown = []
     def show(message)
       return if @@shown.include?(message)
-      puts message
+      logger.info message
       @@shown << message
     end
 

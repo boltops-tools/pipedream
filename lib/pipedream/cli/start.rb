@@ -1,10 +1,14 @@
 class Pipedream::CLI
   class Start < Base
     def run
+      start_time = Time.now
       check_pipeline_exists!
       redeploy
       resp = codepipeline.start_pipeline_execution(name: pipeline_name)
       codepipeline_info(resp.pipeline_execution_id)
+      pipeline_status.run(resp.pipeline_execution_id)
+      time_took = pretty_time(Time.now-start_time).color(:green)
+      puts "Time took: #{time_took}"
     end
 
     # Pipedreamline does not currently support specifying a different branch starting an execution.
@@ -72,5 +76,11 @@ class Pipedream::CLI
     rescue Aws::CodePipeline::Errors::PipelineNotFoundException
       false
     end
+
+    # Not named status to avoid conflicting with CfnStatus
+    def pipeline_status
+      Status.new(@options)
+    end
+    memoize :pipeline_status
   end
 end
