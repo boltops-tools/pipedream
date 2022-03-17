@@ -14,8 +14,8 @@ module Pipedream::Names
     # Examples:
     #
     #     myapp-ci-deploy # with Settings stack_naming append_env set to false.
-    #     myapp-ci-deploy-development
-    #     myapp-ci-deploy-development-2
+    #     myapp-ci-deploy-dev
+    #     myapp-ci-deploy-dev-2
     #
     def inferred_stack_name(pipeline_name)
       items = [pipeline_name, @options[:type], Pipedream.env_extra, "pipe"]
