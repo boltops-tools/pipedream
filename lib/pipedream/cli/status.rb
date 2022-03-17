@@ -1,9 +1,6 @@
 class Pipedream::CLI
   class Status < Base
     def run(execution_id=nil)
-      # resp = codepipeline.get_pipeline_state(name: @full_pipeline_name)
-      # puts YAML.dump(resp.to_h.deep_stringify_keys)
-
       @execution_id = execution_id || recent_execution_id
       show_stages
     end
@@ -33,29 +30,16 @@ class Pipedream::CLI
       end
     end
 
-    # Waiting for the InProgress Stage ahead
-    def show_inbound_waiting(stage_state)
-      return unless stage_state.inbound_execution&.pipeline_execution_id == @execution_id
-      show "Waiting for another #{stage_state.stage_name} stage that's in progress"
-    end
-
     def show_stage(stage_state)
       # Filter by execution_id
       if @execution_id
-        # puts "@execution_id #{@execution_id} current execution id #{stage_state.latest_execution.pipeline_execution_id}"
         return unless @execution_id == stage_state.latest_execution.pipeline_execution_id
-        # if @execution_id == stage_state.latest_execution.pipeline_execution_id
-        #   puts "MATCHES will show stage #{stage_state.stage_name}".color(:green)
-        # else
-        #   puts "NO MATCH will NOT show #{stage_state.stage_name}".color(:red)
-        #   return
-        # end
       end
 
       header = "Stage #{stage_state.stage_name}"
-      # if logger.level <= Logger::DEBUG # info is 1 debug is 0
+      if logger.level <= Logger::DEBUG # info is 1 debug is 0
         header << " Execution id #{stage_state.latest_execution.pipeline_execution_id}"
-      # end
+      end
       show(header.color(:purple))
       stage_state.action_states.each do |action|
         latest_execution = action.latest_execution
@@ -69,11 +53,16 @@ class Pipedream::CLI
       end
     end
 
+    # Waiting for the InProgress Stage ahead
     # - stage_name: Deploy
     #   inbound_execution:
     #     pipeline_execution_id: 501e9a69-1f02-43b1-819a-e51e33f453e4
     #     status: InProgress
-
+    def show_inbound_waiting(stage_state)
+      return unless stage_state.inbound_execution&.pipeline_execution_id == @execution_id
+      # show "Waiting for another #{stage_state.stage_name} stage that's in progress"
+      show "Waiting for another in progress stage: #{stage_state.stage_name}"
+    end
 
     # resp.pipeline_execution_summaries[0].status #=> String, one of "Cancelled", "InProgress", "Stopped", "Stopping", "Succeeded", "Superseded", "Failed"
     def completed?
