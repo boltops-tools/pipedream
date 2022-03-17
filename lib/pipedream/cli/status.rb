@@ -61,7 +61,7 @@ class Pipedream::CLI
     def show_inbound_waiting(stage_state)
       return unless stage_state.inbound_execution&.pipeline_execution_id == @execution_id
       # show "Waiting for another #{stage_state.stage_name} stage that's in progress"
-      show "Waiting for another in progress stage: #{stage_state.stage_name}"
+      show "Waiting for another in-progress Stage #{stage_state.stage_name}"
     end
 
     # resp.pipeline_execution_summaries[0].status #=> String, one of "Cancelled", "InProgress", "Stopped", "Stopping", "Succeeded", "Superseded", "Failed"
