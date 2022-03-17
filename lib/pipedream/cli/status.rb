@@ -22,14 +22,21 @@ class Pipedream::CLI
         end
         completed = completed?(pipeline_state)
         break if completed
-        sleep 5
+        sleep 1 # if dont poll quick enough might miss the InProgress status
       end
     end
 
     def show_stage(stage)
       # Filter by execution_id
       if @execution_id
+        # puts "@execution_id #{@execution_id} current execution id #{stage.latest_execution.pipeline_execution_id}"
         return unless @execution_id == stage.latest_execution.pipeline_execution_id
+        # if @execution_id == stage.latest_execution.pipeline_execution_id
+        #   puts "MATCHES will show stage #{stage.stage_name}".color(:green)
+        # else
+        #   puts "NO MATCH will NOT show #{stage.stage_name}".color(:red)
+        #   return
+        # end
       end
 
       header = "Stage #{stage.stage_name}"
@@ -44,6 +51,7 @@ class Pipedream::CLI
         line << " #{action.action_name}:"
         line << " Status #{status_color(latest_execution.status)}"
         line << " #{latest_execution.summary}" unless latest_execution.summary.blank?
+        line << " #{stage.latest_execution.pipeline_execution_id}" # debug
         show line
       end
     end
