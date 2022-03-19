@@ -13,12 +13,11 @@ class Pipedream::CLI
     def show_stages
       completed = false
       until completed do
-        pipeline_state = get_pipeline_state
         get_pipeline_state.stage_states.each do |stage_state|
+          show_inbound_waiting(stage_state) # Tricky this is from another execution_id so dont check current?
           next unless current?(stage_state)
           show_stage(stage_state)
           show_error(stage_state)
-          show_inbound_waiting(stage_state)
           handle_approval(stage_state)
         end
         completed = completed?
@@ -35,8 +34,6 @@ class Pipedream::CLI
     def show_error(stage_state)
       latest_execution = stage_state.latest_execution
       return unless latest_execution
-
-
     end
 
     def current?(stage_state)
@@ -78,7 +75,6 @@ class Pipedream::CLI
       text = has_time ? " #{action.action_name}:" : "#{action.action_name}:"
       text
     end
-
 
     def handle_approval(stage_state)
       # since put_approval_result is async we can hit this method again too quickly
