@@ -16,29 +16,39 @@ class Pipedream::CLI
         pipeline_state = get_pipeline_state
         get_pipeline_state.stage_states.each do |stage_state|
           show_stage(stage_state)
+          show_error(stage_state)
           show_inbound_waiting(stage_state)
         end
         completed = completed?
         break if completed
         sleep 1 # if dont poll quick enough higher chance of missing the InProgress status
-        # sleep 5
-
-        if File.exist?("/tmp/loud.txt")
-          resp = codepipeline.get_pipeline_state(name: @full_pipeline_name)
-          puts YAML.dump(resp.to_h.deep_stringify_keys)
-        end
       end
     end
 
-    def show_stage(stage_state)
+    def show_error(stage_state)
+      latest_execution = stage_state.latest_execution
+      return unless latest_execution
+
+
+    end
+
+    def current?(stage_state)
+      latest_execution = stage_state.latest_execution
+      return false unless latest_execution
       # Filter by execution_id
       if @execution_id
-        return unless @execution_id == stage_state.latest_execution.pipeline_execution_id
+        return false unless @execution_id == latest_execution.pipeline_execution_id
       end
+      true
+    end
 
+    def show_stage(stage_state)
+      return unless current?(stage_state)
+
+      latest_execution = stage_state.latest_execution
       header = "Stage #{stage_state.stage_name}"
       if debug?
-        header << " Execution id #{stage_state.latest_execution.pipeline_execution_id}"
+        header << " Execution id #{latest_execution.pipeline_execution_id}"
       end
       show(header.color(:purple))
       stage_state.action_states.each do |action|
@@ -48,7 +58,7 @@ class Pipedream::CLI
         line << " #{action.action_name}:"
         line << " Status #{status_color(latest_execution.status)}"
         line << " #{latest_execution.summary}" unless latest_execution.summary.blank?
-        line << " #{stage_state.latest_execution.pipeline_execution_id}" if debug?
+        line << " #{latest_execution.pipeline_execution_id}" if debug?
         show line
       end
     end

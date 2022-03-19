@@ -1,25 +1,19 @@
 # Pipedream Files
 
-The files in folder are used by pipedream to build AWS CodePipeline pipelines.  For more info, check out the [pipedream docs](https://pipedream.run). Here's a quick start.
+The files in folder are used by pipedream to build AWS CodePipeline pipelines: [Pipe Dream Docs](https://pipedream.run)
 
-## Install Tool
+## Deploy Pipeline
 
-    gem install pipedream
+To deploy the pipeline
 
-This installs both the `pipe` and `pipedream` commands. They do the same thing, the `pipe` command is just shorter to type.
+    pipedream deploy
 
-## Update Project
+## Start Execution
 
-To update the CodePipeline pipelines:
+To start a Pipeline execution
 
-    pipedream deploy demo
-
-## Start a Execution
-
-To start a CodePipeline execution:
-
-    pipedream start demo
+    pipedream start
 
 To specify a branch:
 
-    pipedream start demo -b feature
+    pipedream start -b feature
