@@ -1,3 +1,5 @@
+require "fileutils"
+
 class Pipedream::CLI
   class Status < Base
     def run(execution_id=nil)
@@ -27,6 +29,7 @@ class Pipedream::CLI
         if File.exist?("/tmp/loud.txt")
           resp = codepipeline.get_pipeline_state(name: @full_pipeline_name)
           puts YAML.dump(resp.to_h.deep_stringify_keys)
+          FileUtils.rm_f("/tmp/loud.txt")
         end
       end
     end

@@ -28,6 +28,10 @@ module Pipedream
       schedule = Schedule.new(@options).build
       @template["Resources"].merge!(schedule) if schedule
 
+      # https://stackoverflow.com/questions/24508364/how-to-emit-yaml-in-ruby-expanding-aliases
+      # Ensure no YAML aliases
+      @template = YAML.load(@template.to_json)
+
       write
       @template
     end
