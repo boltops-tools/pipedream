@@ -63,9 +63,18 @@ class Pipedream::CLI
         line = has_time ? event_time(latest_execution.last_status_change) : ""
         line << action_name(latest_execution, action)
         line << " Status #{status_color(latest_execution.status)}"
-        line << " #{latest_execution.summary}" unless latest_execution.summary.blank?
+        line << " #{short_summary(latest_execution.summary, stage_state.stage_name)}" unless latest_execution.summary.blank?
         line << " #{latest_execution.pipeline_execution_id}" if debug?
         show line
+      end
+    end
+
+    def short_summary(summary, stage_name)
+      if stage_name == 'Source'
+        # in case commit message is multiple lines. only show first line
+        summary.split("\n").first
+      else
+        summary
       end
     end
 
