@@ -19,7 +19,7 @@ class Pipedream::CLI
       puts "  Current pipeline branch: #{current_pipeline_branch}"
       puts "  Requested branch: #{@options[:branch]}"
       puts "Updating pipeline with new branch.".color(:green)
-      Deploy.new(@options).run
+      Pipedream::Cfn::Deploy.new(@options).run
     end
 
     def different_branch?
